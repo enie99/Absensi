@@ -2,8 +2,6 @@
 <html>
 
 <head>
-
-	<!-- /.website title -->
 	<title>Absensi</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -14,15 +12,14 @@
 	<link href="<?php echo base_url("assets/frontend/css/animate.css"); ?>" rel="stylesheet" media="screen">
 	<link href="<?php echo base_url("assets/frontend/css/owl.theme.css"); ?>" rel="stylesheet">
 	<link href="<?php echo base_url("assets/frontend/css/owl.carousel.css"); ?>" rel="stylesheet">
-
 	<!-- Colors -->
 	<link href="<?php echo base_url("assets/frontend/css/css-index.css"); ?>" rel="stylesheet" media="screen">
 
 	<!-- Google Fonts -->
-	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" /> -->
-	    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,700i" rel="stylesheet">
-
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -33,7 +30,7 @@
 	<div id="top"></div>
 
 	<!-- /.parallax full screen background image -->
-	<div class="fullscreen landing parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
+	<div class="fullscreen landing parallax" style="background-image:url('<?= base_url('assets/frontend/images/empy.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
 
 		<div class="overlay">
 			<div class="container">
@@ -41,31 +38,35 @@
 					<div class="col-md-7">
 
 						<!-- /.logo -->
-						<div class="logo wow fadeInDown"> <a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a></div>
-
-						<!-- /.main title -->
+						<!-- <div class="logo wow fadeInDown"> <a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a></div> -->
+						<div class="logo wow fadeInDown"> &nbsp;</div>
 						<h1 class="fadeInLeft">
 							Absensi Karyawan
 						</h1>
 
 						<!-- /.header paragraph -->
 						<div class="landing-text wow fadeInUp">
-							<p>Backyard is a modern and customizable landing page template designed to increase conversion of your product. Backyard is flexible to suit any kind of your business. Try now and join with our happy customers!</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 						</div>
 
 						<!-- /.header button -->
-						<div class="head-btn wow fadeInLeft">
+						<!-- <div class="head-btn wow fadeInLeft">
 							<a href="#feature" class="btn-primary">Features</a>
 							<a href="#download" class="btn-default">Download</a>
-						</div>
+						</div> -->
 
 					</div>
 
 					<!-- /.signup form -->
 					<div class="col-md-5">
 						<div class="signup-header wow fadeInUp">
-							<h3 class="form-title text-center">Register Sekarang</h3>
-							<form class="form-header" role="form" method="post" action="?" name="login">
+							<h3 class="form-title text-center">Register Gratis !</h3>
+							<form class="form-header" role="form" method="post" name="login">
 								<div class="form-group">
 									<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Company Name" required>
 								</div>
@@ -79,7 +80,7 @@
 									<input class="form-control input-lg" name="perusahaan_bidang" type="text" placeholder="Bidang Perusahaan" required>
 								</div>
 								<div class="form-group last">
-									<button type="submit" class="btn btn-warning btn-block btn-lg">Register</button>
+									<button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
 								</div>
 								<p class="privacy text-center">Sudah punya akun? Login <a href="<?= base_url('mastercms'); ?>">disini</a></p>
 							</form>
@@ -134,10 +135,13 @@
 				<!-- /.intro content -->
 				<div class="col-lg-6 wow slideInRight">
 					<h2>Optimize performance through advanced targeting solutions</h2>
-					<p>Good marketing makes the company look smart. <a href="#">Great marketing</a> makes the customer feel smart, - Joe Chernov. Never doubt a small group of thoughtful, committed people can change the world. Indeed, it is the only thing that ever has, - Margaret Mead. The best way to predict the future is to create it, - Peter Drucker.
-					</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. </p>
 
-					<div class="btn-section"><a href="#feature" class="btn-default">Learn More</a></div>
+					<!-- <div class="btn-section"><a href="#feature" class="btn-default">Learn More</a></div> -->
 
 				</div>
 			</div>
@@ -158,8 +162,6 @@
 					<p>Increase your user loyalty by maintaining mutual communication and nurturing your online community.</p>
 				</div>
 			</div>
-
-
 
 			<div class="row row-feat">
 				<div class="col-lg-4 text-lg-center">
@@ -227,7 +229,7 @@
 					<p>Good marketing makes the company look smart. <span class="highlight">Great marketing</span> makes the customer feel smart, - Joe Chernov. Never doubt a small group of thoughtful, committed people can change the world. Indeed, it is the only thing that ever has, - Margaret Mead. The best way to predict the future is to create it, - Peter Drucker.
 					</p>
 
-					<div class="btn-section"><a href="#download" class="btn-default">Download Now</a></div>
+					<!-- <div class="btn-section"><a href="#download" class="btn-default">Download Now</a></div> -->
 
 				</div>
 
@@ -242,18 +244,15 @@
 
 
 	<!-- /.download section -->
-	<div id="download">
-		<div class="action fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
+	<!-- <div id="download">
+		<div class="action fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/empy.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
 			<div class="overlay">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-8 mr-auto ml-auto col-sm-12 text-lg-center">
-
-							<!-- /.download title -->
 							<h2 class="wow fadeInRight">Would like to know more?</h2>
 							<p class="download-text wow fadeInLeft">We'll research the market, identify the right target audience, analyze competitors and avoid users churn to increase retention. Download now for free and join with thousands happy clients.</p>
 
-							<!-- /.download button -->
 							<div class="download-cta wow fadeInLeft">
 								<a href="#contact" class="btn-secondary">Get Connected</a>
 							</div>
@@ -262,12 +261,12 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- /.pricing section -->
 	
 	<!-- /.client section -->
-	<div id="client">
+	<!-- <div id="client">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -278,87 +277,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- /.testimonial section -->
-	<div id="testi">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="wow fadeInLeft">TESTIMONIALS</h2>
-					<div class="title-line wow fadeInRight"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-10 mr-auto ml-auto">
-					<div id="owl-testi" class="owl-carousel owl-theme wow fadeInUp">
-
-						<!-- /.testimonial 1 -->
-						<div class="testi-item">
-							<div class="client-pic text-center">
-
-								<!-- /.client photo -->
-								<img src="<?= base_url('assets/frontend/images/testi1.png'); ?>" alt="client">
-							</div>
-							<div class="box">
-
-								<!-- /.testimonial content -->
-								<p class="message text-center">"We are very happy and satisfied with Backyard service. Our account manager is efficient and very knowledgeable. It was able to create a vast fan base within very short period of time. We would highly recommend Backyard App to anyone."</p>
-							</div>
-							<div class="client-info text-center">
-
-								<!-- /.client name -->
-								Jennifer Lopez, <span class="company">Microsoft</span>
-							</div>
-						</div>
-
-						<!-- /.testimonial 2 -->
-						<div class="testi-item">
-							<div class="client-pic text-center">
-
-								<!-- /.client photo -->
-								<img src="<?= base_url('assets/frontend/images/testi2.png'); ?>" alt="client">
-							</div>
-							<div class="box">
-
-								<!-- /.testimonial content -->
-								<p class="message text-center">"Everything looks great... Thanks for the quick revision turn around. We were lucky to find you guys and will definitely be using some of your other services in the near future."</p>
-							</div>
-							<div class="client-info text-center">
-
-								<!-- /.client name -->
-								Mike Portnoy, <span class="company">Dream Theater</span>
-							</div>
-						</div>
-
-						<!-- /.testimonial 3 -->
-						<div class="testi-item">
-							<div class="client-pic text-center">
-
-								<!-- /.client photo -->
-								<img src="<?= base_url('assets/frontend/images/testi3.png'); ?>" alt="client">
-							</div>
-							<div class="box">
-
-								<!-- /.testimonial content -->
-								<p class="message text-center">"Overall, the two reports were very clear and helpful so thank you for the suggestion to do the focus group. We are currently working with our developer to implement some of these suggestions."</p>
-							</div>
-							<div class="client-info text-center">
-
-								<!-- /.client name -->
-								Jennifer Love Hewitt, <span class="company">Lead Vocal</span>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--  -->
 
 	<!-- /.contact section -->
 	<div id="contact">
-		<div class="contact fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1334" data-diff="100">
+		<div class="contact fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/empy.jpg'); ?>');" data-img-width="2000" data-img-height="1334" data-diff="100">
 			<div class="overlay">
 				<div class="container">
 					<div class="row">
