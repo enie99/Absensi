@@ -5,7 +5,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 ?>
 
-<table class="table table-data table-bordered table-hover table-condensed cf">
+<table class="table table-data table-bordered table-hover table-condensed cf" border="1">
     <thead class="DataTables_sort_wrapper" >
         <tr>
             <th style="background: #dedeec; font-size: 12px" width="30">No</th>
@@ -22,7 +22,7 @@ header("Expires: 0");
         <?php foreach ($absensi as $key => $value) {?>
             <tr>
                 <td data-title="No"><?php echo $key+1; ?></td>
-                <td data-title="No"><?php echo $value['tanggal']; ?></td>
+                <td data-title="No"><?php echo date('d M Y', strtotime($value['tanggal'])); ?></td>
                 <td data-title="No"><?php echo $value['karyawan_nama']; ?></td>
                 <td data-title="No"><?php echo $value['absen_hari']; ?></td>
                 <td data-title="No"><?php echo $value['jam_masuk_absen']; ?></td>
