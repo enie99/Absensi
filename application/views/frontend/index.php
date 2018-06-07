@@ -65,7 +65,7 @@
 					<!-- /.signup form -->
 					<div class="col-md-5">
 						<div class="signup-header wow fadeInUp">
-							<h3 class="form-title text-center">Register Gratis !</h3>
+							<h3 class="form-title text-center">Register Sekarang !</h3>
 							<form class="form-header" role="form" method="post" name="login">
 								<div class="form-group">
 									<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Company Name" required>
@@ -80,7 +80,7 @@
 									<input class="form-control input-lg" name="perusahaan_bidang" type="text" placeholder="Bidang Perusahaan" required>
 								</div>
 								<div class="form-group last">
-									<button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
+									<button type="submit" class="btn btn-success btn-block btn-lg">Daftar</button>
 								</div>
 								<p class="privacy text-center">Sudah punya akun? Login <a href="<?= base_url('mastercms'); ?>">disini</a></p>
 							</form>
@@ -336,15 +336,15 @@
 			<div class="row">
 				<div class="col-lg-4 mr-auto ml-auto">
 					<!-- /.social links -->
-					<div class="social text-center">
+					<!-- <div class="social text-center">
 						<ul>
 							<li><a class="wow fadeInUp" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
 							<li><a class="wow fadeInUp" href="https://www.facebook.com/" data-wow-delay="0.2s"><i class="fa fa-facebook"></i></a></li>
 							<li><a class="wow fadeInUp" href="https://plus.google.com/" data-wow-delay="0.4s"><i class="fa fa-google-plus"></i></a></li>
 							<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
 						</ul>
-					</div>
-					<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Backyard 2017 - Template by
+					</div> -->
+					<div class="text-center wow fadeInUp" style="font-size: 14px;">© PT OTRET DOT COM - 2018
 						<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
 					</div>
 				</div>
