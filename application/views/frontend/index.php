@@ -4,27 +4,25 @@
 <head>
 
 	<!-- /.website title -->
-	<title>Backyard Landing Page</title>
+	<title>Absensi</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 	<!-- CSS Files -->
-	<link href="<?php echo base_url("assets/front/css/bootstrap.min.css"); ?>" rel="stylesheet" media="screen">
-	<link href="<?php echo base_url("assets/front/css/font-awesome.min.css"); ?>" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"); ?>" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front/css/animate.css"); ?>" rel="stylesheet" media="screen">
-	<link href="<?php echo base_url("assets/front/css/owl.theme.css"); ?>" rel="stylesheet">
-	<link href="<?php echo base_url("assets/front/css/owl.carousel.css"); ?>" rel="stylesheet">
+	<link href="<?php echo base_url("assets/frontend/css/bootstrap.min.css"); ?>" rel="stylesheet" media="screen">
+	<link href="<?php echo base_url("assets/frontend/css/font-awesome.min.css"); ?>" rel="stylesheet">
+	<link href="<?php echo base_url("assets/frontend/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"); ?>" rel="stylesheet">
+	<link href="<?php echo base_url("assets/frontend/css/animate.css"); ?>" rel="stylesheet" media="screen">
+	<link href="<?php echo base_url("assets/frontend/css/owl.theme.css"); ?>" rel="stylesheet">
+	<link href="<?php echo base_url("assets/frontend/css/owl.carousel.css"); ?>" rel="stylesheet">
 
 	<!-- Colors -->
-	<link href="<?php echo base_url("assets/front/css/css-index.css"); ?>" rel="stylesheet" media="screen">
-	<!-- <link href="css/css-index-green.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="css/css-index-yellow.css" rel="stylesheet" media="screen"> -->
+	<link href="<?php echo base_url("assets/frontend/css/css-index.css"); ?>" rel="stylesheet" media="screen">
 
 	<!-- Google Fonts -->
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
+	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" /> -->
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,700i" rel="stylesheet">
+
 
 </head>
 
@@ -35,7 +33,7 @@
 	<div id="top"></div>
 
 	<!-- /.parallax full screen background image -->
-	<div class="fullscreen landing parallax" style="background-image:url('images/bg.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">
+	<div class="fullscreen landing parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
 
 		<div class="overlay">
 			<div class="container">
@@ -43,11 +41,11 @@
 					<div class="col-md-7">
 
 						<!-- /.logo -->
-						<div class="logo wow fadeInDown"> <a href=""><img src="images/logo.png" alt="logo"></a></div>
+						<div class="logo wow fadeInDown"> <a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a></div>
 
 						<!-- /.main title -->
-						<h1 class="wow fadeInLeft">
-							Beautiful High Converting Landing Page
+						<h1 class="fadeInLeft">
+							Absensi Karyawan
 						</h1>
 
 						<!-- /.header paragraph -->
@@ -61,32 +59,29 @@
 							<a href="#download" class="btn-default">Download</a>
 						</div>
 
-
-
 					</div>
 
 					<!-- /.signup form -->
 					<div class="col-md-5">
-
 						<div class="signup-header wow fadeInUp">
 							<h3 class="form-title text-center">Register Sekarang</h3>
-							<form class="form-header" role="form" method="POST" id="#">
+							<form class="form-header" role="form" method="post" action="?" name="login">
 								<div class="form-group">
-									<input class="form-control input-lg" name="nama_perusahaan" id="name" type="text" placeholder="Company Name" required>
+									<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Company Name" required>
 								</div>
 								<div class="form-group">
-									<input class="form-control input-lg" name="email_perusahaan" type="email" placeholder="Email address" required>
+									<input class="form-control input-lg" name="perusahaan_email" type="email" placeholder="Email address" required>
 								</div>
 								<div class="form-group">
-									<input class="form-control input-lg" name="password_perusahaan" type="password" placeholder="Password" required>	
+									<input class="form-control input-lg" name="perusahaan_password" type="password" placeholder="Password" required>	
 								</div>
 								<div class="form-group">
-									<input class="form-control input-lg" name="bidang_perusahaan" type="text" placeholder="Bidang Perusahaan" required>
+									<input class="form-control input-lg" name="perusahaan_bidang" type="text" placeholder="Bidang Perusahaan" required>
 								</div>
 								<div class="form-group last">
 									<button type="submit" class="btn btn-warning btn-block btn-lg">Register</button>
 								</div>
-								<p class="privacy text-center">We will not share your email. Read our <a href="privacy.html">privacy policy</a>.</p>
+								<p class="privacy text-center">Sudah punya akun? Login <a href="<?= base_url('mastercms'); ?>">disini</a></p>
 							</form>
 						</div>
 
@@ -99,7 +94,7 @@
 	<!-- NAVIGATION -->
 
 
-	<div id="menu">
+	<!-- <div id="menu">
 		<div class="navbar-wrapper navbar-light bg-light" role="navigation">
 			<div class="container">
 				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-backyard"> <span class="sr-only">Toggle navigation</span>
@@ -122,7 +117,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 
 
@@ -133,7 +128,7 @@
 
 				<!-- /.intro image -->
 				<div class="col-lg-6 intro-pic wow slideInLeft">
-					<img src="images/intro-image.jpg" alt="image" class="img-fluid">
+					<img src="<?= base_url('assets/frontend/images/intro-image.jpg'); ?>" alt="image" class="img-fluid">
 				</div>
 
 				<!-- /.intro content -->
@@ -171,7 +166,7 @@
 
 					<!-- /.feature image -->
 					<div class="feature-img">
-						<img src="images/feature-image.jpg" alt="image" class="img-fluid wow fadeInLeft">
+						<img src="<?= base_url('assets/frontend/images/feature-image.jpg'); ?>" alt="image" class="img-fluid wow fadeInLeft">
 					</div>
 				</div>
 
@@ -238,7 +233,7 @@
 
 				<!-- /.feature image -->
 				<div class="col-lg-6 feature-2-pic wow fadeInRight">
-					<img src="images/feature2-image.jpg" alt="macbook" class="img-fluid">
+					<img src="<?= base_url('assets/frontend/images/feature2-image.jpg'); ?>" alt="macbook" class="img-fluid">
 				</div>
 			</div>
 
@@ -248,7 +243,7 @@
 
 	<!-- /.download section -->
 	<div id="download">
-		<div class="action fullscreen parallax" style="background-image:url('images/bg.jpg');" data-img-width="2000" data-img-height="1333" data-diff="100">
+		<div class="action fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
 			<div class="overlay">
 				<div class="container">
 					<div class="row">
@@ -270,173 +265,16 @@
 	</div>
 
 	<!-- /.pricing section -->
-	<div id="package">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 mr-auto ml-auto">
-					<div class="text-center">
-
-						<!-- /.pricing title -->
-						<h2 class="wow fadeInLeft">PACKAGES</h2>
-						<div class="title-line wow fadeInRight"></div>
-					</div>
-				</div>
-			</div>
-			<div class="row package-option">
-
-				<!-- /.package 1 -->
-				<div class="col-lg-3">
-					<div class="price-box wow fadeInUp">
-						<div class="price-heading text-center">
-
-							<!-- /.package icon -->
-							<i class="pe-7s-radio pe-5x"></i>
-
-							<!-- /.package name -->
-							<h3>Basic</h3>
-						</div>
-
-						<!-- /.price -->
-						<div class="price-group text-center">
-							<span class="dollar">$</span>
-							<span class="price">9</span>
-							<span class="time">/mo</span>
-						</div>
-
-						<!-- /.package features -->
-						<ul class="price-feature text-center">
-							<li><strong>100MB</strong> Disk Space</li>
-							<li><strong>200MB</strong> Bandwidth</li>
-							<li><strong>2</strong> Subdomains</li>
-							<li><strong>5</strong> Email Accounts</li>
-							<li><strike>Webmail Support</strike></li>
-						</ul>
-
-						<!-- /.package button -->
-						<div class="price-footer text-center">
-							<a class="btn btn-price" href="#">BUY NOW</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- /.package 2 -->
-				<div class="col-lg-3">
-					<div class="price-box wow fadeInUp" data-wow-delay="0.2s">
-						<div class="price-heading text-center">
-
-							<!-- /.package icon -->
-							<i class="pe-7s-joy pe-5x"></i>
-
-							<!-- /.package name -->
-							<h3>Standard</h3>
-						</div>
-
-						<!-- /.price -->
-						<div class="price-group text-center">
-							<span class="dollar">$</span>
-							<span class="price">19</span>
-							<span class="time">/mo</span>
-						</div>
-
-						<!-- /.package features -->
-						<ul class="price-feature text-center">
-							<li><strong>300MB</strong> Disk Space</li>
-							<li><strong>400MB</strong> Bandwidth</li>
-							<li><strong>5</strong> Subdomains</li>
-							<li><strong>10</strong> Email Accounts</li>
-							<li><strike>Webmail Support</strike></li>
-						</ul>
-
-						<!-- /.package button -->
-						<div class="price-footer text-center">
-							<a class="btn btn-price" href="#">BUY NOW</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- /.package 3 -->
-				<div class="col-lg-3">
-					<div class="price-box wow fadeInUp" data-wow-delay="0.4s">
-						<div class="price-heading text-center">
-
-							<!-- /.package icon -->
-							<i class="pe-7s-science pe-5x"></i>
-
-							<!-- /.package name -->
-							<h3>Advance</h3>
-						</div>
-
-						<!-- /.price -->
-						<div class="price-group text-center">
-							<span class="dollar">$</span>
-							<span class="price">29</span>
-							<span class="time">/mo</span>
-						</div>
-
-						<!-- /.package features -->
-						<ul class="price-feature text-center">
-							<li><strong>1GB</strong> Disk Space</li>
-							<li><strong>1GB</strong> Bandwidth</li>
-							<li><strong>10</strong> Subdomains</li>
-							<li><strong>25</strong> Email Accounts</li>
-							<li>Webmail Support</li>
-						</ul>
-
-						<!-- /.package button -->
-						<div class="price-footer text-center">
-							<a class="btn btn-price" href="#">BUY NOW</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- /.package 4 -->
-				<div class="col-lg-3">
-					<div class="price-box wow fadeInUp" data-wow-delay="0.6s">
-						<div class="price-heading text-center">
-
-							<!-- /.package icon -->
-							<i class="pe-7s-tools pe-5x"></i>
-
-							<!-- /.package name -->
-							<h3>Ultimate</h3>
-						</div>
-
-						<!-- /.price -->
-						<div class="price-group text-center">
-							<span class="dollar">$</span>
-							<span class="price">49</span>
-							<span class="time">/mo</span>
-						</div>
-
-						<!-- /.package features -->
-						<ul class="price-feature text-center">
-							<li><strong>5GB</strong> Disk Space</li>
-							<li><strong>5GB</strong> Bandwidth</li>
-							<li><strong>50</strong> Subdomains</li>
-							<li><strong>50</strong> Email Accounts</li>
-							<li>Webmail Support</li>
-						</ul>
-
-						<!-- /.package button -->
-						<div class="price-footer text-center">
-							<a class="btn btn-price" href="#">BUY NOW</a>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
+	
 	<!-- /.client section -->
 	<div id="client">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<img alt="client" src="images/client1.png" class="wow fadeInUp">
-					<img alt="client" src="images/client2.png" class="wow fadeInUp" data-wow-delay="0.2s">
-					<img alt="client" src="images/client3.png" class="wow fadeInUp" data-wow-delay="0.4s">
-					<img alt="client" src="images/client4.png" class="wow fadeInUp" data-wow-delay="0.6s">
+					<img alt="client" src="<?= base_url('assets/frontend/images/client1.png'); ?>" class="wow fadeInUp">
+					<img alt="client" src="<?= base_url('assets/frontend/images/client2.png'); ?>" class="wow fadeInUp" data-wow-delay="0.2s">
+					<img alt="client" src="<?= base_url('assets/frontend/images/client3.png'); ?>" class="wow fadeInUp" data-wow-delay="0.4s">
+					<img alt="client" src="<?= base_url('assets/frontend/images/client4.png'); ?>" class="wow fadeInUp" data-wow-delay="0.6s">
 				</div>
 			</div>
 		</div>
@@ -460,7 +298,7 @@
 							<div class="client-pic text-center">
 
 								<!-- /.client photo -->
-								<img src="images/testi1.png" alt="client">
+								<img src="<?= base_url('assets/frontend/images/testi1.png'); ?>" alt="client">
 							</div>
 							<div class="box">
 
@@ -479,7 +317,7 @@
 							<div class="client-pic text-center">
 
 								<!-- /.client photo -->
-								<img src="images/testi2.png" alt="client">
+								<img src="<?= base_url('assets/frontend/images/testi2.png'); ?>" alt="client">
 							</div>
 							<div class="box">
 
@@ -498,7 +336,7 @@
 							<div class="client-pic text-center">
 
 								<!-- /.client photo -->
-								<img src="images/testi3.png" alt="client">
+								<img src="<?= base_url('assets/frontend/images/testi3.png'); ?>" alt="client">
 							</div>
 							<div class="box">
 
@@ -520,7 +358,7 @@
 
 	<!-- /.contact section -->
 	<div id="contact">
-		<div class="contact fullscreen parallax" style="background-image:url('images/bg.jpg');" data-img-width="2000" data-img-height="1334" data-diff="100">
+		<div class="contact fullscreen parallax" style="background-image:url('<?= base_url('assets/frontend/images/bg.jpg'); ?>');" data-img-width="2000" data-img-height="1334" data-diff="100">
 			<div class="overlay">
 				<div class="container">
 					<div class="row">
@@ -580,25 +418,28 @@
 							<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div>
-					<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Backyard 2017 - Template by <a href="https://bootstrapthemes.co" target="_blank">https://bootstrapthemes.co</a></div>
-					<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+					<div class="text-center wow fadeInUp" style="font-size: 14px;">Copyright Backyard 2017 - Template by
+						<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
 
-	<!-- /.javascript files -->
-	<script src="<?php echo base_url("assets/front/js/jquery.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/popper.min.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/bootstrap.min.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/jquery.sticky.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/wow.min.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/owl.carousel.min.js"); ?>"></script>
-	<script src="<?php echo base_url("assets/front/js/custom.js"); ?>"></script>
-	<script>
-		new WOW().init();
+		<!-- google capcha -->
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 
-	</script>
-</body>
+		<!-- /.javascript files -->
+		<script src="<?php echo base_url("assets/frontend/js/jquery.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/popper.min.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/bootstrap.min.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/jquery.sticky.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/wow.min.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/owl.carousel.min.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/frontend/js/custom.js"); ?>"></script>
+		<script>
+			new WOW().init();
 
-</html>
+		</script>
+	</body>
+
+	</html>

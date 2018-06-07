@@ -1,15 +1,26 @@
 <?php
-/**
- * 
- */
+
 class Perusahaan extends MY_Controller
 {
-	
+	private $def_lat;
+	private $def_lng;
+
 	function __construct()
 	{
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('Mperusahaan');
+
+		$this->load->helper(array('form','url'));
+		// Load Config Map
+		$this->load->config('map');
+		// Set lokasi latitude dan longitude
+		$this->def_lat=$this->config->item('default_lat');
+		$this->def_lng=$this->config->item('default_lng');
+		
+		//Load library googlemap
+		//Sumber Library http://biostall.com/codeigniter-google-maps-v3-api-library
+		$this->load->library('googlemaps');
 
 		if (!$this->session->userdata('user'))
 		{
@@ -28,10 +39,8 @@ class Perusahaan extends MY_Controller
 	function cabang()
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
-		// $data['perusahaan'] = $this->Mperusahaan->tampil_cabang($id);
 		$data['perusahaan'] = $this->Mperusahaan->tampil_cabang($id);
 		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
-
 		$this->render_page('backend/perusahaan/data-cabang',$data);
 	}
 
@@ -51,6 +60,7 @@ class Perusahaan extends MY_Controller
 	function detail($id)
 	{
 		$data['detail'] = $this->Mperusahaan->get_by_id($id);
+		$data['jamkerja'] = $this->Mperusahaan->get_jamkerja($id);
 		$data['id'] = $id;
 		$this->render_page('backend/perusahaan/detail',$data);
 	}
@@ -96,7 +106,35 @@ class Perusahaan extends MY_Controller
 	        $this->Mperusahaan->add_lokasi($input,$image_name);
 	        redirect('mastercms/perusahaan/cabang', 'refresh');
 	    }
-	    $this->render_page('backend/perusahaan/tambah-cabang');
+
+	    $center=$this->def_lat.",".$this->def_lng;
+		$cfg=array(
+		'class'			=>'map-canvas',
+		'map_div_id'	=>'map-canvas',
+		'center'		=>$center,
+		'zoom'			=>17,
+		'places'		=>TRUE, //Aktifkan pencarian alamat
+		'placesAutocompleteInputID'	=>'pencarian', //set sumber pencarian input
+		'placesAutocompleteBoundsMap'	=>TRUE,
+		'placesAutocompleteOnChange'	=>'showmap();' //Aksi ketika pencarian dipilih
+		);
+		$this->googlemaps->initialize($cfg);
+		
+		$marker=array(
+		'position'		=>$center,
+		'draggable'		=>TRUE,
+		'title'			=>'Coba diDrag',
+		'ondragend'		=>"document.getElementById('lat').value = event.latLng.lat();
+        					document.getElementById('lng').value = event.latLng.lng();
+        					showmap();",
+		);		
+        $this->googlemaps->add_marker($marker);
+				
+		$d['map']=$this->googlemaps->create_map();
+		$d['lat']=$this->def_lat;
+		$d['lng']=$this->def_lng;
+
+	    $this->render_page('backend/perusahaan/tambah-cabang', $d);
 	}
 
 	function edit($id)
@@ -145,95 +183,72 @@ class Perusahaan extends MY_Controller
 
 	function add_jam_kerja($id)
 	{
-		// $data['data'] = $this->Mperusahaan->get_by_id($id);
-		$data['edit'] = $this->Mperusahaan->get_jam_kerja($id);
-		// foreach ($ as $key => $value) {
-		// 	# code...
-		// }
+		$datatime = $this->Mperusahaan->get_jamkerja($id);
+		$data = array();
+		foreach ($datatime as $key => $value) {
+			$data[$value['kerja_hari']] = array(
+				'masuk' => $value['jam_masuk'],
+				'keluar' => $value['jam_keluar'],
+			);
+		}
+
 		if ($this->input->post())
 		{
 			$input = $this->input->post();
-			if ($input['hari']['senin'])
-			{
+			if ($input['hari']['senin']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "senin";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[senin][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[senin][keluar]');
-
-				if (!empty($this->input->post('hari[senin][masuk]') && $this->input->post('hari[senin][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
+				$jamkerja['kerja_hari']	= "senin";
+				$jamkerja['jam_masuk'] = $input['hari']['senin']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['senin']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-			if ($input['hari']['selasa']) 
-			{
+			if ($input['hari']['selasa']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "selasa";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[selasa][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[selasa][keluar]');
-				if (!empty($this->input->post('hari[selasa][masuk]') && $this->input->post('hari[selasa][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
-
+				$jamkerja['kerja_hari']	= "selasa";
+				$jamkerja['jam_masuk'] = $input['hari']['selasa']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['selasa']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-			if ($input['hari']['rabu']) 
-			{
+			if ($input['hari']['rabu']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "rabu";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[rabu][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[rabu][keluar]');
-				if (!empty($this->input->post('hari[rabu][masuk]') && $this->input->post('hari[rabu][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
-
+				$jamkerja['kerja_hari']	= "rabu";
+				$jamkerja['jam_masuk'] = $input['hari']['rabu']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['rabu']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-			if ($input['hari']['kamis']) 
-			{
+			if ($input['hari']['kamis']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "kamis";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[kamis][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[kamis][keluar]');
-				if (!empty($this->input->post('hari[kamis][masuk]') && $this->input->post('hari[kamis][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
-
+				$jamkerja['kerja_hari']	= "kamis";
+				$jamkerja['jam_masuk'] = $input['hari']['kamis']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['kamis']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-			if ($input['hari']['jumat']) 
-			{
+			if ($input['hari']['jumat']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "jumat";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[jumat][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[jumat][keluar]');
-				if (!empty($this->input->post('hari[jumat][masuk]') && $this->input->post('hari[jumat][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
-
+				$jamkerja['kerja_hari']	= "jumat";
+				$jamkerja['jam_masuk'] = $input['hari']['jumat']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['jumat']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-			if ($input['hari']['sabtu']) 
-			{
+			if ($input['hari']['sabtu']) {
 				$jamkerja['lokasi_id'] = $id;
-				$jamkerja['kerja_hari'] = "sabtu";
-				$jamkerja['jam_masuk'] = $this->input->post('hari[sabtu][masuk]');
-				$jamkerja['jam_keluar'] = $this->input->post('hari[sabtu][keluar]');
-				if (!empty($this->input->post('hari[sabtu][masuk]') && $this->input->post('hari[sabtu][keluar]')))
-				{
-					$this->Mperusahaan->jam_kerja($jamkerja);
-				}
-
+				$jamkerja['kerja_hari']	= "sabtu";
+				$jamkerja['jam_masuk'] = $input['hari']['sabtu']['masuk'];
+				$jamkerja['jam_keluar'] = $input['hari']['sabtu']['keluar'];
+				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
-
-			// echo "<pre>";
-			// print_r($input['hari']);
-			// echo "</pre>";
-			
 		}
-		
+
+		redirect('mastercms/perusahaan/cabang', 'refresh');		
 		$this->render_page('backend/perusahaan/tambah-jam-kerja',$data);
 	}
 
+	function cari(){
+		$keyword = $this->input->get('cari', TRUE);
+		$data['perusahaan']=$this->Mperusahaan->cari($keyword);
+		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
+		$this->render_page('backend/perusahaan/data-cabang', $data);
+	}
+	
 }
 ?>

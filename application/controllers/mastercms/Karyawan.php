@@ -41,7 +41,7 @@ class Karyawan extends MY_Controller
             $data["links"] = $this->pagination->create_links();
             $data['karyawan']= $this->Mkaryawan->tampil();
         }
-         
+        
         $this->render_page('backend/karyawan/tampil', $data);
     }
      
@@ -108,9 +108,9 @@ class Karyawan extends MY_Controller
 
 
     function cari(){
-  		$keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
-  		$data['karyawan'] = $this->Mkaryawan->cari($keyword); //mencari data karyawan berdasarkan inputan
-  		$this->render_page('backend/karyawan/tampil', $data);; //menampilkan data yang sudah dicari
+  		$keyword = $this->input->get('cari', TRUE);
+  		$data['karyawan'] = $this->Mkaryawan->cari($keyword);
+  		$this->render_page('backend/karyawan/tampil', $data);
 	}
 
 
@@ -119,10 +119,6 @@ class Karyawan extends MY_Controller
 		if ($this->input->post())
 		{
 			$input = $this->input->post();
-		 		// echo "<pre>";
-		 		// print_r($input);
-		 		// echo "</pre>";
-			// $input['karyawan_ttl'] = date('Y-m-d');
 			$this->Mkaryawan->tambah($input);
 		}
 
@@ -134,9 +130,6 @@ class Karyawan extends MY_Controller
 	function detail($karyawan_id)
 	{
 		$data['detail_data']= $this->Mkaryawan->detail($karyawan_id);
-		// echo "<pre>";
-		// print_r($data['detail_data']);
-		// echo "</pre>";
 		$this->render_page('backend/karyawan/detail', $data);
 	}
 

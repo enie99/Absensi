@@ -46,24 +46,28 @@
                                             <label class="control-label"><span class="asterik">*</span> Perusahaan </label>
                                             <div class="controls">
                                                 <select name="lokasi_id" class="span11">
-                                                    <?php foreach ($karyawan as $key => $value) 
-                                                    { ?>
-                                                        <option value="<?php echo $value['lokasi_id'] ?>"><?php echo $value['lokasi_nama']; ?></option>
-                                                    <?php } ?>
+                                                   <?php if (empty($karyawan)): ?>
+                                                    <option value=""><?php echo "Tidak ada perusahaan yang dimasukkan"; ?></option>
+                                                    <?php else: ?>
+                                                        <?php foreach ($karyawan as $key => $value) :?>
+                                                            <option value="<?php echo $value['lokasi_id'] ?>"><?php echo $value['lokasi_nama']; ?></option>
+                                                        <?php endforeach ?>
+                                                    <?php endif ?>
                                                 </select>
-                                            </div>
+                                            </select>
                                         </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><span class="asterik">*</span> Jabatan </label>
-                                            <div class="controls">
-                                                <input type="text" name="karyawan_jabatan" class="span11" value="<?php echo $edit['karyawan_jabatan']; ?>" required="required">
-                                            </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"><span class="asterik">*</span> Jabatan </label>
+                                        <div class="controls">
+                                            <input type="text" name="karyawan_jabatan" class="span11" value="<?php echo $edit['karyawan_jabatan']; ?>" required="required">
                                         </div>
-                                        <div class="control-group">
-                                            <label class="control-label"><span class="asterik"></span> Tanggal Lahir </label>
-                                            <div class="controls">
-                                                <div class="col-sm-5 input-group date" id="tgl" style="margin-top:-5px;">
-                                                    <input type="date" name="karyawan_ttl" class="span12" size="16" value="<?php echo $edit['karyawan_ttl']; ?>">
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"><span class="asterik"></span> Tanggal Lahir </label>
+                                        <div class="controls">
+                                            <div class="col-sm-5 input-group date" id="tgl" style="margin-top:-5px;">
+                                                <input type="date" name="karyawan_ttl" class="span12" size="16" value="<?php echo $edit['karyawan_ttl']; ?>">
                                                               <!--   <span class="input-group-btn">
                                                                     <button type="button" class="btn btn-primary date-reset"><i class="fa fa-times"></i></button>
                                                                     <button type="button" class="btn btn-primary date-set"><i class="fa fa-calendar"></i></button>

@@ -3,13 +3,23 @@
 class Mkaryawan extends CI_Model
 {
 	function tampil(){
+		$id = $_SESSION['user']['perusahaan_id'];
+		$this->db->where('_perusahaan.perusahaan_id', $id);		
+		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
 		$ambil = $this->db->get('_karyawan');
 		return $ambil->result_array();
 	}
 
-	public function cari($keyword){
-		$this->db->like('karyawan_nama', $keyword); //mencari data yang serupa dengan keyword
-		return $this->db->get('_karyawan')->result_array();
+	function cari($keyword){
+		$id = $_SESSION['user']['perusahaan_id'];
+
+		$this->db->like('karyawan_nama', $keyword);
+		$this->db->where('_perusahaan.perusahaan_id', $id);		
+		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
+		$ambil = $this->db->get('_karyawan');
+		return $ambil->result_array();
 	}
 
 	function get_by_id($id)
@@ -21,6 +31,8 @@ class Mkaryawan extends CI_Model
 
 	function daftar_perusahaan()
 	{
+		$id = $_SESSION['user']['perusahaan_id'];
+		$this->db->where('perusahaan_id',$id);
 		$ambil = $this->db->get('_lokasi');
 		return $ambil->result_array();
 	}

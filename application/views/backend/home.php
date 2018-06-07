@@ -2,7 +2,7 @@
     <div id="content-header">
         <div id="breadcrumb"> <a href="#" title="" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> Home</a></div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="min-height: 520px;">
         <!--REPORT START-->
         <div class="row-fluid">
             <div class="span6">
@@ -128,7 +128,7 @@
         <!--REPORT END-->
 
         <!--CHART START-->
-        <div class="row-fluid">
+        <!-- <div class="row-fluid">
             <div class="span6">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
@@ -152,9 +152,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="row-fluid">
+        <!-- <div class="row-fluid">
             <div class="span6">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-signal"></i> </span>
@@ -175,15 +175,15 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <br>
         <!--CHART END-->
 
         <!--TIPS AND INFO START-->
-        <div class="span12">
+        <!-- <div class="span12">
             <h4>TIPS / INFO</h4>
-        </div>
-        <div class="row-fluid">
+        </div> -->
+        <!-- <div class="row-fluid">
             <div class="span3">
                 <div class="widget-box">
                     <a class="thumbnail lightbox_trigger" href="<?php echo base_url('assets/backend/images/gallery/image1.jpg'); ?>">
@@ -240,8 +240,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <br>
+  
         <!--TIPS AND INFO END-->
 
 </div>

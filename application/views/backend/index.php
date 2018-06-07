@@ -36,6 +36,12 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/maruti-style.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/maruti-media.css');?>" class="skin-color" />
 
+    <!-- Light Modal -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/light-modal.css');?>" />
+
+    <!-- Animated CSS -->
+    <!-- <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/animate.css');?>"> -->
+
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('assets/backend/js/jquery-1.10.2.min.js');?>"></script>
     <script src="<?php echo base_url('assets/backend/js/jquery-ui-1.9.2.custom.min.js');?>"></script>

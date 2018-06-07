@@ -1,7 +1,4 @@
 <?php
-/**
-* 
-*/
 class Mperusahaan extends CI_Model
 {
 	function register($input)
@@ -26,24 +23,18 @@ class Mperusahaan extends CI_Model
 	function edit_profil($id,$input)
 	{
 		$input['perusahaan_user'] = $input['perusahaan_email'];
+		$input['perusahaan_password'] = md5(md5($input['perusahaan_password']));
 		$this->db->where('perusahaan_id', $id);
 		$this->db->update('_perusahaan', $input);
 	}
 
-		function tampil_cabang($id)
+	function tampil_cabang($id)
 	{	
 		$this->db->order_by('_lokasi.lokasi_id','desc');
 		$this->db->join('_lokasi', '_lokasi.perusahaan_id = _perusahaan.perusahaan_id');
 		$this->db->where('_perusahaan.perusahaan_id', $id);
 		$ambil = $this->db->get('_perusahaan');
 		return $ambil->result_array();
-	}
-
-	function semua_jamkerja()
-	{
-		// $this->db->where('lokasi_id', $lokasi_id);
-		$data = $this->db->get('_jam_kerja');
-		return $data->result_array();
 	}
 
 	function add_lokasi($input,$image_name)
@@ -60,14 +51,12 @@ class Mperusahaan extends CI_Model
 
 		$this->db->insert('_lokasi', $data);
 	}
-
 	function get_by_id($id)
 	{
 		$this->db->where('lokasi_id', $id);
 		$data = $this->db->get('_lokasi');
 		return $data->row_array();
 	}
-
 	function edit($id, $input, $image_name)
 	{
 		$data = array(
@@ -90,26 +79,59 @@ class Mperusahaan extends CI_Model
 		$this->db->update('_lokasi', $data);
 	}
 
-	function jam_kerja($jamkerja)
-	{
-		$cekdata = $this->db->query("SELECT * FROM _jam_kerja WHERE _jam_kerja.lokasi_id=$jamkerja[lokasi_id] AND _jam_kerja.kerja_hari='$jamkerja[kerja_hari]'");
-		$ada = $cekdata->num_rows();
-		if ($ada>0) {
-			// $this->load->perusahaan('edit_jam_kerja');
-			echo "<script>alert('Jam kerja sudah ditambahkan, anda yakin ingin mengedit?');</script>";
-		}
-		else{
-			$this->db->insert('_jam_kerja', $jamkerja);
-		}
-	}
-
-	function get_jam_kerja($id)
+	function get_jamkerja($id)
 	{
 		$this->db->where('lokasi_id', $id);
+		$ambil = $this->db->get('_jam_kerja');
+		return $ambil->result_array();
+	}
+	function get_jamkerja_by_hari($id,$hari)
+	{
+		$this->db->where('lokasi_id',$id);
+		$this->db->where('kerja_hari',$hari);
+		$data = $this->db->count_all_results('_jam_kerja');
+		return $data;
+	}
+	function semua_jamkerja()
+	{
+		// $this->db->where('lokasi_id', $lokasi_id);
 		$data = $this->db->get('_jam_kerja');
 		return $data->result_array();
 	}
-
+	function jam_kerja($hari, $id, $jamkerja)
+	{
+		$datatime = $this->get_jamkerja_by_hari($id,$hari);
+		if ($datatime > 0) {
+			if (empty($jamkerja['jam_masuk'] && $jamkerja['jam_keluar']))
+				$this->del_jam_kerja($id,$hari);
+			elseif (empty($jamkerja['jam_masuk'] || $jamkerja['jam_keluar']))
+				$this->del_jam_kerja($id,$hari);
+			else
+				$this->edit_jam_kerja($hari, $id, $jamkerja);
+		}
+		else
+		{
+			if (empty($jamkerja['jam_masuk'] && $jamkerja['jam_keluar'])) {	}
+			else
+				$this->add_jam_kerja($jamkerja);
+		}
+	}
+	function del_jam_kerja($id,$hari)
+	{
+		$this->db->where('lokasi_id',$id);
+		$this->db->where('kerja_hari',$hari);
+		$this->db->delete('_jam_kerja');
+	}
+	function add_jam_kerja($jamkerja)
+	{
+		$this->db->insert('_jam_kerja', $jamkerja);
+	}
+	function edit_jam_kerja($hari, $id, $jamkerja)
+	{
+		$this->db->where('lokasi_id', $id);
+		$this->db->where('kerja_hari', $hari);
+		$this->db->update('_jam_kerja', $jamkerja);
+	}
 
 
 	// Login User
@@ -135,6 +157,11 @@ class Mperusahaan extends CI_Model
 		}
 	}
 
-
+	public function cari($keyword){
+		$this->db->like('lokasi_nama', $keyword);
+		$this->db->or_like('perusahaan_alamat',$keyword);
+		return $this->db->get('_lokasi')->result_array();
+	}
+	
 }
 ?>

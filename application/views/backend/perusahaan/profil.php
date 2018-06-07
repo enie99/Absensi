@@ -13,7 +13,7 @@
 	<!-- body start -->
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="col-md-4">
+			<!-- <div class="col-md-4">
 				<div class="panel">
 					<div class="panel-body">
 						<div class="profile-desk">
@@ -26,13 +26,13 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-8">
+			</div> -->
+			<div class="col-md-12">
 				<div class="panel">
 					<div class="panel-body">
 						<div class="profile-desk">
 							<div class="col-md-12" style="padding-top:10px;">
-								<h3>Profil <a href="<?php echo base_url('mastercms/perusahaan/editprofil/').$profil['perusahaan_id']; ?>" class="pull-right" title="Edit"><span class="btn btn-warning"><i class="fa fa-pencil" style="font-size: 14px;"></i></a></span></h3>
+								<h3>Profil &nbsp;&nbsp;<a href="<?php echo base_url('mastercms/perusahaan/editprofil/').$profil['perusahaan_id']; ?>" title="Edit"><span><i class="fa fa-pencil" style="font-size: 16px;"></i></a></span></h3>
 								<table class="table">
 									<tbody>
 										<tr>

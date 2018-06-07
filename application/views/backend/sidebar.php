@@ -37,7 +37,7 @@
 
         <li class="submenu"> <a href="#"><i class="icon tasks"></i><span>Report</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
             <ul>
-                <li><a href="<?php echo base_url('mastercms/report'); ?>"></i> Absensi</a></li>
+                <li><a href="<?php echo base_url('mastercms/absensi'); ?>"></i> Absensi</a></li>
             </ul>
         </li>
 

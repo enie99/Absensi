@@ -78,7 +78,7 @@
                                                     <td data-title="Aksi" align="center">
                                                         <span><a href="<?php echo base_url("mastercms/karyawan/detail/$value[karyawan_id]"); ?>" title="Detail"><i class="fa fa-eye"></i></a> &nbsp;</span>
                                                         <span><a href="<?php echo base_url("mastercms/karyawan/edit/$value[karyawan_id]"); ?>" title="Edit"><i class="fa fa-pencil"></i></a> &nbsp;</span>
-                                                        <span><a href="<?php echo base_url("mastercms/karyawan/hapus/$value[karyawan_id]"); ?>" title="Hapus"><i class="fa fa-times"></i></a> &nbsp;</span>
+                                                        <span><a href="<?php echo base_url("mastercms/karyawan/hapus/$value[karyawan_id]"); ?>" title="Hapus" onClick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa fa-times"></i></a> &nbsp;</span>
                                                     </td>
                                                 </tr>
                                                 <?php
