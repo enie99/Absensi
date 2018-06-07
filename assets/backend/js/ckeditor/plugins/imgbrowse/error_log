@@ -1,0 +1,1 @@
+[15-Jul-2015 20:35:02 Asia/Jakarta] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/local/lib/php/extensions/no-debug-non-zts-20100525/php_xmlrpc.dll' - /usr/local/lib/php/extensions/no-debug-non-zts-20100525/php_xmlrpc.dll: invalid ELF header in Unknown on line 0
