@@ -63,5 +63,22 @@ class Absensi extends MY_Controller
         $this->render_page('backend/report/detail', $data);
     }
 
+    public function summary(){
+        $id = $_SESSION['user']['perusahaan_id'];
+        $data['cabang'] = $this->Mabsensi->semua_cabang($id);
+        if ($this->input->post()) {
+            $input = $this->input->post();
+            $lokasi_id = $input['lokasi_id'];
+            $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
+            $data['kehadiran'] = $this->Mabsensi->kehadiran();
+
+            echo "<pre>";
+            print_r($data['kehadiran']);
+            echo "</pre>";
+        }
+        
+        $this->render_page('backend/report/summary', $data);
+    }
+
 }
 ?>
