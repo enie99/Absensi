@@ -237,9 +237,10 @@ class Perusahaan extends MY_Controller
 				$jamkerja['jam_keluar'] = $input['hari']['sabtu']['keluar'];
 				$this->Mperusahaan->jam_kerja($jamkerja['kerja_hari'], $id, $jamkerja);
 			}
+			redirect('mastercms/perusahaan/cabang', 'refresh');	
 		}
 
-		redirect('mastercms/perusahaan/cabang', 'refresh');		
+			
 		$this->render_page('backend/perusahaan/tambah-jam-kerja',$data);
 	}
 
