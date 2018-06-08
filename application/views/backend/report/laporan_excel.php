@@ -5,30 +5,30 @@ header("Pragma: no-cache");
 header("Expires: 0");
 ?>
 
-<table class="table table-data table-bordered table-hover table-condensed cf">
-    <thead class="DataTables_sort_wrapper" >
+<table border="1" width="100%">
+    <thead>
         <tr>
-            <th style="background: #dedeec; font-size: 12px" width="30">No</th>
-            <th style="background: #dedeec; font-size: 12px" width="100">Tanggal</th>
-            <th style="background: #dedeec; font-size: 12px" width="200">Nama Karyawan</th>
-            <th style="background: #dedeec; font-size: 12px" width="130">Hari</th>
-            <th style="background: #dedeec; font-size: 12px" width="130">Jam Absen</th>
-            <th style="background: #dedeec; font-size: 12px" width="130">Jam Keluar</th>
-            <th style="background: #dedeec; font-size: 12px" width="130">Status</th>
-            <th style="background: #dedeec; font-size: 12px" width="150">Keterangan</th>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Nama Karyawan</th>
+            <th>Jam Absen</th>
+            <th>Jam Keluar</th>
+            <th>Hari</th>
+            <th>Status</th>
+            <th>Keterangan</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($absensi as $key => $value) {?>
             <tr>
-                <td data-title="No"><?php echo $key+1; ?></td>
-                <td data-title="No"><?php echo $value['tanggal']; ?></td>
-                <td data-title="No"><?php echo $value['karyawan_nama']; ?></td>
-                <td data-title="No"><?php echo $value['absen_hari']; ?></td>
-                <td data-title="No"><?php echo $value['jam_masuk_absen']; ?></td>
-                <td data-title="No"><?php echo $value['jam_keluar_absen']; ?></td>
-                <td data-title="No"><?php echo $value['status']; ?></td>
-                <td data-title="No"><?php echo $value['keterangan']; ?></td>
+                <td><?php echo $key+1; ?></td>
+                <td><?php echo date('d M Y', strtotime($value['tanggal'])); ?></td>
+                <td><?php echo $value['karyawan_nama']; ?></td>
+                <td><?php echo $value['absen_hari']; ?></td>
+                <td><?php echo $value['jam_masuk_absen']; ?></td>
+                <td><?php echo $value['jam_keluar_absen']; ?></td>
+                <td><?php echo $value['status']; ?></td>
+                <td><?php echo $value['keterangan']; ?></td>
             </tr>
             <?php
         }
