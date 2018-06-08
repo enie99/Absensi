@@ -28,6 +28,17 @@ class Mperusahaan extends CI_Model
 		$this->db->update('_perusahaan', $input);
 	}
 
+	function get_cabang($id)
+	{	
+		$this->db->order_by('_lokasi.lokasi_id','desc');
+		$this->db->join('_lokasi', '_lokasi.perusahaan_id = _perusahaan.perusahaan_id', 'LEFT');
+		// $this->db->join('_karyawan', '_lokasi.lokasi_id = _karyawan.lokasi_id', 'LEFT');
+		$this->db->where('_perusahaan.perusahaan_id', $id);
+		$ambil = $this->db->get('_perusahaan');
+		$data = $ambil->result_array();
+		return $data;
+	}
+
 	function tampil_cabang($id)
 	{	
 		$this->db->order_by('_lokasi.lokasi_id','desc');

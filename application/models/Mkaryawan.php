@@ -2,7 +2,8 @@
 
 class Mkaryawan extends CI_Model
 {
-	function tampil(){
+	function tampil()
+	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->where('_perusahaan.perusahaan_id', $id);		
 		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
@@ -13,7 +14,6 @@ class Mkaryawan extends CI_Model
 
 	function cari($keyword){
 		$id = $_SESSION['user']['perusahaan_id'];
-
 		$this->db->like('karyawan_nama', $keyword);
 		$this->db->where('_perusahaan.perusahaan_id', $id);		
 		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');

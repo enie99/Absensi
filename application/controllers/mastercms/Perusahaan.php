@@ -10,7 +10,6 @@ class Perusahaan extends MY_Controller
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('Mperusahaan');
-
 		$this->load->helper(array('form','url'));
 		// Load Config Map
 		$this->load->config('map');
@@ -19,7 +18,6 @@ class Perusahaan extends MY_Controller
 		$this->def_lng=$this->config->item('default_lng');
 		
 		//Load library googlemap
-		//Sumber Library http://biostall.com/codeigniter-google-maps-v3-api-library
 		$this->load->library('googlemaps');
 
 		if (!$this->session->userdata('user'))
