@@ -51,6 +51,9 @@
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/animate.css');?>"> -->
 
     
+<<<<<<< HEAD
+>>>>>>> d1aa72b6afc86a1bc9566aa03d13d4de0e496551
+=======
 >>>>>>> d1aa72b6afc86a1bc9566aa03d13d4de0e496551
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('assets/backend/js/jquery-1.10.2.min.js');?>"></script>
