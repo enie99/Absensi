@@ -20,6 +20,8 @@ class Absensi extends MY_Controller
 
 	public function index()
     {
+        $data['perusahaan'] = $this->Mabsensi->cabang();
+        $data['karyawan'] = $this->Mabsensi->get_karyawan();
         $data['absensi'] = $this->Mabsensi->tampil();
         $this->render_page('backend/report/absensi',$data);
     }

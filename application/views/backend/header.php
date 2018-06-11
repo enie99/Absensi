@@ -27,7 +27,7 @@
       Yakin ingin Keluar?
     </div>
     <div class="light-modal-footer">
-      <a href="<?php echo base_url('mastercms/logout'); ?>" class="btn btn-danger" aria-label="close">Ya</a>&nbsp;&nbsp;&nbsp;
+      <a href="<?php echo base_url('mastercms/login/logout'); ?>" class="btn btn-danger" aria-label="close">Ya</a>&nbsp;&nbsp;&nbsp;
       <a href="#" class="btn btn-info" aria-label="close">Tidak</a>
     </div>
   </div>

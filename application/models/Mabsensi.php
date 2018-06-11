@@ -12,6 +12,20 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
+	public function cabang(){
+
+		$this->db->order_by('lokasi_nama','ASC');
+		$cabang= $this->db->get('_lokasi');
+		return $cabang->result_array();
+	}
+
+	public function get_karyawan(){
+
+		$this->db->order_by('karyawan_nama','ASC');
+		$karyawan= $this->db->get('_karyawan');
+		return $karyawan->result_array();
+	}
+
 	public function get_data()
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
