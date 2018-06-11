@@ -52,10 +52,11 @@
                                                 <th style="background: #dedeec; font-size: 12px" width="2%">No</th>
                                                 <th style="background: #dedeec; font-size: 12px" width="15%">Perusahaan / Cabang</th>
                                                 <!--<th style="background: #dedeec; font-size: 12px" width="85">Foto</th>-->
-                                                <th style="background: #dedeec; font-size: 12px" width="10%">Title</th>
+                                                <th style="background: #dedeec; font-size: 12px" width="5%">Title</th>
+                                                <th style="background: #dedeec; font-size: 12px" width="7%">Jml Karyawan</th>
                                                 <th style="background: #dedeec; font-size: 12px" width="20%">Alamat Perusahaan</th>
 
-                                                <th style="background: #dedeec; font-size: 12px" width="15%">Hari & Jam Kerja</th>
+                                                <th style="background: #dedeec; font-size: 12px" width="13%">Hari & Jam Kerja</th>
                                                 <th style="background: #dedeec; font-size: 12px" width="10%">QR Code</th>
                                                 <th style="background: #dedeec; font-size: 12px" width="7%">Aksi</th>
                                             </tr>
@@ -66,6 +67,7 @@
                                                 <td data-title="No"><?php echo $key+1 ; ?></td>
                                                 <td data-title="nama perusahaan"><strong><?php echo $p['lokasi_nama']; ?></strong></td>
                                                 <td data-title="No. HP"><?php echo $p['perusahaan_title']; ?></td>
+                                                <td data-title="Jml Karyawan" style="text-align: center;"><?php echo $p['jml_karyawan']; ?></td>
                                                 <td data-title="Alamat"><?php echo $p['perusahaan_alamat'] ?></td>
                                                 <td>
                                                     <div align="center">

@@ -12,6 +12,18 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
+	public function get_data()
+	{
+		$id = $_SESSION['user']['perusahaan_id'];
+		$data = $this->db->query("SELECT l.lokasi_id, a.status, COUNT(a.status) as jumlah FROM _absensi a
+			LEFT JOIN _karyawan k ON k.karyawan_id = a.karyawan_id
+			LEFT JOIN _lokasi l ON l.lokasi_id = k.lokasi_id
+			LEFT JOIN _perusahaan p  ON p.perusahaan_id = l.lokasi_id
+			WHERE date(tanggal) = CURDATE() AND l.perusahaan_id = '$id'
+			GROUP BY l.lokasi_id ASC, a.status ASC ");
+		return $data->result_array();
+	}
+
 	public function getAll() 
 	{
 		$this->db->select('*');

@@ -30,11 +30,6 @@ class Absensi extends MY_Controller
         $this->render_page('backend/report/absensi', $data);
     }
 
-    function summary()
-    {
-        $this->render_page('backend/report/summary');
-    }
-
     //export ke dalam format excel
     public function export_excel(){
            $data = array( 'title' => 'Laporan Excel | Absensi',

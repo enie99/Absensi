@@ -47,7 +47,7 @@ class Login extends CI_Controller
 			}
 		}
 		$this->session->sess_destroy();
-		echo "<script>alert('Anda berhasil logout, Good Bye !');location='".base_url("mastercms")."'</script>";
+		echo "alert('Anda berhasil logout!');location='".base_url("mastercms")."'</script>";
 	}
 }
 ?>

@@ -70,7 +70,6 @@
                         <td><?php echo $key+1; ?></td>
                         <td><?php echo $kary['karyawan_nama']; ?></td>
                         <td>No</td>
-                        
                         <td>
                           <?php
                           foreach ($kehadiran as $key => $kehad) :
