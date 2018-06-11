@@ -12,13 +12,23 @@
 </div>
 <div id="user-nav" class="navbar navbar-inverse" style="border-color: #47475c;top:-2px;">
   <ul class="nav">
-   <!-- <li><a href="#" ><i class="icon icon-envelope"></i> <span class="text" style="color: #fff">Messages</span> <span class="label label-important">3</span> </a>
+    <li class=""><a title="" href="#view"><i class="icon icon-share-alt"></i> <span class="text" style="color: #fff">Logout</span></a></li>
+    <!-- <li><a href="#view">Logout</a></li> -->
+  </ul>
+  <!-- Modal -->
+</div>
 
-   </li>
-   <li><a href="#" ><i class="icon-bell"></i> <span class="text" style="color: #fff"> Notifikasi</span><span class="label label-important">3</span> </a>
-
-    <li class=""><a title="" href="#"><i class="icon-info-sign"></i> <span class="text" style="color: #fff">Help</span></a></li>
-  </li> -->
-  <li class=""><a title="" href="<?php echo base_url('mastercms/logout'); ?>"><i class="icon icon-share-alt"></i> <span class="text" style="color: #fff">Logout</span></a></li>
-</ul>
+<div class="light-modal" id="view" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+  <div class="light-modal-content  animated zoomInUp">
+    <div class="light-modal-header">
+      <h3 class="light-modal-heading"><i class="fa fa-warning"></i> Logout</h3>
+    </div>
+    <div class="light-modal-body">
+      Yakin ingin Keluar?
+    </div>
+    <div class="light-modal-footer">
+      <a href="<?php echo base_url('mastercms/logout'); ?>" class="btn btn-danger" aria-label="close">Ya</a>&nbsp;&nbsp;&nbsp;
+      <a href="#" class="btn btn-info" aria-label="close">Tidak</a>
+    </div>
+  </div>
 </div>

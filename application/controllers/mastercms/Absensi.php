@@ -26,16 +26,13 @@ class Absensi extends MY_Controller
 
     public function absensi()
     {
-        echo "<pre>";
-        print_r($_SESSION);
-        echo "</pre>";
         $data['absensi'] = $this->Mabsensi->tampil($id);
         $this->render_page('backend/report/absensi', $data);
     }
 
     //export ke dalam format excel
     public function export_excel(){
-           $data = array( 'title' => 'Laporan Excel | Absens',
+           $data = array( 'title' => 'Laporan Excel | Absensi',
                 'absensi' => $this->Mabsensi->getAll());
            $this->load->view('backend/report/laporan_excel',$data);
        }
@@ -57,9 +54,6 @@ class Absensi extends MY_Controller
     public function detail($karyawan_id){
         $data['detail_data']= $this->Mabsensi->detail($karyawan_id);
         $data['detail_data_absensi']= $this->Mabsensi->detail_absensi($karyawan_id);
-        // echo "<pre>";
-        // print_r($data['detail_data']);
-        // echo "</pre>";
         $this->render_page('backend/report/detail', $data);
     }
 

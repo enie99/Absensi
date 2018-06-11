@@ -1,11 +1,6 @@
 <?php
 class Mperusahaan extends CI_Model
 {
-	function register($input)
-	{
-		$this->db->insert('_perusahaan', $input);
-		redirect('home', 'refresh');
-	}
 
 	function profil($id)
 	{
@@ -28,13 +23,36 @@ class Mperusahaan extends CI_Model
 		$this->db->update('_perusahaan', $input);
 	}
 
-	function tampil_cabang($id)
+	function get_cabang($id)
 	{	
-		$this->db->order_by('_lokasi.lokasi_id','desc');
-		$this->db->join('_lokasi', '_lokasi.perusahaan_id = _perusahaan.perusahaan_id');
-		$this->db->where('_perusahaan.perusahaan_id', $id);
-		$ambil = $this->db->get('_perusahaan');
-		return $ambil->result_array();
+		$this->db->order_by('l.lokasi_id','desc');
+		$this->db->join('_perusahaan p', 'l.perusahaan_id = p.perusahaan_id', 'LEFT');
+		// $this->db->join('_karyawan k','l.lokasi_id = k.lokasi_id','LEFT');
+		// $this->db->count('k.karyawan_id AS jml_karyawan');
+		$this->db->where('l.perusahaan_id', $id);
+		$ambil = $this->db->get('_lokasi l');
+		$data = $ambil->result_array();
+		return $data;
+	}
+
+	function get_data()
+	{
+		$id = $_SESSION['user']['perusahaan_id'];
+		$data = $this->db->query("SELECT l.lokasi_id, l.lokasi_nama,l.perusahaan_title,l.perusahaan_alamat,l.qr_code, count(k.karyawan_id) AS jml_karyawan FROM _lokasi l
+				LEFT JOIN _karyawan k ON l.lokasi_id = k.lokasi_id
+				LEFT JOIN _perusahaan p  ON p.perusahaan_id = l.lokasi_id
+				WHERE l.perusahaan_id = '$id' GROUP BY l.lokasi_id DESC");
+		return $data->result_array();
+	}
+
+	function tampil_cabang()
+	{	
+		$id = $_SESSION['user']['perusahaan_id'];
+		$data = $this->db->query("SELECT *, count(k.karyawan_id) AS jml_karyawan FROM _lokasi l
+				LEFT JOIN _karyawan k ON l.lokasi_id = k.lokasi_id
+				LEFT JOIN _perusahaan p  ON p.perusahaan_id = l.lokasi_id
+				WHERE l.perusahaan_id = '$id' GROUP BY l.lokasi_id DESC");
+		return $data->result_array();
 	}
 
 	function add_lokasi($input,$image_name)
@@ -94,7 +112,6 @@ class Mperusahaan extends CI_Model
 	}
 	function semua_jamkerja()
 	{
-		// $this->db->where('lokasi_id', $lokasi_id);
 		$data = $this->db->get('_jam_kerja');
 		return $data->result_array();
 	}
@@ -132,8 +149,24 @@ class Mperusahaan extends CI_Model
 		$this->db->where('kerja_hari', $hari);
 		$this->db->update('_jam_kerja', $jamkerja);
 	}
+	public function cari($keyword){
+		$this->db->like('lokasi_nama', $keyword);
+		$this->db->or_like('perusahaan_alamat',$keyword);
+		return $this->db->get('_lokasi')->result_array();
+	}
 
 
+
+
+	// Register
+	function register($input)
+	{
+		if ($this->db->insert('_perusahaan', $input))
+			return 'done';
+		else
+			return 'gagal';
+		// redirect('home', 'refresh');
+	}
 	// Login User
 	function auth($input)
 	{
@@ -157,11 +190,6 @@ class Mperusahaan extends CI_Model
 		}
 	}
 
-	public function cari($keyword){
-		$this->db->like('lokasi_nama', $keyword);
-		$this->db->or_like('perusahaan_alamat',$keyword);
-		return $this->db->get('_lokasi')->result_array();
-	}
 	
 }
 ?>

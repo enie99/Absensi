@@ -36,13 +36,16 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/maruti-style.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/maruti-media.css');?>" class="skin-color" />
 
+    <!-- pie chart -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
     <!-- Light Modal -->
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/light-modal.css');?>" />
-
     <!-- Animated CSS -->
     <!-- <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/css/animate.css');?>"> -->
-
-    
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('assets/backend/js/jquery-1.10.2.min.js');?>"></script>
     <script src="<?php echo base_url('assets/backend/js/jquery-ui-1.9.2.custom.min.js');?>"></script>
@@ -57,6 +60,7 @@
     <script src="<?php echo base_url('assets/backend/js/tooltip.js');?>"></script>
     <script src="<?php echo base_url('assets/backend/js/sweetalert-master/dist/sweetalert-dev.js');?>"></script>
 
+    <!-- google maps -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyD67FGdk2D3otSMETke5rb8i9J6tw7MbdI&callback=initMap"></script>
 
 </head>
@@ -96,11 +100,11 @@
     <script src="<?php echo base_url('assets/backend/js/sparkline/sparkline-init.js');?>"></script>
 
 
-<!--Morris Chart-->
-<script src="<?php echo base_url('assets/backend/js/morris-chart/morris.js');?>"></script>
-<script src="<?php echo base_url('assets/backend/js/morris-chart/raphael-min.js');?>"></script>
+    <!--Morris Chart-->
+    <script src="<?php echo base_url('assets/backend/js/morris-chart/morris.js');?>"></script>
+    <script src="<?php echo base_url('assets/backend/js/morris-chart/raphael-min.js');?>"></script>
 
-<!--Calendar-->
+    <!--Calendar-->
 <!--<script src="<?php echo base_url();?>/js/calendar/clndr.js"></script>
 <script src="<?php echo base_url();?>/js/calendar/evnt.calendar.init.js"></script>
 <script src="<?php echo base_url();?>/js/calendar/moment-2.2.1.js"></script>
