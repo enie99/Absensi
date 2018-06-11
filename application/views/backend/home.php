@@ -76,7 +76,6 @@
                     </div>
                 </div>
                 <script>
-                    // $absen = json_decode($absen, true);
                     Highcharts.chart('container-<?= $p['lokasi_id'];?>', {
                       chart: {
                         plotBackgroundColor: null,
@@ -103,7 +102,7 @@
                         showInLegend: true
                     }
                 },
-                // if ($absen['lokasi_id']==<?= $p['lokasi_id'] ?>)
+                // if ($absen['lokasi_id']== '14' ?>)
                 series: <?php echo $absen; ?>
           });
       </script>

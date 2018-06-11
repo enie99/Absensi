@@ -16,11 +16,11 @@
     <div class="container">
         <form class="form-signin" action="" method="post">
             <div class="form-signin-heading text-center">
-                <!--<h1 class="sign-title">Login CMS</h1>-->
-                <img src="<?php echo base_url('assets/backend/images/login-logo.png');?>" alt=""/>
+                <!-- <img src="<?php echo base_url('assets/backend/images/login-logo.png');?>" alt=""/> -->
+                <h3 style="color: #000; font-weight: bold;">LOGIN ABSENSI</h3>
             </div>
-
             <div class="login-wrap">
+
                 <?php if ($hasil=='gagal'): ?>
                     <div class="alert alert-block alert-danger fade in">
                         <button type="button" class="close close-sm" data-dismiss="alert">
@@ -38,7 +38,7 @@
                     <?php echo $captcha // tampilkan recaptcha ?>
                 </div>
                 <button class="btn btn-login btn-block" type="submit" name="LogAdmin">
-                    <i class="fa fa-key"></i> &nbsp; Login
+                    <i class="fa fa-unlock-alt"></i>&nbsp; Login
                 </button>
 
                 <div class="registration">

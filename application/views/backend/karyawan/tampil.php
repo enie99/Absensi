@@ -12,7 +12,7 @@
             <!-- page heading end-->
 
             <!-- body wrapper start -->
-            <div class="container-fluid">
+            <div class="container-fluid"  style="min-height: 500px;">
                 <div class="row-fluid">
                     <div class="span12">
                         <form name="filterFrm" action="<?php echo base_url('mastercms/karyawan/cari');?>" method="get">
@@ -67,7 +67,7 @@
                                                     <td data-title="No"><?php echo $key+1; ?></td>
                                                     <td data-title="No"><?php echo $value['karyawan_nama']; ?></td>
                                                     <td data-title="No"><?php echo $value['karyawan_jabatan']; ?></td>
-                                                    <td data-title="No"><?php echo date('d M Y', strtotime($value['karyawan_ttl'])); ?></td>
+                                                    <td data-title="No"><?php if(empty($value['karyawan_ttl'])) echo "-"; else echo date('d M Y', strtotime($value['karyawan_ttl'])); ?></td>
                                                     <td data-title="No"><?php echo $value['karyawan_email']; ?></td>
                                                     <td data-title="No"><?php 
                                                     if (empty($value['no_hp'])) {
@@ -90,11 +90,10 @@
 
                                         </tbody>
                                     </table>
-                                    <div class="center" style="text-align: center">
-                                        <!-- <?php if (isset($links)) { ?>
-                                        <?php echo $links ?>
-                                        <?php } ?> -->
-                                        <?php echo $this->pagination->create_links(); ?>
+                                    <div class="text-center" style="margin-top: 15px;">
+                                        <ul class="pagination">
+                                            <?php echo $mpaging; ?>
+                                        </ul>
                                     </div>
 
                                 </section>

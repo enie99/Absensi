@@ -1434,6 +1434,7 @@ form {
 		padding: 0 !important;
 	}
 	.container-fluid {
+		min-height: 480px;
 		padding-left: 20px;
 		padding-right: 20px;
 	}
