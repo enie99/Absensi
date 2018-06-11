@@ -39,6 +39,7 @@ class Perusahaan extends MY_Controller
 		// $id = $_SESSION['user']['perusahaan_id'];
 		$data['perusahaan'] = $this->Mperusahaan->get_data();
 		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
+
 		$this->render_page('backend/perusahaan/data-cabang',$data);
 	}
 

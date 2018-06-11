@@ -5,10 +5,22 @@ class Mkaryawan extends CI_Model
 	function tampil()
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
+		$this->db->order_by('_karyawan.karyawan_id','DESC');
 		$this->db->where('_perusahaan.perusahaan_id', $id);		
 		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
 		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
 		$ambil = $this->db->get('_karyawan');
+		return $ambil->result_array();
+	}
+
+	function tampil_blog_pagination($batas, $from)
+	{
+		$id = $_SESSION['user']['perusahaan_id'];
+		$this->db->order_by('_karyawan.karyawan_id','DESC');
+		$this->db->where('_perusahaan.perusahaan_id', $id);		
+		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
+		$ambil = $this->db->get('_karyawan', $batas, $from);
 		return $ambil->result_array();
 	}
 
