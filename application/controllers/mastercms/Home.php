@@ -18,50 +18,26 @@ class Home extends MY_Controller
 
 	function index(){
 		$data['perusahaan']	= $this->Mperusahaan->get_data();
-		// $getPerusahaan	= $this->Mperusahaan->get_data();
+		$getPerusahaan	= $this->Mperusahaan->get_data();
 		$array_series = array(array('data'=>array()));
 		$array_datas = array();
 		$getAbsensi		= $this->Mabsensi->get_data();
 
-		echo "<pre>";
-			print_r($getAbsensi);
-			echo "</pre>";
+		$i=0;
+		while($i < count($getAbsensi)){
+			foreach ($getAbsensi as $key => $value) {
+				if ($value['lokasi_id'] == $getAbsensi[$i]['lokasi_id']) {
+					$array_datas[$getAbsensi[$i]['status']] = intval($getAbsensi[$i]['jumlah']);
+				}
+			}
+			$i++;
+		}
 
-		// foreach ($getPerusahaan as $key => $p) {
-		// 	foreach ($getAbsensi as $key => $a) {
-		// 		if ($a['lokasi_id']==intval($getAbsensi[$key]['lokasi_id'])) {
-		// 				$array_datas[$getAbsensi[$key]['lokasi_id']] = intval($getAbsensi[$key]['lokasi_id']);
-		// 				$array_datas[$getAbsensi[$key]['status']] = intval($getAbsensi[$key]['jumlah']);
-		// 			// $i=0;
-		// 			// while($i < count($getAbsensi)){
-		// 			// 	$i++;
+		foreach($array_datas as $key=>$val){
+			array_push($array_series[0]['data'], array((string)$key, $val));
+		}
 
-						// echo "<pre>";
-						// print_r($data['perusahaan']);
-						// echo "</pre>";
-		// 			// }
-		// 		}
-		// 	}
-		// // }
-
-
-			$data['absen'] = json_encode($getAbsensi);
-
-		// foreach ($getAbsensi as $key => $val) {
-		// 	// for ($i=0; $i < count($getAbsensi) ; $i++) { 
-		// 	// 	# code...
-		// 	// }
-
-		// 	array_push($array_series[0]['data'], array((string)$key, $val));
-		// 	// $dataAbsen = array(
-		// 	// 	'lokasi_id' => $val['lokasi_id'],
-		// 	// 	'status' => $val['status'],
-		// 	// 	'jumlah' => $val['jumlah'],
-		// 	// );
-			// echo "<pre>";
-			// print_r($data['absen']);
-			// echo "</pre>";
-		// }
+		$data['absen'] = json_encode($array_series);
 
 		$data['totalkaryawan']	= count($this->Mkaryawan->tampil());
 		$this->render_page('backend/home', $data);
