@@ -26,7 +26,7 @@
                     <table class="table">
                       <?php foreach ($cabang as $key => $value) : ?>
                         <tr>
-                          <form class="form-horizontal " role="form" action="" method="post" enctype="multipart/form-data">
+                          <form class="form-horizontal " role="form" action="<?php echo base_url('mastercms/absensi/summary') ?>" method="post" enctype="multipart/form-data">
                           <td width="10%"><?php echo $key+1; ?></td>
                           <td>
                             <input type="hidden" name="lokasi_id" value="<?php echo $value['lokasi_id']; ?>">
@@ -50,9 +50,41 @@
               </div>
             </div>
             <div class="col-md-9">
-              <div class="panel">
+              <div class="panel" style="min-height: 500px;">
                 <div class="panel panel-default">
                   <div class="panel-heading">&nbsp; Summary</div>
+                  <br>
+                  <form name="filterFrm" action="<?php echo base_url('mastercms/absensi/cari/'); ?>" method="post">
+                    <div class="span3" style="margin-right: 6px; margin-left: 6px;">
+                      <div class="controls">
+                        <input type="hidden" name="lokasi_id" value="<?php echo $lokasi; ?>">
+                        <select name="bulan">
+                          <option value="01">Januari</option>
+                          <option value="02">Februari</option>
+                          <option value="03">Maret</option>
+                          <option value="04">April</option>
+                          <option value="05">Mei</option>
+                          <option value="06">Juni</option>
+                          <option value="07">Juli</option>
+                          <option value="08">Agustus</option>
+                          <option value="09">September</option>
+                          <option value="10">Oktober</option>
+                          <option value="11">November</option>
+                          <option value="12">Desember</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="span4" style="margin-left: 5px">
+                      <div class="controls">
+                        <p>
+                          <a href=""><button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button></a>
+                          <!-- <a href="<?php echo base_url('mastercms/Absensi/summary'); ?>"><button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a> -->
+                           <a href="<?php echo base_url('mastercms/karyawan'); ?>"><button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
+                        </p>
+                      </div>
+                    </div>
+                  </form>
+
                   <div class="panel-body" style="padding-left: 8px; padding-right: 8px">
                     <br>
                     <table class="table table-bordered">

@@ -25,7 +25,8 @@
                                 <div class="controls">
                                     <p>
                                         <button type="submit" class="btn btn-primary"><a href="<?php echo base_url('mastercms/karyawan/cari'); ?>"><i class="fa fa-search"></i></a> Cari Data</button>
-                                        <a href="<?php echo base_url('mastercms/karyawan'); ?>"><button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
+                                        <!-- <a href="<?php echo base_url('mastercms/karyawan'); ?>"><button name="" type="" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a> -->
+                                        <span><a href="" onclick="window.location=<?php echo base_url('mastercms/karyawan');?>" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Cari Data</a> </span>
                                     </p>
                                 </div>
                             </div>

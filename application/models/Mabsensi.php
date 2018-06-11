@@ -59,13 +59,13 @@ class Mabsensi extends CI_Model
 		$this->db->delete('_absensi');
 	}
 
-	public function cari($keyword){
-		$this->db->like('karyawan_nama', $keyword); //mencari data yang serupa dengan keyword
-		$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
-		$this->db->join('_absensi', '_karyawan.karyawan_id = _absensi.karyawan_id');
-		$ambil = $this->db->get('_karyawan');
-		return $ambil->result_array();
-	}
+	// public function cari($keyword){
+	// 	$this->db->like('karyawan_nama', $keyword); //mencari data yang serupa dengan keyword
+	// 	$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
+	// 	$this->db->join('_absensi', '_karyawan.karyawan_id = _absensi.karyawan_id');
+	// 	$ambil = $this->db->get('_karyawan');
+	// 	return $ambil->result_array();
+	// }
 
 	public function detail($id){
 		$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
@@ -96,12 +96,27 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function kehadiran(){
+	public function kehadiran($bulan){
+		// $this->db->select('karyawan_id, status, count(status) AS jumlah');
+		// $this->db->group_by('status, karyawan_id');
+		// $ambil = $this->db->get('_absensi');
+		// return $ambil->result_array();
 		$this->db->select('karyawan_id, status, count(status) AS jumlah');
+		$this->db->from('_absensi');
+		$this->db->where('month(tanggal)', $bulan);
 		$this->db->group_by('status, karyawan_id');
-		$ambil = $this->db->get('_absensi');
+		$ambil = $this->db->get();
 		return $ambil->result_array();
+	}
 
+	public function cari($bulan){
+		
+		$this->db->select('karyawan_id, status, count(status) AS jumlah');
+		$this->db->from('_absensi');
+		$this->db->where('month(tanggal)', $bulan);
+		$this->db->group_by('status, karyawan_id');
+		$ambil = $this->db->get();
+		return $ambil->result_array();
 	}
 }
 ?>
