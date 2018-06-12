@@ -17,7 +17,10 @@
 				<div class="panel">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							Profil &nbsp;&nbsp;<a href="<?php echo base_url('mastercms/perusahaan/editprofil/').$profil['perusahaan_id']; ?>" title="Edit"><span class="pull-right"><i class="fa fa-pencil" style="font-size: 14px;"></i></a></span>
+							Profil &nbsp;&nbsp;
+							<span class="pull-right" style="font-size: 12px;">
+								<a href="<?php echo base_url('mastercms/perusahaan/editprofil/').$profil['perusahaan_id']; ?>" title="Edit"><i class="fa fa-pencil"></i> Edit</a>
+							</span>
 						</div>
 						<div class="panel-body">
 							<!-- <div class="profile-desk"> -->
@@ -48,12 +51,12 @@
 									</table>
 									<!-- <span class="designation">MEMBE	R ID : </span> -->
 								</div>
-							<!-- </div> -->
+								<!-- </div> -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- body end -->
 	</div>
-	<!-- body end -->
-</div>

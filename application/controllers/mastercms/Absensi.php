@@ -62,6 +62,7 @@ class Absensi extends MY_Controller
     public function summary()
     {
         $id = $_SESSION['user']['perusahaan_id'];
+        $data['lokasi'] = "";
         $data['cabang'] = $this->Mabsensi->semua_cabang($id);
         if ($this->input->post()) {
             $input = $this->input->post();
@@ -78,10 +79,6 @@ class Absensi extends MY_Controller
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-        
-        // echo "<pre>";
-        // print_r($data['lokasi']);
-        // echo "</pre>";
         $this->render_page('backend/report/summary', $data);
     }
 
@@ -96,12 +93,7 @@ class Absensi extends MY_Controller
             $bulan = $input['bulan'];
             $data['lokasi'] = $lokasi_id;
 
-            // echo "<pre>";
-            // print_r($lokasi_id, $bulan);
-            // echo "</pre>";
-            
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            // // $data['kehadiran'] = $this->Mabsensi->kehadiran();
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
         else
