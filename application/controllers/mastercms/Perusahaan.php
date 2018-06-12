@@ -40,6 +40,12 @@ class Perusahaan extends MY_Controller
 		$data['perusahaan'] = $this->Mperusahaan->get_data();
 		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
 
+		if ($this->input->post('cari')) {
+			$keyword = $this->input->post('cari', TRUE);
+			$data['perusahaan'] = $this->Mperusahaan->cari($keyword);
+			$data['keyword'] = $keyword;
+		}
+
 		$this->render_page('backend/perusahaan/data-cabang',$data);
 	}
 
@@ -107,31 +113,31 @@ class Perusahaan extends MY_Controller
 	    }
 
 	    $center=$this->def_lat.",".$this->def_lng;
-		$cfg=array(
-		'class'			=>'map-canvas',
-		'map_div_id'	=>'map-canvas',
-		'center'		=>$center,
-		'zoom'			=>17,
+	    $cfg=array(
+	    	'class'			=>'map-canvas',
+	    	'map_div_id'	=>'map-canvas',
+	    	'center'		=>$center,
+	    	'zoom'			=>17,
 		'places'		=>TRUE, //Aktifkan pencarian alamat
 		'placesAutocompleteInputID'	=>'pencarian', //set sumber pencarian input
 		'placesAutocompleteBoundsMap'	=>TRUE,
 		'placesAutocompleteOnChange'	=>'showmap();' //Aksi ketika pencarian dipilih
-		);
-		$this->googlemaps->initialize($cfg);
-		
-		$marker=array(
-		'position'		=>$center,
-		'draggable'		=>TRUE,
-		'title'			=>'Coba diDrag',
-		'ondragend'		=>"document.getElementById('lat').value = event.latLng.lat();
-        					document.getElementById('lng').value = event.latLng.lng();
-        					showmap();",
-		);		
-        $this->googlemaps->add_marker($marker);
-				
-		$d['map']=$this->googlemaps->create_map();
-		$d['lat']=$this->def_lat;
-		$d['lng']=$this->def_lng;
+	);
+	    $this->googlemaps->initialize($cfg);
+
+	    $marker=array(
+	    	'position'		=>$center,
+	    	'draggable'		=>TRUE,
+	    	'title'			=>'Coba diDrag',
+	    	'ondragend'		=>"document.getElementById('lat').value = event.latLng.lat();
+	    	document.getElementById('lng').value = event.latLng.lng();
+	    	showmap();",
+	    );		
+	    $this->googlemaps->add_marker($marker);
+
+	    $d['map']=$this->googlemaps->create_map();
+	    $d['lat']=$this->def_lat;
+	    $d['lng']=$this->def_lng;
 
 	    $this->render_page('backend/perusahaan/tambah-cabang', $d);
 	}
@@ -239,16 +245,16 @@ class Perusahaan extends MY_Controller
 			redirect('mastercms/perusahaan/cabang', 'refresh');	
 		}
 
-			
+
 		$this->render_page('backend/perusahaan/tambah-jam-kerja',$data);
 	}
 
-	function cari(){
-		$keyword = $this->input->get('cari', TRUE);
-		$data['perusahaan']=$this->Mperusahaan->cari($keyword);
-		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
-		$this->render_page('backend/perusahaan/data-cabang', $data);
-	}
+	// function cari(){
+	// 	$keyword = $this->input->get('cari', TRUE);
+	// 	$data['perusahaan']=$this->Mperusahaan->cari($keyword);
+	// 	$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
+	// 	$this->render_page('backend/perusahaan/data-cabang', $data);
+	// }
 	
 }
 ?>
