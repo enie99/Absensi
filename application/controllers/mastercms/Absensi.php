@@ -59,7 +59,8 @@ class Absensi extends MY_Controller
     //     $this->render_page('backend/report/absensi', $data);; //menampilkan data yang sudah dicari
     // }
 
-    public function detail($karyawan_id){
+    public function detail($karyawan_id)
+    {
         $data['detail_data']= $this->Mabsensi->detail($karyawan_id);
         $data['detail_data_absensi']= $this->Mabsensi->detail_absensi($karyawan_id);
         $this->render_page('backend/report/detail', $data);
@@ -79,7 +80,8 @@ class Absensi extends MY_Controller
             $data['lokasi'] = $lokasi_id;
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-        elseif ($this->input->get()) { //Perintah yg dijalankan saat tombol cari diklik (methode formnya "GET")
+        elseif ($this->input->get()) //Perintah yg dijalankan saat tombol cari diklik (methode formnya "GET")
+        { 
             $input = $this->input->get();
             $lokasi_id = $input['lokasi_id'];
             $bulan = $input['bulan'];
@@ -89,7 +91,8 @@ class Absensi extends MY_Controller
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-        else{ //Perintah yg dijalankan pada saat user belum mengklik lokasi perusahaan
+        else //Perintah yg dijalankan pada saat user belum mengklik lokasi perusahaan
+        { 
             $lokasi_id = "";
             $data['lokasi'] = "";
             $bulan = date('m');
