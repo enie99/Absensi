@@ -98,10 +98,12 @@ class Absensi extends MY_Controller
         $this->render_page('backend/report/summary', $data);
     }
 
-    public function export_excel(){
-           $data = array( 'title' => 'Laporan Excel | Absensi',
+   public function export_excel($lokasi_id, $bulan){
+            $data = array( 'title' => 'Laporan Excel | Absensi',
                 'karyawan' => $this->Mabsensi->semua_karyawan($lokasi_id),
-                'kehadiran' => $this->Mabsensi->kehadiran($bulan));
+                'kehadiran' => $this->Mabsensi->kehadiran($bulan),
+                'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi_id),
+                'bulan' => $bulan);
            $this->load->view('backend/report/excel_semua_karyawan',$data);
        }
 

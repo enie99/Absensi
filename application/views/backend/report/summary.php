@@ -109,7 +109,7 @@
                               <button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
                             </p>
                           </div>
-                          <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php //echo base_url('mastercms/absensi/export_excel') ?>"><i class="fa fa-"></i> Export to Excel</a></span>
+                          <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi.'/'.$bulan); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
                         </div>
                       </form>
 
@@ -126,6 +126,7 @@
                             <th><font size="2px">Sakit</font></th>
                             <th><font size="2px">Ijin</font></th>
                             <th><font size="2px">Cuti</font></th>
+                            <th><font size="2px">Aksi</font></th>
                           </tr>
                         <?php endif ?>
 
@@ -134,7 +135,7 @@
 
                               <tr>
                                 <td><?php echo $key+1; ?></td>
-                                <td><?php echo $kary['karyawan_nama']; ?></td>
+                                <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
                                 <td>Belum</td>
                                 <td>
                                   <?php
@@ -186,6 +187,11 @@
                                     }
                                   endforeach;
                                   ?>
+                                </td>
+                                <td align="center">
+                                  <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>">
+                                    <center><span class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
+                                  </a>
                                 </td>
                               </tr>
                             

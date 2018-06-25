@@ -116,5 +116,11 @@ class Mabsensi extends CI_Model
 		$ambil = $this->db->get();
 		return $ambil->result_array();
 	}
+
+	public function lokasi_by_id($lokasi_id){
+		$this->db->where('_lokasi.lokasi_id', $lokasi_id);
+		$ambil = $this->db->get('_lokasi');
+		return $ambil->result_array();
+	}
 }
 ?>
