@@ -9,6 +9,14 @@
 			</a>
 		</div>
 	</div>
+	<div class="col-md-12" style="margin-top:20px;padding-right: 34px;">
+		<div align="right">
+			<p>
+				<a href="<?php echo base_url('mastercms/perusahaan/edit/').$id; ?>" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
+				<a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-undo"></i> Kembali</a>
+			</p>
+		</div>
+	</div>
 	<div class="span12" >
 		
 	</div>
@@ -33,66 +41,61 @@
 					<div class="panel-body">
 						<div class="profile-desk">
 							<div class="col-md-12" style="padding-top:10px;">
-								<h3><?= $detail['lokasi_nama']; ?>
-								<span class="pull-right" style="font-size: 12px; padding-bottom: 30px;">
-									<span class="btn btn-warning btn-sm"><a style="color: #fff;" href="<?php echo base_url('mastercms/perusahaan/edit/').$id; ?>" title="Edit"><i class="fa fa-pencil"></i>&nbsp;Edit</a></span>&nbsp;&nbsp;
-									<span class="btn btn-danger btn-sm"><a style="color: #fff;" href="<?= base_url('mastercms/perusahaan/cabang'); ?>" title="Kembali"><i class="fa fa-undo"></i>&nbsp;Kembali</a></span>
-								</span>
-							</h3>
-							<table class="table">
-								<tbody>
-									<tr>
-										<td>Kantor</td>
-										<td>:</td>
-										<td><?php echo ucwords($detail['perusahaan_title']); ?></td>
-									</tr>
-									<tr>
-										<td style="width: 20%">Nama Perusahaan</td>
-										<td style="width: 5%">:</td>
-										<td><?php echo $detail['lokasi_nama']; ?></td>
-									</tr>
-									<tr>
-										<td>Alamat</td>
-										<td>:</td>
-										<td><?php echo $detail['perusahaan_alamat']; ?></td>
-									</tr>
-									<tr>
-										<td style="font-weight: bold;">Jam Kerja</td>
-										<td>&nbsp;</td>
-										<td colspan="2">
-											<?php if (!empty($jamkerja)): ?>
-												<table class="table" width="100%">
-													<thead style="font-weight: bold;">
-														<tr>
-															<td>Hari</td>
-															<td>Jam Masuk</td>
-															<td>Jam Keluar</td>
-														</tr>
-													</thead>
-													<tbody>
-														<?php foreach ($jamkerja as $key => $value): ?>
-															<tr>
-																<td width="25%"><?= $value['kerja_hari']; ?></td>
-																<td width="25%"><?= $value['jam_masuk']; ?></td>
-																<td width="25%"><?= $value['jam_keluar']; ?></td>
-															</tr>
-														<?php endforeach ?>	
-													</tbody>
-												</table>
-												<?php else: ?>
-													<span class="btn btn-primary"><a href="<?php echo base_url('mastercms/perusahaan/add_jam_kerja/').$detail['lokasi_id']; ?>" title="Detail" style="color: white">Tambah Jam Kerja</a></span>
-												<?php endif ?>
-											</td>
+								<h3><?= $detail['lokasi_nama']; ?></h3>
+								<table class="table">
+									<tbody>
+										<tr>
+											<td>Kantor</td>
+											<td>:</td>
+											<td><?php echo ucwords($detail['perusahaan_title']); ?></td>
 										</tr>
-									</tbody>
-								</table>
-								<!-- <span class="designation">MEMBE	R ID : </span> -->
+										<tr>
+											<td style="width: 20%">Nama Perusahaan</td>
+											<td style="width: 5%">:</td>
+											<td><?php echo $detail['lokasi_nama']; ?></td>
+										</tr>
+										<tr>
+											<td>Alamat</td>
+											<td>:</td>
+											<td><?php echo $detail['perusahaan_alamat']; ?></td>
+										</tr>
+										<tr>
+											<td style="font-weight: bold;">Jam Kerja</td>
+											<td>&nbsp;</td>
+											<td colspan="2">
+												<?php if (!empty($jamkerja)): ?>
+													<table class="table" width="100%">
+														<thead style="font-weight: bold;">
+															<tr>
+																<td>Hari</td>
+																<td>Jam Masuk</td>
+																<td>Jam Keluar</td>
+															</tr>
+														</thead>
+														<tbody>
+															<?php foreach ($jamkerja as $key => $value): ?>
+																<tr>
+																	<td width="25%"><?= $value['kerja_hari']; ?></td>
+																	<td width="25%"><?= $value['jam_masuk']; ?></td>
+																	<td width="25%"><?= $value['jam_keluar']; ?></td>
+																</tr>
+															<?php endforeach ?>	
+														</tbody>
+													</table>
+													<?php else: ?>
+														<span class="btn btn-primary"><a href="<?php echo base_url('mastercms/perusahaan/add_jam_kerja/').$detail['lokasi_id']; ?>" title="Detail" style="color: white">Tambah Jam Kerja</a></span>
+													<?php endif ?>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<!-- <span class="designation">MEMBE	R ID : </span> -->
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- body end -->
 	</div>
-	<!-- body end -->
-</div>

@@ -89,7 +89,7 @@
                                             <label class="span2 span2" ><code>(*) wajib diisi.</code></label>
                                             <div class="span8">
                                                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan</button> &nbsp;
-                                                <a href="javascript:history.back()" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
+                                                <a href="#" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
                                             </div>
                                         </div>
                                     </div>

@@ -8,7 +8,7 @@
             <a href="<?php echo base_url('mastercms/karyawan'); ?>">
                 Karyawan 
             </a>
-            <a href="#" class="current">Detail Karyawan
+            <a href="#" class="current">Detail
             </a>
         </div>
     </div>
@@ -20,11 +20,7 @@
                 <div class="panel">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            &nbsp; Detail Karyawan
-                            <span class="pull-right" style="font-size: 12px;">
-                                <a href="<?php echo base_url('mastercms/karyawan/edit/').$detail_data['karyawan_id']; ?>" title="Edit"><i class="fa fa-pencil"></i>Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="<?= base_url('mastercms/karyawan'); ?>" title="Kembali"><i class="fa fa-undo"></i>Kembali</a>
-                            </span>
+                            &nbsp; Detail Karyawan<a href="<?php echo base_url('mastercms/karyawan/edit/').$detail_data['karyawan_id']; ?>" class="pull-right" title="Edit"><i class="fa fa-pencil" style="font-size: 14px;"></i></a>
                         </div>
                         <div class="panel-body">
                             <div class="profile-desk">

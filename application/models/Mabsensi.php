@@ -12,14 +12,18 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function get_cabang(){
-		$hasil=$this->db->query("SELECT * FROM _lokasi");
-		return $hasil;
+	public function cabang(){
+
+		$this->db->order_by('lokasi_nama','ASC');
+		$cabang= $this->db->get('_lokasi');
+		return $cabang->result_array();
 	}
 
-	public function get_karyawan($id){
-		$hasil=$this->db->query("SELECT * FROM _karyawan WHERE lokasi_id='$id'");
-		return $hasil->result();
+	public function get_karyawan(){
+
+		$this->db->order_by('karyawan_nama','ASC');
+		$karyawan= $this->db->get('_karyawan');
+		return $karyawan->result_array();
 	}
 
 	public function get_data()
@@ -86,17 +90,15 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function semua_karyawan($lokasi_id){
+	public function semua_karyawan($lokasi_id){ //Semua karyawan berdasarkan lokasi/cabang perusahaan
 		$this->db->where('_karyawan.lokasi_id', $lokasi_id);
+		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->group_by('_lokasi.lokasi_id');
 		$ambil = $this->db->get('_karyawan');
 		return $ambil->result_array();
 	}
 
 	public function kehadiran($bulan){
-		// $this->db->select('karyawan_id, status, count(status) AS jumlah');
-		// $this->db->group_by('status, karyawan_id');
-		// $ambil = $this->db->get('_absensi');
-		// return $ambil->result_array();
 		$this->db->select('karyawan_id, status, count(status) AS jumlah');
 		$this->db->from('_absensi');
 		$this->db->where('month(tanggal)', $bulan);

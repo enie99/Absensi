@@ -18,18 +18,12 @@ class Absensi extends MY_Controller
         }
     }
 
-	public function index(){
-        $x['absensi']=$this->Mabsensi->tampil();
-        $x['data']=$this->Mabsensi->get_cabang();
-        $this->render_page('backend/report/absensi',$x);
-        $this->load->view('backend/report/absensi',$x);
-
-    }
-
-    public function get_karyawan(){
-        $id=$this->input->post('id');
-        $data=$this->Mabsensi->get_karyawan($id);
-        echo json_encode($data);
+	public function index()
+    {
+        $data['perusahaan'] = $this->Mabsensi->cabang();
+        $data['karyawan'] = $this->Mabsensi->get_karyawan();
+        $data['absensi'] = $this->Mabsensi->tampil();
+        $this->render_page('backend/report/absensi',$data);
     }
 
     public function absensi()
@@ -39,11 +33,11 @@ class Absensi extends MY_Controller
     }
 
     //export ke dalam format excel
-    public function export_excel(){
-           $data = array( 'title' => 'Laporan Excel | Absensi',
-                'absensi' => $this->Mabsensi->getAll());
-           $this->load->view('backend/report/laporan_excel',$data);
-       }
+    // public function export_excel(){
+    //        $data = array( 'title' => 'Laporan Excel | Absensi',
+    //             'absensi' => $this->Mabsensi->getAll());
+    //        $this->load->view('backend/report/excel_semua_karyawan',$data);
+    //    }
 
     public function hapus($karyawan_id)
     {
@@ -68,49 +62,46 @@ class Absensi extends MY_Controller
     public function summary()
     {
         $id = $_SESSION['user']['perusahaan_id'];
-        $data['lokasi'] = "";
         $data['cabang'] = $this->Mabsensi->semua_cabang($id);
-        if ($this->input->post()) {
+        if ($this->input->post()) { //Perintah yg dijalankan saat user mengklik lokasi perusahaan yg dipilih
             $input = $this->input->post();
             $lokasi_id = $input['lokasi_id'];
+            $bulan = date('m');
+
+            $data['bulan'] = $bulan;
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['lokasi'] = $lokasi_id;
-            $bulan = date('m');
-            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
-           
-        }
-        else{
-            $lokasi_id = "";
-            $bulan = date('m');
-            $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-        $this->render_page('backend/report/summary', $data);
-    }
-
-    public function cari()
-    {
-        $id = $_SESSION['user']['perusahaan_id'];
-        $data['cabang'] = $this->Mabsensi->semua_cabang($id);
-        if ($this->input->post())
-        {
-            $input = $this->input->post();
+        elseif ($this->input->get()) { //Perintah yg dijalankan saat tombol cari diklik (methode formnya "GET")
+            $input = $this->input->get();
             $lokasi_id = $input['lokasi_id'];
             $bulan = $input['bulan'];
+            
+            $data['bulan'] = $bulan;
             $data['lokasi'] = $lokasi_id;
-
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-        else
-        {
+        else{ //Perintah yg dijalankan pada saat user belum mengklik lokasi perusahaan
+            $lokasi_id = "";
+            $data['lokasi'] = "";
             $bulan = date('m');
+            $data['bulan'] = $bulan;
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
         }
-
+        
         $this->render_page('backend/report/summary', $data);
     }
+
+    public function export_excel(){
+           $data = array( 'title' => 'Laporan Excel | Absensi',
+                'karyawan' => $this->Mabsensi->semua_karyawan($lokasi_id),
+                'kehadiran' => $this->Mabsensi->kehadiran($bulan));
+           $this->load->view('backend/report/excel_semua_karyawan',$data);
+       }
+
 
 }
 ?>
