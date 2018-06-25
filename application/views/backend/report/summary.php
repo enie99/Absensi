@@ -91,18 +91,18 @@
                             <p>
                               <input type="hidden" name="lokasi_id" value="<?php echo $lokasi; ?>">
                               <select  name="bulan">
-                                <option value="01">Januari</option>
-                                <option value="02">Februari</option>
-                                <option value="03">Maret</option>
-                                <option value="04">April</option>
-                                <option value="05">Mei</option>
-                                <option value="06">Juni</option>
-                                <option value="07">Juli</option>
-                                <option value="08">Agustus</option>
-                                <option value="09">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
+                                <option value="01" <?php if($bulan == '01'){ echo "selected=selected"; } ?>>Januari</option>
+                                <option value="02" <?php if($bulan == '02'){ echo "selected=selected"; } ?>>Februari</option>
+                                <option value="03" <?php if($bulan == '03'){ echo "selected=selected"; } ?>>Maret</option>
+                                <option value="04" <?php if($bulan == '04'){ echo "selected=selected"; } ?>>April</option>
+                                <option value="05" <?php if($bulan == '05'){ echo "selected=selected"; } ?>>Mei</option>
+                                <option value="06" <?php if($bulan == '06'){ echo "selected=selected"; } ?>>Juni</option>
+                                <option value="07" <?php if($bulan == '07'){ echo "selected=selected"; } ?>>Juli</option>
+                                <option value="08" <?php if($bulan == '08'){ echo "selected=selected"; } ?>>Agustus</option>
+                                <option value="09" <?php if($bulan == '09'){ echo "selected=selected"; } ?>>September</option>
+                                <option value="10" <?php if($bulan == '10'){ echo "selected=selected"; } ?>>Oktober</option>
+                                <option value="11" <?php if($bulan == '11'){ echo "selected=selected"; } ?>>November</option>
+                                <option value="12" <?php if($bulan == '12'){ echo "selected=selected"; } ?>>Desember</option>
                               </select>
                             
                               <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
@@ -190,9 +190,15 @@
                               </tr>
                             
                           <?php endforeach; ?>
-                        <?php else: ?>
-                        
-                        <div class="alert alert-error alert-block" style="margin-right: 10px;margin-left: 10px;margin-top: 15px"> <a class="close" data-dismiss="alert" href="#">×</a>
+                        <?php elseif (empty($lokasi)): ?> <!-- Jika belum memilih perusahaan -->
+                        <div class="alert alert-error alert-block" style="margin-right: 10px;margin-left: 10px;margin-top: 15px">
+                          <a class="close" data-dismiss="alert" href="#">×</a>
+                          <strong>Silahkan Pilih Perusahaan Anda</strong> Untuk Melihat Laporan Presensi Karyawan
+                        </div>
+
+                        <?php else: ?> <!-- Jika perusahaan yang dipilih belum memiliki data karyawan -->
+                        <div class="alert alert-error alert-block" style="margin-right: 10px;margin-left: 10px;margin-top: 15px">
+                          <a class="close" data-dismiss="alert" href="#">×</a>
                           Perusahaan anda <strong>belum memasukkan data karyawan</strong>, Silahkan masukkan data karyawan Anda
                         </div>
                        <!--  <div class="alert alert-info " style="margin-right: 10px;margin-left: 10px;margin-top: 10px"> <a class="close" data-dismiss="alert" href="#">×</a>
