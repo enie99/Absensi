@@ -70,9 +70,6 @@ class Karyawan extends MY_Controller
       $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
       $data['karyawan'] = $this->Mkaryawan->tampil($id);
       $keyword = $this->input->post('cari');
-        echo "<pre>";
-        print_r($keyword);
-        echo "</pre>";
       $data['karyawan'] = $this->Mkaryawan->cari($keyword);
       $this->render_page('backend/karyawan/tampil', $data);
     }

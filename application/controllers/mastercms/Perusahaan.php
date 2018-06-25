@@ -37,6 +37,7 @@ class Perusahaan extends MY_Controller
 	function cabang()
 	{
 		// $id = $_SESSION['user']['perusahaan_id'];
+		$data['keyword'] = "";
 		$data['perusahaan'] = $this->Mperusahaan->get_data();
 		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
 
