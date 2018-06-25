@@ -87,6 +87,14 @@ a:hover {
 	transition: all .8s ease;
 }
 
+.loginhome{
+	/*margin-top: 10px;*/
+	/*padding: 5px;*/
+	text-align: right;
+	color: #fff;
+	border: solid 1px #fff;
+}
+
 .highlight {
 	color: #3eb0f7;
 }

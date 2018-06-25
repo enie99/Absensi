@@ -24,7 +24,6 @@
 </head>
 
 <body data-spy="scroll" data-target="#navbar-scroll">
-
 	<!-- /.preloader -->
 	<div id="preloader"></div>
 	<div id="top"></div>
@@ -67,51 +66,56 @@
 						<div class="signup-header wow fadeInUp">
 							<h3 class="form-title text-center">Register Sekarang !</h3>
 							<form class="form-header" role="form" method="post" name="login">
-								<div class="form-group">
-									<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Company Name" required>
-								</div>
-								<div class="form-group">
-									<input class="form-control input-lg" name="perusahaan_email" type="email" placeholder="Email address" required>
-								</div>
-								<div class="form-group">
-									<input class="form-control input-lg" name="perusahaan_password" type="password" placeholder="Password" required>	
-								</div>
-								<div class="form-group">
-									<input class="form-control input-lg" name="perusahaan_bidang" type="text" placeholder="Bidang Perusahaan" required>
-								</div>
-								<div class="form-group last">
-									<button type="submit" class="btn btn-success btn-block btn-lg">Daftar</button>
-								</div>
-								<p class="privacy text-center">Sudah punya akun? Login <a href="<?= base_url('mastercms'); ?>">disini</a></p>
-							</form>
-						</div>
+								<?php if (!empty($failed)): ?>
+									<div class="alert alert-danger" role="alert"><?php echo $failed; ?></div>
+									<?php elseif (!empty($success)): ?>
+										<div class="alert alert-info" role="alert"><?php echo $success; ?></div>
+									<?php endif ?>
+									<div class="form-group">
+										<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Nama Perusahaan" required>
+									</div>
+									<div class="form-group">
+										<input class="form-control input-lg" name="perusahaan_email" type="email" placeholder="Email Perusahaan" required>
+									</div>
+									<div class="form-group">
+										<input class="form-control input-lg" name="perusahaan_password" type="password" placeholder="Password" required>	
+									</div>
+									<div class="form-group">
+										<input class="form-control input-lg" name="perusahaan_bidang" type="text" placeholder="Bidang Perusahaan" required>
+									</div>
+									<div class="form-group last">
+										<button type="submit" class="btn btn-success btn-lg">Daftar</button>
+									</div>
+									<p class="privacy text-center">Sudah punya akun? Login <a href="<?= base_url('mastercms'); ?>">disini</a></p>
+								</form>
+							</div>
 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
-				</div>
-				<div class="modal-body">
-					<p>This is a small modal.</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<!-- modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Header</h4>
+					</div>
+					<div class="modal-body">
+						<p>This is a small modal.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- modal -->
+		<!-- modal -->
 
-	<!-- NAVIGATION -->
+		<!-- NAVIGATION -->
 
 
 	<!-- <div id="menu">
