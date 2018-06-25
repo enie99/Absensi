@@ -165,11 +165,7 @@ class Mperusahaan extends CI_Model
 	// Register
 	function register($input)
 	{
-		if ($this->db->insert('_perusahaan', $input))
-			return 'done';
-		else
-			return 'gagal';
-		// redirect('home', 'refresh');
+		$this->db->insert('_perusahaan', $input);
 	}
 	// Login User
 	function auth($input)
