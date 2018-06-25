@@ -71,8 +71,7 @@
                             <div class="controls">
                                 <p>
                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filter</button>
-                                   <a href="<?php echo base_url('mastercms/absensi'); ?>">
-                                    <button type="Reset" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
+                                   <a href="<?php echo base_url('mastercms/absensi'); ?>"><button type="Reset" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
                                 </p>
                             </div>
                         </div>
@@ -143,8 +142,9 @@
                 var id=$(this).val();
                 $.ajax({
                     url : "<?php echo base_url();?>mastercms/absensi/get_karyawan",
-                    type : "POST",
+                    method : "POST",
                     data : {id: id},
+                    async : false,
                     dataType : 'json',
                     success: function(data){
                         var html = '';
@@ -152,7 +152,6 @@
                         for(i=0; i<data.length; i++){
                             html += '<option>'+data[i].karyawan_nama+'</option>';
                         }
-
                         $('.karyawan').html(html);
                     }
                 });

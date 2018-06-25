@@ -18,47 +18,30 @@ class Absensi extends MY_Controller
         }
     }
 
-	public function index()
-    {
-        $data['perusahaan'] = $this->Mabsensi->cabang();
-        $data['karyawan'] = $this->Mabsensi->get_karyawan();
-        $data['absensi'] = $this->Mabsensi->tampil();
-        $this->render_page('backend/report/absensi',$data);
+    public function index(){
+        $x['absensi']=$this->Mabsensi->tampil();
+        $x['data']=$this->Mabsensi->get_cabang();
+        $this->render_page('backend/report/absensi',$x);
+
+
     }
 
-    public function absensi()
-    {
-        $data['absensi'] = $this->Mabsensi->tampil($id);
-        $this->render_page('backend/report/absensi', $data);
+    public function get_karyawan(){
+        $id=$this->input->post('id');
+        $data=$this->Mabsensi->get_karyawan($id);
+        echo json_encode($data);
     }
 
-    //export ke dalam format excel
-    // public function export_excel(){
-    //        $data = array( 'title' => 'Laporan Excel | Absensi',
-    //             'absensi' => $this->Mabsensi->getAll());
-    //        $this->load->view('backend/report/excel_semua_karyawan',$data);
-    //    }
-
-    public function hapus($karyawan_id)
-    {
-        $data = $this->Mabsensi->get_by_id($karyawan_id);
-
-        $this->Mabsensi->hapus($karyawan_id);
-        redirect("mastercms/absensi", "refresh");
+    public function pencarian(){
+        $cabang=$this->input->get('cabang');
+        $bulan=$this->input->get('filterbulan');
+        $tahun=$this->input->get('tahun');
+        $karyawan=$this->input->get('karyawan');
+        $data['data']=$this->Mabsensi->get_cabang();
+        $data['absensi']=$this->Mabsensi->pencarian_d($cabang,$bulan,$tahun,$karyawan);
+        $this->render_page('backend/report/filter_absensi',$data);
     }
 
-    // public function cari(){
-    //     $keyword = $this->input->get('cari', TRUE); //mengambil nilai dari form input cari
-    //     $data['absensi'] = $this->Mabsensi->cari($keyword); //mencari data karyawan berdasarkan inputan
-    //     $this->render_page('backend/report/absensi', $data);; //menampilkan data yang sudah dicari
-    // }
-
-    public function detail($karyawan_id)
-    {
-        $data['detail_data']= $this->Mabsensi->detail($karyawan_id);
-        $data['detail_data_absensi']= $this->Mabsensi->detail_absensi($karyawan_id);
-        $this->render_page('backend/report/detail', $data);
-    }
 
     public function summary()
     {
