@@ -8,7 +8,8 @@ class Karyawan extends MY_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Mkaryawan');
+    $this->load->model('Mkaryawan');
+		$this->load->model('Mperusahaan');
 		if (!$this->session->userdata('user'))
 		{
 			$log = base_url("mastercms");
@@ -18,8 +19,22 @@ class Karyawan extends MY_Controller
 
 	function index()
 	{ 
-        $dataKaryawan = $this->Mkaryawan->tampil();
+      $id = $_SESSION['user']['perusahaan_id'];
+      $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
+      $dataKaryawan = $this->Mkaryawan->tampil($id);
+      $data['karyawan'] = $this->Mkaryawan->tampil($id);
+      $lokasi_id = "";
+      $data['karyawan_id'] = "";
 
+      if ($this->input->post()) {
+        $lokasi_id  = $this->input->post('lokasi_id');
+        $data['karyawan_id'] = $this->Mkaryawan->tampil_id($id, $lokasi_id);
+      }
+
+      if ($this->input->post('cari')) {
+        $keyword = $this->input->post('cari');
+        $data['karyawan_id'] = $this->Mkaryawan->cari($keyword);
+      }
         // Pagination
         $config['base_url'] = base_url("mastercms/karyawan/");
         $config['total_rows'] = count($dataKaryawan);
@@ -44,16 +59,19 @@ class Karyawan extends MY_Controller
         $this->pagination->initialize($config);
         $from = $this->uri->segment(3);
 
-        $data['karyawan'] = $this->Mkaryawan->tampil_blog_pagination($config['per_page'], $from);
+        // $data['karyawan'] = $this->Mkaryawan->tampil_blog_pagination($config['per_page'], $from);
         $data['mpaging'] = $this->pagination->create_links(); 
         
         $this->render_page('backend/karyawan/tampil', $data);
     }
 
     function cari(){
-        $keyword = $this->input->get('cari', TRUE);
-        $data['karyawan'] = $this->Mkaryawan->cari($keyword);
-        $this->render_page('backend/karyawan/tampil', $data);
+      $id = $_SESSION['user']['perusahaan_id'];
+      $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
+      $data['karyawan'] = $this->Mkaryawan->tampil($id);
+      $keyword = $this->input->post('cari');
+      $data['karyawan'] = $this->Mkaryawan->cari($keyword);
+      $this->render_page('backend/karyawan/tampil', $data);
     }
 
 
