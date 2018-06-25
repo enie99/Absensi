@@ -8,6 +8,7 @@ class Mabsensi extends CI_Model
 	{
 		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
 		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->order_by('tanggal', 'DESC');
 		$ambil = $this->db->get('_absensi');
 		return $ambil->result_array();
 	}
