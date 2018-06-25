@@ -143,9 +143,8 @@
                 var id=$(this).val();
                 $.ajax({
                     url : "<?php echo base_url();?>mastercms/absensi/get_karyawan",
-                    method : "POST",
+                    type : "POST",
                     data : {id: id},
-                    async : false,
                     dataType : 'json',
                     success: function(data){
                         var html = '';
@@ -153,6 +152,7 @@
                         for(i=0; i<data.length; i++){
                             html += '<option>'+data[i].karyawan_nama+'</option>';
                         }
+
                         $('.karyawan').html(html);
                     }
                 });

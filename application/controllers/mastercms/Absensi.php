@@ -22,7 +22,7 @@ class Absensi extends MY_Controller
         $x['absensi']=$this->Mabsensi->tampil();
         $x['data']=$this->Mabsensi->get_cabang();
         $this->render_page('backend/report/absensi',$x);
-        $this->load->view('backend/report/absensi',$x);
+
 
     }
 
@@ -40,7 +40,6 @@ class Absensi extends MY_Controller
         $data['data']=$this->Mabsensi->get_cabang();
         $data['absensi']=$this->Mabsensi->pencarian_d($cabang,$bulan,$tahun,$karyawan);
         $this->render_page('backend/report/filter_absensi',$data);
-        $this->load->view('backend/report/filter_absensi',$data);
     }
 
 
