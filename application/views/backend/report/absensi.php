@@ -19,7 +19,7 @@
                         <form name="filterFrm" class="form" method="get" action="<?php echo base_url("absensi/pencarian/")?>">
                          <div class="span3">
                             <div class="controls">
-                                <select name="cabang" id="cabang" class="form-control" required="">
+                               <select name="cabang" id="cabang" class="form-control" required="">
                                     <option value="0">-Pilih perusahaan / cabang-</option>
                                     <?php foreach($data->result() as $row):?>
                                         <option value="<?php echo $row->lokasi_id;?>"><?php echo $row->lokasi_nama;?></option>

@@ -57,6 +57,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- <div class="control-group">
+                                            <label class="control-label"><span class="asterik">*</span> Alamat</label>
+                                            <div class="controls">
+                                                <div>
+                                                    <textarea class="form-control" name="perusahaan_alamat" rows="2" resize="none" id="address" required="" onchange="geocodeLokasi()"></textarea>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <div class="control-group">
+                                            <label class="control-label" for="lokasi">Map</label>
+                                            <div class="controls">
+                                                <br>    
+                                                <div id="map_pencarian" style="width:100%; height:410px;"></div>  
+                                            </div>   
+                                        </div> -->
                                         <div class="control-group">
                                             <label class="control-label" for="lokasi">Lokasi</label>
                                             <div class="controls">

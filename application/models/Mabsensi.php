@@ -86,17 +86,15 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function semua_karyawan($lokasi_id){
+	public function semua_karyawan($lokasi_id){ //Semua karyawan berdasarkan lokasi/cabang perusahaan
 		$this->db->where('_karyawan.lokasi_id', $lokasi_id);
+		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->group_by('_lokasi.lokasi_id');
 		$ambil = $this->db->get('_karyawan');
 		return $ambil->result_array();
 	}
 
 	public function kehadiran($bulan){
-		// $this->db->select('karyawan_id, status, count(status) AS jumlah');
-		// $this->db->group_by('status, karyawan_id');
-		// $ambil = $this->db->get('_absensi');
-		// return $ambil->result_array();
 		$this->db->select('karyawan_id, status, count(status) AS jumlah');
 		$this->db->from('_absensi');
 		$this->db->where('month(tanggal)', $bulan);
