@@ -6,9 +6,9 @@ class Mabsensi extends CI_Model
 	public function tampil()
 	
 	{
-		$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
-		$this->db->join('_absensi', '_karyawan.karyawan_id = _absensi.karyawan_id');
-		$ambil = $this->db->get('_karyawan');
+		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
+		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$ambil = $this->db->get('_absensi');
 		return $ambil->result_array();
 	}
 
@@ -20,6 +20,17 @@ class Mabsensi extends CI_Model
 	public function get_karyawan($id){
 		$hasil=$this->db->query("SELECT * FROM _karyawan WHERE lokasi_id='$id'");
 		return $hasil->result();
+	}
+
+	public function pencarian_d($cabang,$bulan,$tahun,$karyawan){
+		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
+		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->where('_lokasi.lokasi_id',$cabang);
+		$this->db->where('month(tanggal)',$bulan);
+		$this->db->where('year(tanggal)',$tahun);
+		$this->db->where('_karyawan.karyawan_nama',$karyawan);
+		$ambil = $this->db->get('_absensi');
+		return $ambil->result_array();
 	}
 
 	public function get_data()
