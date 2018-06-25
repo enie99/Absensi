@@ -12,18 +12,14 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function cabang(){
-
-		$this->db->order_by('lokasi_nama','ASC');
-		$cabang= $this->db->get('_lokasi');
-		return $cabang->result_array();
+	public function get_cabang(){
+		$hasil=$this->db->query("SELECT * FROM _lokasi");
+		return $hasil;
 	}
 
-	public function get_karyawan(){
-
-		$this->db->order_by('karyawan_nama','ASC');
-		$karyawan= $this->db->get('_karyawan');
-		return $karyawan->result_array();
+	public function get_karyawan($id){
+		$hasil=$this->db->query("SELECT * FROM _karyawan WHERE lokasi_id='$id'");
+		return $hasil->result();
 	}
 
 	public function get_data()
