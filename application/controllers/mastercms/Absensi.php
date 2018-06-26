@@ -51,42 +51,58 @@ class Absensi extends MY_Controller
             $input = $this->input->post();
             $lokasi_id = $input['lokasi_id'];
             $bulan = date('m');
+            $tahun = date('Y');
 
             $data['bulan'] = $bulan;
+            $data['tahun'] = $tahun;
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            $data['lokasi'] = $lokasi_id;
-            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
+            $data['lokasi_id'] = $lokasi_id;
+            $data['lokasi'] = $this->Mabsensi->lokasi_by_id($lokasi_id);
+            $data['jml_hari_kerja'] = $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun);
+            $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
+            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
         }
         elseif ($this->input->get()) //Perintah yg dijalankan saat tombol cari diklik (methode formnya "GET")
         { 
             $input = $this->input->get();
             $lokasi_id = $input['lokasi_id'];
             $bulan = $input['bulan'];
+            $tahun = $input['tahun'];
             
             $data['bulan'] = $bulan;
-            $data['lokasi'] = $lokasi_id;
+            $data['tahun'] = $tahun;
+            $data['lokasi_id'] = $lokasi_id;
+            $data['lokasi'] = $this->Mabsensi->lokasi_by_id($lokasi_id);
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
+            $data['jml_hari_kerja'] = $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun);
+            $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
+            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
         }
         else //Perintah yg dijalankan pada saat user belum mengklik lokasi perusahaan
         { 
             $lokasi_id = "";
             $data['lokasi'] = "";
             $bulan = date('m');
+            $tahun = date('Y');
+
             $data['bulan'] = $bulan;
+            $data['tahun'] = $tahun;
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan);
+            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan,$tahun);
         }
         
         $this->render_page('backend/report/summary', $data);
     }
 
-   public function export_excel($lokasi_id, $bulan){
+   public function export_excel($lokasi_id, $bulan, $tahun){
             $data = array( 'title' => 'Laporan Excel | Absensi',
                 'karyawan' => $this->Mabsensi->semua_karyawan($lokasi_id),
-                'kehadiran' => $this->Mabsensi->kehadiran($bulan),
+                'kehadiran' => $this->Mabsensi->kehadiran($bulan, $tahun),
                 'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi_id),
-                'bulan' => $bulan);
+                'jml_hari_kerja' => $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun),
+                'presensi' => $this->Mabsensi->presensi_per_karyawan($bulan, $tahun),
+                'bulan' => $bulan,
+                'tahun' => $tahun);
            $this->load->view('backend/report/excel_semua_karyawan',$data);
        }
 
