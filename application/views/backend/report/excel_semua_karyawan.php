@@ -47,7 +47,7 @@ header("Expires: 0");
               default:
               $nama_bulan="Bulan"; break;
             } ?>
-            <td colspan="9" align="center" valign="middle"><b><font size="4">Bulan <?php echo $nama_bulan; ?></font></b></td>
+            <td colspan="9" align="center" valign="middle"><b><font size="4">Bulan <?php echo $nama_bulan." ".$tahun; ?></font></b></td>
         </tr>
         <tr>&nbsp;</tr>
     </tbody>
@@ -59,10 +59,10 @@ header("Expires: 0");
                     <th align="center">Jml Hari Kerja</th>
                     <th align="center">Masuk</th>
                     <th align="center">Terlambat</th>
-                    <th align="center">Absen</th>
                     <th align="center">Sakit</th>
                     <th align="center">Ijin</th>
                     <th align="center">Cuti</th>
+                    <th align="center">Absen</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +70,7 @@ header("Expires: 0");
                     <tr>
                         <td align="center" width="20%"><?php echo $key+1; ?></td>
                         <td align="left" width="100%"><?php echo $kary['karyawan_nama'] ?></td>
-                        <td>Belum</td>
+                        <td><?php echo $jml_hari_kerja; ?></td>
                         <td>
                             <?php
                             foreach ($kehadiran as $key => $kehad) :
@@ -91,7 +91,6 @@ header("Expires: 0");
                             endforeach;
                             ?>
                         </td>
-                        <td>Belum</td>
                         <td>
                             <?php
                             foreach ($kehadiran as $key => $kehad) :
@@ -118,6 +117,18 @@ header("Expires: 0");
                                 if ($kehad['karyawan_id'] == $kary['karyawan_id'] && $kehad['status']=="cuti")
                                 {
                                     echo $kehad['jumlah'];
+                                }
+                            endforeach;
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            foreach ($presensi as $key => $pres) :
+                                if ($pres['karyawan_id'] == $kary['karyawan_id'])
+                                {
+                                    $tot_presensi = $pres['jumlah'];
+                                    $absen = $jml_hari_kerja - $tot_presensi;
+                                    echo $absen;
                                 }
                             endforeach;
                             ?>

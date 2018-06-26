@@ -122,7 +122,7 @@ class Mabsensi extends CI_Model
 		
 		$ambil = $hari_kerja->num_rows();
 		return $ambil;
-	}
+	} //Menghitung total hari kerja berdasarkan jml tgl unique dari presensi karyawan di satu lokasi
 
 	public function presensi_per_karyawan($bulan, $tahun){
 		$this->db->select('karyawan_id, status, count(status) AS jumlah');
@@ -134,23 +134,6 @@ class Mabsensi extends CI_Model
 		$ambil = $this->db->get();
 		return $ambil->result_array();
 	}
-
-	// public function kehadiran_per_karyawan($bulan, $tahun){
-	// 	$this->db->select('karyawan_id, status, count(status) AS jml');
-	// 	$this->db->from('_absensi');
-	// 	$this->db->where('month(tanggal', $bulan);
-	// 	$this->db->where('year(tanggal', $tahun);
-
-	// }
-	// public function cari($bulan){
-		
-	// 	$this->db->select('karyawan_id, status, count(status) AS jumlah');
-	// 	$this->db->from('_absensi');
-	// 	$this->db->where('month(tanggal)', $bulan);
-	// 	$this->db->group_by('status, karyawan_id');
-	// 	$ambil = $this->db->get();
-	// 	return $ambil->result_array();
-	// }
 
 	public function lokasi_by_id($lokasi_id){
 		$this->db->where('_lokasi.lokasi_id', $lokasi_id);
