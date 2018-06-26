@@ -35,6 +35,17 @@ class Mperusahaan extends CI_Model
 		return $data;
 	}
 
+	function cari($keyword){
+		// $this->db->like('lokasi_nama', $keyword);
+		// $this->db->or_like('perusahaan_alamat',$keyword);
+
+		$data = $this->db->query("SELECT *,count(k.karyawan_id) AS jml_karyawan FROM _lokasi l
+			LEFT JOIN _karyawan k ON l.lokasi_id = k.lokasi_id
+			WHERE lokasi_nama LIKE '%$keyword%' OR perusahaan_alamat LIKE '%$keyword%'
+			GROUP BY l.lokasi_id");
+		return $data->result_array();
+	}
+
 	function get_data()
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
@@ -149,13 +160,6 @@ class Mperusahaan extends CI_Model
 		$this->db->where('kerja_hari', $hari);
 		$this->db->update('_jam_kerja', $jamkerja);
 	}
-	public function cari($keyword){
-		$this->db->like('lokasi_nama', $keyword);
-		$this->db->or_like('perusahaan_alamat',$keyword);
-		return $this->db->get('_lokasi')->result_array();
-	}
-
-
 
 
 	// Register

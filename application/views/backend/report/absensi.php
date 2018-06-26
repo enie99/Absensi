@@ -89,7 +89,7 @@
                             <h5>
                                 List Data Absensi
                             </h5>
-                            <!-- <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/absensi/export_excel') ?>"><i class="fa fa-"></i> Export to Excel</a></span> -->
+                            <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/absensi/export_excel') ?>"><i class="fa fa-"></i> Export to Excel</a></span>
                         </div>
                         <div class="widget-content nopadding">
                             <section id="no-more-tables">

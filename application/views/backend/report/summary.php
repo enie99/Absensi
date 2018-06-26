@@ -51,7 +51,7 @@
                     <div class="panel-body" style="padding-left: 8px; padding-right: 8px">
                       <form name="filterFrm" action="" method="get">
                         <div class="span5">
-                          <?php foreach ($karyawan as $key => $value) : ?>
+                          <?php foreach ($lokasi as $key => $value) : ?>
                             <h5 style="margin-top: -6px">Perusahaan : <?php echo $value['lokasi_nama']; ?></h5>
                           <?php endforeach; ?>
                             <?php switch ($bulan)
@@ -84,12 +84,12 @@
                               default:
                                 $nama_bulan="Bulan"; break;
                             } ?>
-                            <h5>Laporan Bulan : <?php echo $nama_bulan; ?></h5>
+                            <h5>Laporan Bulan : <?php echo $nama_bulan." ".$tahun; ?></h5>
                         </div>
                         <div class="span7" align="right">
                           <div class="form-inline">
                             <p>
-                              <input type="hidden" name="lokasi_id" value="<?php echo $lokasi; ?>">
+                              <input type="hidden" name="lokasi_id" value="<?php echo $lokasi_id; ?>">
                               <select  name="bulan">
                                 <option value="01" <?php if($bulan == '01'){ echo "selected=selected"; } ?>>Januari</option>
                                 <option value="02" <?php if($bulan == '02'){ echo "selected=selected"; } ?>>Februari</option>
@@ -104,12 +104,24 @@
                                 <option value="11" <?php if($bulan == '11'){ echo "selected=selected"; } ?>>November</option>
                                 <option value="12" <?php if($bulan == '12'){ echo "selected=selected"; } ?>>Desember</option>
                               </select>
-                            
+                              <select name="tahun">
+                                <?php
+                                $thn_skr = date('Y');
+                                for ($x = $thn_skr; $x >= 2010; $x--) {
+                                  ?>
+                                  <option value="<?php echo $x ?>" <?php if ($tahun == $x){ echo "selected=selected"; } ?>>
+                                    <?php echo $x ?>
+                                  </option>
+                                  <?php
+                                }
+                                ?>
+                              </select>
+
                               <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
                               <button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
                             </p>
                           </div>
-                          <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi.'/'.$bulan); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
+                          <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi_id.'/'.$bulan.'/'.$tahun); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
                         </div>
                       </form>
 
@@ -122,21 +134,20 @@
                             <th><font size="2px">Jml Hari Kerja</font></th>
                             <th><font size="2px">Masuk</font></th>
                             <th><font size="2px">Terlambat</font></th>
-                            <th><font size="2px">Absen</font></th>
                             <th><font size="2px">Sakit</font></th>
                             <th><font size="2px">Ijin</font></th>
                             <th><font size="2px">Cuti</font></th>
+                            <th style="background-color: #ffefea;"><font size="2px">Absen</font></th>
                             <th><font size="2px">Aksi</font></th>
                           </tr>
                         <?php endif ?>
 
                         <?php if (!empty($karyawan)): ?>
                           <?php foreach ($karyawan as $key => $kary) : ?>
-
                               <tr>
                                 <td><?php echo $key+1; ?></td>
                                 <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
-                                <td>Belum</td>
+                                <td><?php echo $jml_hari_kerja; ?></td>
                                 <td>
                                   <?php
                                   foreach ($kehadiran as $key => $kehad) :
@@ -157,13 +168,12 @@
                                   endforeach;
                                   ?>
                                 </td>
-                                <td>Belum</td>
                                 <td>
                                   <?php
                                   foreach ($kehadiran as $key => $kehad) :
                                     if ($kehad['karyawan_id'] == $kary['karyawan_id'] && $kehad['status']=="sakit")
                                     {
-                                      echo $kehad['jumlah'];
+                                  echo $kehad['jumlah'];
                                     }
                                   endforeach;
                                   ?>
@@ -173,7 +183,7 @@
                                   foreach ($kehadiran as $key => $kehad) :
                                     if ($kehad['karyawan_id'] == $kary['karyawan_id'] && $kehad['status']=="ijin")
                                     {
-                                      echo $kehad['jumlah'];
+                                 echo $kehad['jumlah'];
                                     }
                                   endforeach;
                                   ?>
@@ -188,15 +198,27 @@
                                   endforeach;
                                   ?>
                                 </td>
+                                <td style="background-color: #ffefea;">
+                                  <?php
+                                    foreach ($presensi as $key => $pres) :
+                                      if ($pres['karyawan_id'] == $kary['karyawan_id'])
+                                      {
+                                        $tot_presensi = $pres['jumlah'];
+                                        $absen = $jml_hari_kerja - $tot_presensi;
+                                        echo $absen;
+                                      }
+                                    endforeach;
+                                  ?>
+                                </td>
                                 <td align="center">
                                   <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>">
-                                    <center><span class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
+                                    <center><span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
                                   </a>
                                 </td>
                               </tr>
                             
                           <?php endforeach; ?>
-                        <?php elseif (empty($lokasi)): ?> <!-- Jika belum memilih perusahaan -->
+                        <?php elseif (empty($lokasi_id)): ?> <!-- Jika belum memilih perusahaan -->
                         <div class="alert alert-error alert-block" style="margin-right: 10px;margin-left: 10px;margin-top: 15px">
                           <a class="close" data-dismiss="alert" href="#">×</a>
                           <strong>Silahkan Pilih Perusahaan Anda</strong> Untuk Melihat Laporan Presensi Karyawan

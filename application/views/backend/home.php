@@ -22,36 +22,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="span4">
+               <div class="span4">
                     <ul class="quick-actions">
                         <li style="width: 100%;margin-left: 5px;background-color: #3498DB;color: #fff;">
                             <h6 style="text-align: left;margin-top: 10px;margin-left: 15px">? </h6>
-                            <h4 style="text-align: left;margin-left: 15px;">000</h4>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="span4">
-                    <ul class="quick-actions">
-                        <li style="width: 100%;margin-left: 5px;background-color: #9B59B6;color: #fff;">
-                            <h6 style="text-align: left;margin-top: 10px;margin-left: 15px">? </h6>
-                            <h4 style="text-align: left;margin-left: 15px;">000</h4>
-                        </li>
-                    </ul>
-                </div>
-                <div class="span4">
-                    <ul class="quick-actions">
-                        <li style="width: 100%;margin-left: 5px;background-color: #2ECC71;color: #fff;">
-                            <h6 style="text-align: left;margin-top: 10px;margin-left: 15px">? </h6>
-                            <h4 style="text-align: left;margin-left: 15px;">000 </h4>
-                        </li>
-                    </ul>
-                </div>
-                <div class="span4">
-                    <ul class="quick-actions">
-                        <li style="width: 100%;margin-left: 5px;background-color: #34495E;color: #fff;">
-                            <h6 style="text-align: left;margin-top: 10px;margin-left: 15px">Fosquare Saldo </h6>
                             <h4 style="text-align: left;margin-left: 15px;">000</h4>
                         </li>
                     </ul>
@@ -71,7 +45,7 @@
                             <h5><?= $p['lokasi_nama']; ?></h5>
                         </div>  
                         <div class="widget-content nopadding" style="margin-top: -20px; width: 100%;">
-                            <div id="container-<?= $p['lokasi_id'];?>" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                            <div id="container-<?= $p['lokasi_id'];?>" style="min-width: 310px; min-height: 400px; max-width: 600px; margin: 0 auto"></div>
                         </div> 
                     </div>
                 </div>
@@ -102,8 +76,7 @@
                         showInLegend: true
                     }
                 },
-                // if ($absen['lokasi_id']== '14' ?>)
-                series: <?php echo $absen; ?>
+                series: [{data: <?= (!empty($absen[$p['lokasi_id']])) ? json_encode($absen[$p['lokasi_id']]) : json_encode(array('kosong')) ?>}]  
           });
       </script>
   <?php endforeach ?>

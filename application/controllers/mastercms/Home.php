@@ -1,3 +1,4 @@
+
 <?php
 
 class Home extends MY_Controller
@@ -17,27 +18,34 @@ class Home extends MY_Controller
 	}
 
 	function index(){
-		$data['perusahaan']	= $this->Mperusahaan->get_data();
 		$getPerusahaan	= $this->Mperusahaan->get_data();
-		$array_series = array(array('data'=>array()));
+		$data['perusahaan']	= $getPerusahaan;
 		$array_datas = array();
 		$getAbsensi		= $this->Mabsensi->get_data();
 
-		$i=0;
-		while($i < count($getAbsensi)){
-			foreach ($getAbsensi as $key => $value) {
-				if ($value['lokasi_id'] == $getAbsensi[$i]['lokasi_id']) {
-					$array_datas[$getAbsensi[$i]['status']] = intval($getAbsensi[$i]['jumlah']);
-				}
-			}
-			$i++;
+		foreach ($getPerusahaan as $key) {
+			$array_datas[$key['lokasi_id']]['ijin'] = array('ijin', 0);
+			$array_datas[$key['lokasi_id']]['masuk kerja'] = array('masuk kerja', 0);
+			$array_datas[$key['lokasi_id']]['terlambat'] = array('terlambat', 0);
+			$array_datas[$key['lokasi_id']]['sakit'] = array('sakit', 0);
+			$array_datas[$key['lokasi_id']]['cuti'] = array('cuti', 0);
 		}
 
-		foreach($array_datas as $key=>$val){
-			array_push($array_series[0]['data'], array((string)$key, $val));
+		foreach ($getAbsensi as $key => $value) {
+			$array_datas[$value['lokasi_id']][$value['status']] = array(
+				$value['status'],
+				intval($value['jumlah'])
+			);
+		}
+		foreach ($array_datas as $key => $value) {
+			$array_data[$key][] = $array_datas[$key]['ijin'];
+			$array_data[$key][] = $array_datas[$key]['masuk kerja'];
+			$array_data[$key][] = $array_datas[$key]['terlambat'];
+			$array_data[$key][] = $array_datas[$key]['sakit'];
+			$array_data[$key][] = $array_datas[$key]['cuti'];
 		}
 
-		$data['absen'] = json_encode($array_series);
+		$data['absen'] = $array_data;
 
 		$data['totalkaryawan']	= count($this->Mkaryawan->tampil());
 		$this->render_page('backend/home', $data);
