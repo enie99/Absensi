@@ -15,7 +15,7 @@
     <ul style="display: block;">
         <li class="active"><a href="<?php echo base_url('mastercms/home'); ?>"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
         <li class="dropdown fadeInDown animated d3">
-            <a href="#" class="right-caret"><i class="icon icon-file"></i> <span>Perusahaan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
+            <a href="#" class="right-caret"><i class="icon icon-briefcase"></i> <span>Perusahaan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
                 <ul class="firstlevel sub-menu">
                     <li class="twolevel">
                         <a class=" right-caret" href="<?php echo base_url('mastercms/perusahaan') ?>">Profil </a>
@@ -29,13 +29,13 @@
                 </ul>
         </li>
         <!-- <li> <a href="#"><i class="icon icon-inbox"></i><span>E-Commarce</span></a> </li> -->
-        <li class="submenu"> <a href="#"><i class="icon-shopping-cart"></i><span>Karyawan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
+        <li class="submenu"> <a href="#"><i class="icon-user"></i><span>Karyawan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
             <ul>
                 <li><a href="<?php echo base_url('mastercms/karyawan'); ?>">Data Karyawan</a></li>
             </ul>
         </li>
 
-        <li class="submenu"> <a href="#"><i class="icon tasks"></i><span>Report</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
+        <li class="submenu"> <a href="#"><i class="icon icon-file"></i><span>Report</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
             <ul>
                 <li><a href="<?php echo base_url('mastercms/absensi/summary'); ?>"></i> Summary</a></li>
                 <li><a href="<?php echo base_url('mastercms/absensi'); ?>"></i> Absensi Karyawan</a></li>
