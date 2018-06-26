@@ -212,7 +212,7 @@
                                 </td>
                                 <td align="center">
                                   <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>">
-                                    <center><span class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
+                                    <center><span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
                                   </a>
                                 </td>
                               </tr>
