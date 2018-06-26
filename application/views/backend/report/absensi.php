@@ -16,10 +16,10 @@
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span12">
-                        <form name="filterFrm" class="form" method="get" action="<?php echo base_url("absensi/pencarian/")?>">
+                        <form name="filterFrm" class="form" method="get" action="<?php echo base_url("mastercms/absensi/pencarian")?>">
                          <div class="span3">
                             <div class="controls">
-                                <select name="cabang" id="cabang" class="form-control" required="">
+                               <select name="cabang" id="cabang" class="form-control" required="">
                                     <option value="0">-Pilih perusahaan / cabang-</option>
                                     <?php foreach($data->result() as $row):?>
                                         <option value="<?php echo $row->lokasi_id;?>"><?php echo $row->lokasi_nama;?></option>
@@ -71,8 +71,8 @@
                             <div class="controls">
                                 <p>
                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filter</button>
-
-                                    <a href="<?php echo base_url('mastercms/absensi'); ?>"><button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
+                                   <a href="<?php echo base_url('mastercms/absensi'); ?>">
+                                    <button type="Reset" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button></a>
                                 </p>
                             </div>
                         </div>
@@ -135,9 +135,7 @@
 
     </div>
 
-    <script type="text/javascript" src="<?php echo base_url().'assets/js/jquery-2.2.3.min.js'?>"></script>
-    <script type="text/javascript" src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -145,9 +143,8 @@
                 var id=$(this).val();
                 $.ajax({
                     url : "<?php echo base_url();?>mastercms/absensi/get_karyawan",
-                    method : "POST",
+                    type : "POST",
                     data : {id: id},
-                    async : false,
                     dataType : 'json',
                     success: function(data){
                         var html = '';
@@ -155,6 +152,7 @@
                         for(i=0; i<data.length; i++){
                             html += '<option>'+data[i].karyawan_nama+'</option>';
                         }
+
                         $('.karyawan').html(html);
                     }
                 });
