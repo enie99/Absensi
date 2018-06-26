@@ -106,6 +106,12 @@ class Absensi extends MY_Controller
            $this->load->view('backend/report/excel_semua_karyawan',$data);
        }
 
+    public function export_excel_karyawan(){
+        $data = array( 'title' => 'Laporan Excel | Absensi',
+        'user' => $this->Mabsensi->absensi_perorangan());
+       $this->load->view('backend/report/excel_karyawan',$data);
+    }
+    
     public function detail($karyawan_id){
         $data['detail_data'] = $this->Mabsensi->detail($karyawan_id);
         $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id);
