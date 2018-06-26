@@ -15,7 +15,7 @@
     <ul style="display: block;">
         <li class="active"><a href="<?php echo base_url('mastercms/home'); ?>"><i class="icon icon-home"></i><span>Dashboard</span></a></li>
         <li class="dropdown fadeInDown animated d3">
-            <a href="#" class="right-caret"><i class="icon-briefcase"></i> <span>Perusahaan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
+            <a href="#" class="right-caret"><i class="icon icon-briefcase"></i> <span>Perusahaan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
                 <ul class="firstlevel sub-menu">
                     <li class="twolevel">
                         <a class=" right-caret" href="<?php echo base_url('mastercms/perusahaan') ?>">Profil </a>
