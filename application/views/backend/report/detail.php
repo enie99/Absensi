@@ -6,7 +6,7 @@
                 <i class="icon-home"></i> Home
             </a>
             <a href="<?php echo base_url('mastercms/absensi'); ?>">
-                Absensi 
+                Karyawan 
             </a>
             <a href="#" class="current">Detail Absensi
             </a>
