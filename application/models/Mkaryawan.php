@@ -58,6 +58,7 @@ class Mkaryawan extends CI_Model
 	}
 
 	function tambah($input){
+		$input['karyawan_user'] = $input['karyawan_email'];
 		$this->db->insert('_karyawan', $input);
 		redirect('mastercms/karyawan', 'refresh');
 	}

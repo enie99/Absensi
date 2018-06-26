@@ -69,33 +69,33 @@
                                             <div class="control-group">
                                                 <label class="control-label"><span class="asterik">*</span> Jabatan </label>
                                                 <div class="controls">
-                                                    <input type="text" name="karyawan_jabatan" class="span11" value="" required="required" >
+                                                    <input type="text" name="karyawan_jabatan" class="span3" value="" required="required" >
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label"> Tanggal Lahir </label>
                                                 <div class="controls">
-                                                    <div class="col-sm-5 input-group date" id="tgl" style="margin-top:-5px;">
-                                                        <input type="date" name="karyawan_ttl" class="span12" size="16">
-                                                    </div>
+                                                    <!-- <div class="input-group date" id="tgl" style="margin-top:-5px;"> -->
+                                                        <input type="date" name="karyawan_ttl" class="span3" size="16">
+                                                    <!-- </div> -->
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label"><span class="asterik">*</span> Email </label>
                                                 <div class="controls">
-                                                    <input type="email" name="karyawan_email" class="span11" value=""  required="required">
+                                                    <input type="email" name="karyawan_email" class="span3" value=""  required="required">
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label"> No HP </label>
                                                 <div class="controls">
-                                                    <input type="text" name="no_hp" class="span11" value="">
+                                                    <input type="text" name="no_hp" class="span3" value="">
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label"><span class="asterik">*</span> Alamat </label>
                                                 <div class="controls">
-                                                    <textarea class="form-control" name="karyawan_alamat" rows="5"  required="required"></textarea>
+                                                    <textarea class="span11" name="karyawan_alamat" rows="5"  required="required"></textarea>
                                                 </div>
                                             </div>
                                             <div class="control-group">

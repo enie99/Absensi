@@ -42,7 +42,10 @@
 <div class="col-md-9">
   <div class="panel">
     <div class="panel panel-default">
-      <div class="panel-heading">&nbsp; Data Karyawan</div><br/>
+      <div class="panel-heading">&nbsp; Data Karyawan
+        <div class="label label-success  pull-right"><a style="color: #fff;" href="<?php echo base_url('mastercms/karyawan/add'); ?>" title="Add Karyawan"><i class="fa fa-plus"></i> Add Karyawan</a></div>
+      </div>
+      <br/>
       <?php if (!empty($karyawan_id)): ?>
           <div class="row-fluid" style="padding-left: 8px;">
             <div class="span12">
