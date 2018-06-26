@@ -34,11 +34,15 @@ class Mabsensi extends CI_Model
 		return $ambil->result_array();
 	}
 
-	public function absensi_perorangan(){
-		$this->db->select('*');
-		$this->db->from('_absensi');
-		$query = $this->db->get();
-		return $query->result();
+	public function absensi_perorangan($lokasi,$bulan,$tahun,$nama){
+		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
+		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->where('_lokasi.lokasi_id',$lokasi);
+		$this->db->where('month(tanggal)',$bulan);
+		$this->db->where('year(tanggal)',$tahun);
+		$this->db->like('_karyawan.karyawan_nama',$nama);
+		$ambil = $this->db->get('_absensi');
+		return $ambil->result();
 	}
 
 	public function get_data()

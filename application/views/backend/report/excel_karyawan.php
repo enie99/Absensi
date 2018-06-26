@@ -20,8 +20,13 @@ header("Expires: 0");
 	<tbody>
 		<?php $i=1; foreach($user as $user) { ?>
 			<tr>
-				<td></td>
+				<td><?php echo $i; ?></td>
 				<td><?php echo $user->absen_hari ?></td>
+				<td><?php echo date('d M Y', strtotime($user->tanggal)); ?></td>
+				<td><?php echo $user->karyawan_nama ?></td>
+				<td><?php echo $user->jam_masuk_absen ?></td>
+				<td><?php echo $user->jam_keluar_absen ?></td>
+				<td><?php echo $user->status ?></td>
 			</tr>
 			<?php $i++; } ?>
 		</tbody>
