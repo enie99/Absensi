@@ -121,6 +121,7 @@
                               <button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
                             </p>
                           </div>
+                          <span class="label label-info" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/emailSend'); ?>"><i class="fa fa-print"></i>  Test Email</a></span>
                           <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi_id.'/'.$bulan.'/'.$tahun); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
                         </div>
                       </form>

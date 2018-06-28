@@ -4,12 +4,13 @@
  */
 class Absensi extends MY_Controller
 {
-	
-	public function __construct()
+    
+    public function __construct()
     {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('Mabsensi');
+        $this->load->library('MyPHPMailer'); // load library
 
         if (!$this->session->userdata('user'))
         {
@@ -112,6 +113,59 @@ class Absensi extends MY_Controller
         $this->render_page('backend/report/detail', $data);
     }
 
+    // public function send_email(){
+    //     $this->load->view('backend/send_email_karyawan');
+    // }
+
+    // function sendEmail()
+    // {
+    //     $this->load->library('email');
+    //     $this->email->from('hilo73ch@gmail.com'); //change it
+    //     $this->email->to('enieyuliani.99@gmail.com'); //change it
+    //     // $this->email->subject($subject);
+    //     // $this->email->message($body);
+    //     $this->email->subject("TES EMAIL");
+    //     $this->email->message("Tes send email");
+
+    //     if ($this->email->send())
+    //     {
+    //         $data['success'] = 'Yes'; 
+    //     } 
+    //     else 
+    //     {
+    //         $data['success'] = 'No'; 
+    //         $data['error'] = $this->email->print_debugger(array('headers'));
+    //     }
+
+    //   echo " < pre > ";
+    //   print_r($data);
+    //   echo " < / pre > ";
+    // }
+
+    function emailSend(){
+        $fromEmail = "hilo73ch@gmail.com";
+        $isiEmail = "Isi email tulis disini";
+        $mail = new PHPMailer();
+        $mail->IsHTML(true);    // set email format to HTML
+        $mail->IsSMTP();   // we are going to use SMTP
+        $mail->SMTPAuth   = true; // enabled SMTP authentication
+        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+        $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
+        $mail->Port       = 465;                   // SMTP port to connect to GMail
+        $mail->Username   = $fromEmail;  // alamat email kamu
+        $mail->Password   = "sismart16";            // password GMail
+        $mail->SetFrom('info@yourdomain.com', 'noreply');  //Siapa yg mengirim email
+        $mail->Subject    = "Subjek email";
+        $mail->Body       = $isiEmail;
+        $toEmail = "enieyuliani.99@gmail.com"; // siapa yg menerima email ini
+        $mail->AddAddress($toEmail);
+       
+        if(!$mail->Send()) {
+            echo "Eror: ".$mail->ErrorInfo;
+        } else {
+            echo "Email berhasil dikirim";
+        }
+    }
 
 }
 ?>
