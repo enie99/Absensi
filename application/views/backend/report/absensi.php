@@ -89,44 +89,9 @@
                             <h5>
                                 List Data Absensi
                             </h5>
-                            <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/absensi/export_excel') ?>"><i class="fa fa-"></i> Export to Excel</a></span>
                         </div>
                         <div class="widget-content nopadding">
-                            <section id="no-more-tables">
-                             <table class="table table-data table-bordered table-hover table-condensed cf">
-                                <thead class="DataTables_sort_wrapper" >
-                                    <tr>
-                                        <th style="background: #dedeec; font-size: 12px" width="2%">No</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="15%">Hari</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="15%">Tanggal</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="25%">Nama Karyawan</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="15%">Jam Masuk Absen</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="15%">Jam Keluar Absen</th>
-                                        <th style="background: #dedeec; font-size: 12px" width="15">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php foreach ($absensi as $key =>$value): ?>
-                                            <td data-title="No"><?php echo $key+1 ; ?></td>
-                                            <td data-title="hari"><?php echo $value['absen_hari']; ?></td>
-                                            <td data-title="tanggal"><?php echo date('d M Y', strtotime($value['tanggal'])); ?></td>
-                                            <td data-title="karyawan_nama"><strong><?php echo $value['karyawan_nama']; ?></strong></td>
-                                            <td data-title="jam masuk"><?php echo $value['jam_masuk_absen']; ?></td>
-                                            <td data-title="jam kelauar"><?php echo $value['jam_keluar_absen']; ?></td>
-                                            <td data-title="Aksi" align="center"><?php echo $value['status']; ?></td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                            <div class="center" style="text-align: center">
-                                <?php if (isset($links)) { ?>
-                                    <?php echo $links ?>
-                                    <?php } ?>
-                                    <?php echo $this->pagination->create_links(); ?>
-                                </div>
 
-                            </section>
                         </div>
                     </div>
                 </div>
