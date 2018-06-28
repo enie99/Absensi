@@ -103,7 +103,10 @@ class Absensi extends MY_Controller
 
     public function export_excel_karyawan($lokasi,$bulan,$tahun,$karyawan){
         $nama = str_replace("%20", " ", $karyawan); 
-        $data = array( 'title' => 'Laporan Excel | Absensi',
+        $data = array( 'title' => 'Report Absensi Karyawan',
+        'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi),
+        'bulan' => $bulan,
+        'tahun' => $tahun,
         'user' => $this->Mabsensi->absensi_perorangan($lokasi,$bulan,$tahun,$nama));
        $this->load->view('backend/report/excel_karyawan',$data);
     }
