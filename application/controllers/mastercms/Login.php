@@ -32,7 +32,7 @@ class Login extends CI_Controller
 			}
 			else
 			{
-				$data['hasil'] = "gagal";
+				 $this->session->set_flashdata('verify', '<div class="alert alert-danger">Email atau Password salah.</div>');
 			}
 		}
 
@@ -47,8 +47,9 @@ class Login extends CI_Controller
 			}
 		}
 		$this->session->sess_destroy();
-
-		echo "<script>alert('Anda berhasil logout!');location='".base_url("mastercms")."'</script>";
+		$this->session->set_flashdata('msg', '<div class="alert alert-sucess">Anda berhasil logout!.</div>');
+        redirect(base_url('mastercms'));
+		// echo "<script>alert('Anda berhasil logout!');location='".base_url("mastercms")."'</script>";
 
 	}
 }

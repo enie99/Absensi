@@ -1,6 +1,12 @@
 <?php
 class Mperusahaan extends CI_Model
 {
+	function __construct(){
+        
+        parent::__construct();
+        $this->load->database();
+        $this->load->library('session');
+    }
 
 	function profil($id)
 	{
@@ -163,9 +169,9 @@ class Mperusahaan extends CI_Model
 
 
 	// Register
-	function register($input)
+	public function register($input)
 	{
-		$this->db->insert('_perusahaan', $input);
+		return $this->db->insert('_perusahaan', $input);
 	}
 	// Login User
 	function auth($input)
@@ -175,6 +181,7 @@ class Mperusahaan extends CI_Model
 
 		$this->db->where('perusahaan_user', $username);
 		$this->db->where('perusahaan_password', $password);
+		$this->db->where('status', 1);
 		$ambil = $this->db->get('_perusahaan');
 		$hasil = $ambil->num_rows();
 
@@ -189,6 +196,57 @@ class Mperusahaan extends CI_Model
 			return 'gagal';
 		}
 	}
+
+	 //send confirm mail
+    public function sendEmail($receiver){
+        $from = "hilo73ch@gmail.com";    //senders email address
+        $subject = 'Verifikasi Email Pendaftaran - Absensi Karyawan';  //email subject
+
+        $message = 'Terima kasih sudah bergabung dengan Absensi Karyawan.<br><br> Silahkan melakukan konfirmasi pendaftaran dengan menekan link dibawah ini. <br><br>
+
+	        <a href='.base_url().'home/confirmEmail/'.md5(md5($receiver)).'>KONFIRMASI EMAIL</a><br><br>
+
+	        Thanks';
+        
+        //config email settings
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = $from;
+        $config['smtp_pass'] = 'sismart16';  //sender's password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = 'TRUE';
+        $config['newline'] = "\r\n"; 
+        
+        $this->load->library('email', $config);
+		$this->email->initialize($config);
+        //send email
+        $this->email->from($from);
+        $this->email->to($receiver);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if($this->email->send()){
+            //for testing
+            echo "sent to: ".$receiver."<br>";
+            echo "from: ".$from. "<br>";
+            echo "protocol: ". $config['protocol']."<br>";
+            echo "message: ".$message;
+            return true;
+        }else{
+            echo "email send failed";
+            echo $this->email->print_debugger();
+            return false;
+        } 
+    }
+
+     //activate account
+    function verifyEmail($key){
+        $data = array('status' => 1);
+        $this->db->where('md5(md5(perusahaan_email))',$key);
+        return $this->db->update('_perusahaan', $data);    //update status as 1 to make active user
+    }
 
 	
 }
