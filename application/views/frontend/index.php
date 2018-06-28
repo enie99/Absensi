@@ -65,11 +65,10 @@
 					<div class="col-md-5">
 						<div class="signup-header wow fadeInUp">
 							<h3 class="form-title text-center">Register Sekarang !</h3>
-							<form class="form-header" role="form" method="post" name="login">
+							<form class="form-header" role="form" method="post">
+								<?php echo $this->session->flashdata('msg'); ?>
 								<?php if (!empty($failed)): ?>
 									<div class="alert alert-danger" role="alert"><?php echo $failed; ?></div>
-									<?php elseif (!empty($success)): ?>
-										<div class="alert alert-info" role="alert"><?php echo $success; ?></div>
 									<?php endif ?>
 									<div class="form-group">
 										<input class="form-control input-lg" name="perusahaan_nama" id="name" type="text" placeholder="Nama Perusahaan" required>
