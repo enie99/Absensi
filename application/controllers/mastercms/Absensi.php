@@ -10,7 +10,7 @@ class Absensi extends MY_Controller
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('Mabsensi');
-        $this->load->library('MyPHPMailer'); // load library
+        // $this->load->library('MyPHPMailer'); // load library
 
         if (!$this->session->userdata('user'))
         {
