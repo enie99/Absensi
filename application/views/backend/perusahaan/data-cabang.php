@@ -124,7 +124,11 @@
                                                 <?php endforeach ?>
                                                 <?php else: ?>
                                                     <div class="alert alert-danger" role="alert" style="margin: 20px;">
-                                                        Kata kunci untuk <strong><?= $keyword; ?></strong> tidak ditemukan !
+                                                       <?php if (!empty($keyword)): ?>
+                                                         Kata kunci untuk <strong><?= $keyword; ?></strong> tidak ditemukan !
+                                                       <?php else: ?>
+                                                         Perusahaan anda belum menambahkan data cabang 
+                                                       <?php endif ?>
                                                     </div>
                                                 <?php endif ?>
                                             </tbody>

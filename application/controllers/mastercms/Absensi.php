@@ -38,6 +38,11 @@ class Absensi extends MY_Controller
         $bulan=$this->input->get('filterbulan');
         $tahun=$this->input->get('tahun');
         $karyawan=$this->input->get('karyawan');
+
+        $data['lokasi'] = $cabang;
+        $data['bulan'] = $bulan;
+        $data['tahun'] = $tahun;
+        $data['karyawan'] = $karyawan;
         $data['data']=$this->Mabsensi->get_cabang();
         $data['absensi']=$this->Mabsensi->pencarian_d($cabang,$bulan,$tahun,$karyawan);
         $this->render_page('backend/report/filter_absensi',$data);
@@ -141,6 +146,16 @@ class Absensi extends MY_Controller
     //   print_r($data);
     //   echo " < / pre > ";
     // }
+
+    public function export_excel_karyawan($lokasi,$bulan,$tahun,$karyawan){
+        $nama = str_replace("%20", " ", $karyawan); 
+        $data = array( 'title' => 'Report Absensi Karyawan',
+        'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi),
+        'bulan' => $bulan,
+        'tahun' => $tahun,
+        'user' => $this->Mabsensi->absensi_perorangan($lokasi,$bulan,$tahun,$nama));
+       $this->load->view('backend/report/excel_karyawan',$data);
+    }
 
     function emailSend(){
         $fromEmail = "hilo73ch@gmail.com";

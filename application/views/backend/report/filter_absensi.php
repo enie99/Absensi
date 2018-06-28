@@ -1,5 +1,4 @@
-
-        <!-- page heading start-->
+ <!-- page heading start-->
         <div id="content">
             <div id="content-header">
                 <div id="breadcrumb">
@@ -88,7 +87,7 @@
                             <h5>
                                 List Data Absensi
                             </h5>
-                            <span class="label label-success"><a style="color: #fff" name="exsport" href="<?php echo base_url('mastercms/absensi/export_excel_karyawan/'.$lokasi.'/'.$bulan.'/'.$tahun.'/'.$karyawan) ?>"><i class="fa fa-print"></i> Export to Excel</a></span>
+                            <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/absensi/export_excel_karyawan/'.$lokasi.'/'.$bulan.'/'.$tahun.'/'.$karyawan) ?>"><i class="fa fa-print"></i> Export to Excel</a></span>
                         </div>
                         <div class="widget-content nopadding">
                             <section id="no-more-tables">
@@ -142,8 +141,9 @@
                 var id=$(this).val();
                 $.ajax({
                     url : "<?php echo base_url();?>mastercms/absensi/get_karyawan",
-                    type : "POST",
+                    method : "POST",
                     data : {id: id},
+                    async : false,
                     dataType : 'json',
                     success: function(data){
                         var html = '';
@@ -151,7 +151,6 @@
                         for(i=0; i<data.length; i++){
                             html += '<option>'+data[i].karyawan_nama+'</option>';
                         }
-
                         $('.karyawan').html(html);
                     }
                 });

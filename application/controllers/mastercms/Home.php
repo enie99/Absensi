@@ -21,7 +21,7 @@ class Home extends MY_Controller
 		$getPerusahaan	= $this->Mperusahaan->get_data();
 		$data['perusahaan']	= $getPerusahaan;
 		$array_datas = array();
-		$array_data = '';
+		$array_data = array();
 		$getAbsensi		= $this->Mabsensi->get_data();
 
 		foreach ($getPerusahaan as $key) {

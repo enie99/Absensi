@@ -20,12 +20,22 @@
                 <h3 style="color: #000; font-weight: bold;">LOGIN ABSENSI</h3>
             </div>
             <div class="login-wrap">
-                <?php echo $this->session->flashdata('verify'); unset($_SESSION); ?>
+
+                <?php if ($hasil=='gagal'): ?>
+                    <div class="alert alert-block alert-danger fade in">
+                        <button type="button" class="close close-sm" data-dismiss="alert">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <i class="fa fa-warning"></i> Email atau Password salah.
+                        <?php unset($_SESSION); ?>
+                    </div>
+                <?php endif ?>
+
                 <input type="email" name="AdmUsr" class="form-control" placeholder="Email" autofocus>
                 <input type="password" name="AdmPswd" class="form-control" placeholder="Password">
 
                 <div class="form-group">
-                    <?php echo $captcha; // tampilkan recaptcha ?>
+                    <?php echo $captcha // tampilkan recaptcha ?>
                 </div>
                 <button class="btn btn-login btn-block" type="submit" name="LogAdmin">
                     <i class="fa fa-unlock-alt"></i>&nbsp; Login
