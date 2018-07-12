@@ -69,7 +69,10 @@
     <?php echo $header; ?>
     <?php echo $sidebar; ?>
     <?php echo $content; ?>
-    <?php echo $footer; ?>
+
+    <div class="row-fluid">
+        <div id="footer" class="span12"> 2018 © Absensi. Brought to you by <a href="http://otret.com/">PT OTRET.COM</a> </div>
+    </div>
 
     <!--ios7-->
     <script src="<?php echo base_url('assets/backend/js/ios-switch/switchery.js');?>" ></script>

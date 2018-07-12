@@ -20,20 +20,9 @@
                 <h3 style="color: #000; font-weight: bold;">LOGIN ABSENSI</h3>
             </div>
             <div class="login-wrap">
-
-                <?php if ($hasil=='gagal'): ?>
-                    <div class="alert alert-block alert-danger fade in">
-                        <button type="button" class="close close-sm" data-dismiss="alert">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <i class="fa fa-warning"></i> Email atau Password salah.
-                        <?php unset($_SESSION); ?>
-                    </div>
-                <?php endif ?>
-
+                <?php echo $this->session->userdata('msg'); unset($_SESSION); ?>
                 <input type="email" name="AdmUsr" class="form-control" placeholder="Email" autofocus>
                 <input type="password" name="AdmPswd" class="form-control" placeholder="Password">
-
                 <div class="form-group">
                     <?php echo $captcha // tampilkan recaptcha ?>
                 </div>
@@ -45,7 +34,6 @@
                     <a data-toggle="modal" href="#myModal"> Lupa Password !</a>
                 </div>
             </div>
-
             <!-- Modal -->
             <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                 <div class="modal-dialog">
@@ -68,12 +56,6 @@
             <!-- modal -->
         </form>
     </div>
-
-    <?php if ($hasil=='berhasil'): ?>
-        <script>
-            location='<?php echo base_url("mastercms/home"); ?>';
-        </script>
-    <?php endif ?>
 
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('assets/backend/js/jquery-1.10.2.min.js');?>"></script>
