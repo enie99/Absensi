@@ -2047,6 +2047,15 @@ class CI_Email {
 	 */
 	protected function _smtp_connect()
 	{
+		// if ($this->smtp_crypto == 'tls')
+		// {
+		// 	$this->_send_command('hello');
+		// 	$this->_send_command('starttls');
+		// 	if( strpos( $this->smtp_host, 'ssl://') === FALSE ) {
+		// 		stream_socket_enable_crypto($this->_smtp_connect, TRUE, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+		// 	}
+		// }
+		
 		if (is_resource($this->_smtp_connect))
 		{
 			return TRUE;

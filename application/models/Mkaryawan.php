@@ -60,7 +60,7 @@ class Mkaryawan extends CI_Model
 	function tambah($input){
 		$input['karyawan_user'] = $input['karyawan_email'];
 		$this->db->insert('_karyawan', $input);
-		redirect('mastercms/karyawan', 'refresh');
+		// redirect('mastercms/karyawan', 'refresh');
 	}
 
 	function edit($input, $id){
@@ -79,6 +79,49 @@ class Mkaryawan extends CI_Model
 		$this->db->where('_karyawan.karyawan_id', $id);
 		$data = $this->db->get('_karyawan');
 		return $data->row_array();
+	}
+
+	function sendEmail($receiver){
+		$from = "hilo73ch@gmail.com";    //senders email address
+        $subject = 'Buat Password Presensi';  //email subject
+
+        $message = '<h3>Selamat Datang Karyawan . . .</h3>
+	<p>Silahkan mengatur password anda untuk dapat menggunakan sistem presensi perusahaan</p>
+	<button style="background-color:#5187c0;">Setting Password</button>';
+        
+	    
+        
+        //config email settings
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = $from;
+        $config['smtp_pass'] = 'sismart16';  //sender's password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = 'TRUE';
+        $config['newline'] = "\r\n"; 
+        
+        $this->load->library('email', $config);
+		$this->email->initialize($config);
+        //send email
+        $this->email->from($from);
+        $this->email->to($receiver);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if($this->email->send()){
+            //for testing
+            echo "sent to: ".$receiver."<br>";
+            echo "from: ".$from. "<br>";
+            echo "protocol: ". $config['protocol']."<br>";
+            echo "message: ".$message;
+            return true;
+        }else{
+            echo "email send failed";
+            echo $this->email->print_debugger();
+            return false;
+        } 
 	}
 }
 ?>

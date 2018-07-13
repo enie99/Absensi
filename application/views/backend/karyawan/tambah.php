@@ -39,12 +39,6 @@
                                         <?php if (validation_errors()): ?>
 
                                         <?php endif ?>
-                                        <!-- <div class="alert alert-block alert-danger fade in">
-                                            <button type="button" class="close close-sm" data-dismiss="alert">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                            <i class="fa fa-warning"></i> <strong>Terjadi kesalahan :</strong>
-                                        </div> -->
 
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> Nama Karyawan </label>

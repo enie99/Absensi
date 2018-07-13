@@ -82,8 +82,10 @@ class Karyawan extends MY_Controller
     {
         if ($this->input->post())
         {
-             $input = $this->input->post();
-             $this->Mkaryawan->tambah($input);
+          $input = $this->input->post();
+          $receiver = $input['karyawan_email'];
+          $this->Mkaryawan->sendEmail($receiver);
+          $this->Mkaryawan->tambah($input);
         }
 
        $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
