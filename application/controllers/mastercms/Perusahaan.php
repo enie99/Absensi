@@ -36,11 +36,33 @@ class Perusahaan extends MY_Controller
 
 	function cabang()
 	{
-		// $id = $_SESSION['user']['perusahaan_id'];
 		$data['keyword'] = "";
-		$data['perusahaan'] = $this->Mperusahaan->get_data();
+		$perusahaan = $this->Mperusahaan->get_perusahaan();
 		$data['jam_kerja'] = $this->Mperusahaan->semua_jamkerja();
-
+		// Pagination
+		$config['base_url'] = base_url('mastercms/perusahaan/cabang/');
+		$config['total_rows'] = count($perusahaan);
+		$config['per_page'] = 1;
+		// pull left
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['first_link'] = "<i class='fa fa-angle-double-left'></i> First &nbsp;&nbsp;";
+		$config['first_tag_open'] = "<div>";
+		$config['first_tag_close'] = "</div>";
+		$config['prev_link'] = "<i class='fa fa-angle-double-left'></i> Prev &nbsp;&nbsp;";
+		$config['prev_tag_open'] = "<div>";
+		$config['prev_tag_close'] = "</div>";
+		// pull right
+		$config['next_link'] = " Next <i class='fa fa-angle-double-right'></i> ";
+		$config['next_tag_open'] = "<div>";
+		$config['next_tag_close'] = "</div>";
+		$config['last_link'] = "Last <i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;";
+		$config['last_tag_open'] = "<div>";
+		$config['last_tag_close'] = "</div>";
+		$this->pagination->initialize($config);
+		$from = $this->uri->segment(4);
+		$data['perusahaan'] = $this->Mperusahaan->get_perusahaan_pagination($config['per_page'], $from);
+		$data['mpaging'] = $this->pagination->create_links();
 		if ($this->input->post('cari')) {
 			$keyword = $this->input->post('cari', TRUE);
 			$data['perusahaan'] = $this->Mperusahaan->cari($keyword);

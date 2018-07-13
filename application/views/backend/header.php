@@ -12,8 +12,8 @@
 </div>
 <div id="user-nav" class="navbar navbar-inverse" style="border-color: #47475c;top:-2px;">
   <ul class="nav">
+    <li class=""><a href="<?= base_url('mastercms/perusahaan'); ?>"><i class="icon icon-user"></i> <span class="text" style="color: #fff">My Profil</span></a></li>
     <li class=""><a title="" href="#view"><i class="icon icon-share-alt"></i> <span class="text" style="color: #fff">Logout</span></a></li>
-    <!-- <li><a href="#view">Logout</a></li> -->
   </ul>
   <!-- Modal -->
 </div>

@@ -134,7 +134,7 @@
                                             </tbody>
                                         </table>
                                         <div class="center" style="text-align: center">
-                                            paging
+                                            <?php echo $mpaging; ?>
                                         </div>
 
                                     </section>

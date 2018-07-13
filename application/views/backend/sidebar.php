@@ -18,17 +18,15 @@
             <a href="#" class="right-caret"><i class="icon icon-briefcase"></i> <span>Perusahaan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
                 <ul class="firstlevel sub-menu">
                     <li class="twolevel">
-                        <a class=" right-caret" href="<?php echo base_url('mastercms/perusahaan') ?>">Profil </a>
+                        <a href="<?php echo base_url('mastercms/perusahaan/cabang'); ?>">Data Cabang</a>
                         <!-- <ul class="thirdlevel dropdown-menu sub-menu" style=" margin-top: 10px">
                             <li><a href="#" class="trigger">Add Content</a></li>
                         </ul> -->
                     </li>
                     <li>
-                        <a href="<?php echo base_url('mastercms/perusahaan/cabang'); ?>">Data Cabang</a>
                     </li>
                 </ul>
         </li>
-        <!-- <li> <a href="#"><i class="icon icon-inbox"></i><span>E-Commarce</span></a> </li> -->
         <li class="submenu"> <a href="#"><i class="icon-user"></i><span>Karyawan</span> <span><b class="caret" style="margin-top:10px;border-top: 4px solid #f1e7e7;"></b></span></a>
             <ul>
                 <li><a href="<?php echo base_url('mastercms/karyawan'); ?>">Data Karyawan</a></li>
