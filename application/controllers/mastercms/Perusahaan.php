@@ -42,23 +42,28 @@ class Perusahaan extends MY_Controller
 		// Pagination
 		$config['base_url'] = base_url('mastercms/perusahaan/cabang/');
 		$config['total_rows'] = count($perusahaan);
-		$config['per_page'] = 1;
+		$config['per_page'] = 5;
 		// pull left
+		$config['full_tag_open'] = '<li>';
+		$config['full_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="active"><a>';
+		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
-		$config['first_link'] = "<i class='fa fa-angle-double-left'></i> First &nbsp;&nbsp;";
-		$config['first_tag_open'] = "<div>";
-		$config['first_tag_close'] = "</div>";
-		$config['prev_link'] = "<i class='fa fa-angle-double-left'></i> Prev &nbsp;&nbsp;";
-		$config['prev_tag_open'] = "<div>";
-		$config['prev_tag_close'] = "</div>";
+
+		$config['first_link'] = "First";
+		$config['first_tag_open'] = "<li>";
+		$config['first_tag_close'] = "</li>";
+		$config['prev_link'] = "Prev";
+		$config['prev_tag_open'] = "<li>";
+		$config['prev_tag_close'] = "</li>";
 		// pull right
-		$config['next_link'] = " Next <i class='fa fa-angle-double-right'></i> ";
-		$config['next_tag_open'] = "<div>";
-		$config['next_tag_close'] = "</div>";
-		$config['last_link'] = "Last <i class='fa fa-angle-double-right'></i>&nbsp;&nbsp;";
-		$config['last_tag_open'] = "<div>";
-		$config['last_tag_close'] = "</div>";
+		$config['next_link'] = "Next";
+		$config['next_tag_open'] = "<li>";
+		$config['next_tag_close'] = "</li>";
+		$config['last_link'] = "Last";
+		$config['last_tag_open'] = "<li>";
+		$config['last_tag_close'] = "</li>";
 		$this->pagination->initialize($config);
 		$from = $this->uri->segment(4);
 		$data['perusahaan'] = $this->Mperusahaan->get_perusahaan_pagination($config['per_page'], $from);
@@ -102,7 +107,7 @@ class Perusahaan extends MY_Controller
 			$input['perusahaan_id'] = $_SESSION['user']['perusahaan_id'];
 			$input['lokasi_nama'] = $this->input->post('lokasi_nama');
 			$input['perusahaan_alamat'] = $this->input->post('perusahaan_alamat');
-
+			
 			$time	= date("dmyhis");
 			$url 	= strtolower($input['lokasi_nama']);
 			$url 	= str_replace(" ", "-", $url);

@@ -18,7 +18,7 @@ class Home extends MY_Controller
 	}
 
 	function index(){
-		$getPerusahaan	= $this->Mperusahaan->get_data();
+		$getPerusahaan	= $this->Mperusahaan->get_perusahaan();
 		$data['perusahaan']	= $getPerusahaan;
 		$array_datas = array();
 		$array_data = array();

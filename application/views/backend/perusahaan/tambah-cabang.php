@@ -32,7 +32,7 @@
                     <!--page header end-->
                     <!--Add content start-->
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal " role="form" action="" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal " role="form" method="post" enctype="multipart/form-data">
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="widget-content">
@@ -60,7 +60,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="lokasi">Lokasi</label>
                                             <div class="controls">
-                                                <input class="span12" id="pencarian"  type="text" placeholder="Cari Alamat atau Tempat" >
+                                                <input class="span12" id="pencarian" name="perusahaan_alamat" type="text" placeholder="Cari Alamat atau Tempat" >
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -71,13 +71,13 @@
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> latitude</label>
                                             <div class="controls">
-                                                <input class="span3" id="lat"  type="text" placeholder="Latitude" readonly="" value="<?=$lat;?>"/ >
+                                                <input class="span3" id="lat" name="latitude"  type="text" placeholder="Latitude" readonly="" value="<?=$lat;?>"/ >
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> longitude</label>
                                             <div class="controls">
-                                                <input class="span3" id="lng" type="text" placeholder="Longitudelng" readonly="" value="<?=$lng;?>"/>
+                                                <input class="span3" id="lng" name="longitude" type="text" placeholder="Longitudelng" readonly="" value="<?=$lng;?>"/>
                                             </div>
                                         </div>
                                         <div class="control-group form-action">

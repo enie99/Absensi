@@ -44,7 +44,7 @@
                                 <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/perusahaan/add'); ?>"><i class="fa fa-plus"></i> Add Perusahaan</a></span>
 
                             </div>
-                            <div class="widget-content nopadding">
+                            <div class="widget-content nopadding" style="min-height: 500px;">
                                 <section id="no-more-tables">
                                     <?php if (!empty($perusahaan)): ?>
                                         <table class="table table-data table-bordered table-hover table-condensed cf">
@@ -101,7 +101,6 @@
                                                                                         <td title="Jam Selesai"><?php echo $j['jam_keluar']; ?></td>
 
                                                                                     </tr>
-
                                                                                 <?php endif ?>
                                                                             <?php endforeach ?>
 
@@ -133,11 +132,14 @@
                                                 <?php endif ?>
                                             </tbody>
                                         </table>
-                                        <div class="center" style="text-align: center">
-                                            <?php echo $mpaging; ?>
-                                        </div>
-
                                     </section>
+                                    <div class="center" style="text-align: center">
+                                        <div class="pagination alternate" style="text-align: center;">
+                                            <ul>
+                                                <?php echo $mpaging; ?>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

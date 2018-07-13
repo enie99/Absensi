@@ -62,19 +62,14 @@ class Mperusahaan extends CI_Model
 		$this->db->join('_perusahaan p', 'p.perusahaan_id = l.lokasi_id', 'left');
 		$data = $this->db->get('_lokasi l');
 		return $data->result_array();
-
-		$data = $this->db->query("SELECT l.lokasi_id, l.lokasi_nama,l.perusahaan_title,l.perusahaan_alamat,l.qr_code, count(k.karyawan_id) AS jml_karyawan FROM _lokasi l
-				LEFT JOIN _karyawan k ON l.lokasi_id = k.lokasi_id
-				LEFT JOIN _perusahaan p  ON p.perusahaan_id = l.lokasi_id
-				WHERE l.perusahaan_id = '$id' GROUP BY l.lokasi_id DESC");
-		return $data->result_array();
 	}
 	function get_perusahaan_pagination($limit, $page)
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->select('l.lokasi_id, l.lokasi_nama,l.perusahaan_title,l.perusahaan_alamat,l.qr_code, count(k.karyawan_id) AS jml_karyawan');
+		$this->db->order_by('l.lokasi_id', 'desc');
 		$this->db->limit($limit, $page);
-		$this->db->group_by('l.lokasi_id', 'DESC');
+		$this->db->group_by('l.lokasi_id');
 		$this->db->where('l.perusahaan_id', $id);
 		$this->db->join('_karyawan k', 'l.lokasi_id = k.lokasi_id', 'left');
 		$this->db->join('_perusahaan p', 'p.perusahaan_id = l.lokasi_id', 'left');
