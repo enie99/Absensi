@@ -34,7 +34,10 @@
                     <a data-toggle="modal" href="#myModal"> Lupa Password !</a>
                 </div>
             </div>
+        </form>
+
             <!-- Modal -->
+            <form action="<?php echo base_url('mastercms/login/reset_password'); ?>" method="post">
             <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -43,18 +46,18 @@
                             <h4 class="modal-title">Lupa Password ?</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Enter your e-mail address below to reset your password.</p>
-                            <input type="email" name="forgetEmail" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                            <p>Masukkan Email Anda untuk Mereset Password</p>
+                            <input type="email" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
                         </div>
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                            <button class="btn btn-primary" type="button">Submit</button>
+                            <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
             <!-- modal -->
-        </form>
     </div>
 
     <!-- Placed js at the end of the document so the pages load faster -->

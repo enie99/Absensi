@@ -265,6 +265,66 @@ class Mperusahaan extends CI_Model
         return $this->db->update('_perusahaan', $data);    //update status as 1 to make active user
     }
 
+    function sendLinkReset($receiver)
+    {
+    	$from = "hilo73ch@gmail.com";    //senders email address
+        $subject = 'Reset Password';  //email subject
+
+        $message = '<p>Silahkan klik tombol dibawah ini untuk mereset password</p>
+        <a href='.base_url().'mastercms/login/set_password?receiver='.$receiver.'><button style="background-color:#5187c0;">Reset Password</button> </a>';
+        
+        //config email settings
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = $from;
+        $config['smtp_pass'] = 'sismart16';  //sender's password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = 'TRUE';
+        $config['newline'] = "\r\n"; 
+        
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        //send email
+        $this->email->from($from);
+        $this->email->to($receiver);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if($this->email->send()){
+            //for testing
+            // echo "sent to: ".$receiver."<br>";
+            // echo "from: ".$from. "<br>";
+            // echo "protocol: ". $config['protocol']."<br>";
+            // echo "message: ".$message;
+            return true;
+        }
+        else
+        {
+            echo "email send failed";
+            echo $this->email->print_debugger();
+            return false;
+        } 
+    }
+
+    function change_password($email, $input)
+    {
+    	$this->db->where('perusahaan_email', $email);
+    	$update = $this->db->update('_perusahaan', $input );
+
+    	if ($update)
+    	{
+    		$status = "berhasil";
+    	}
+    	else
+    	{
+    		$status = "gagal";
+    	}
+
+    	return $status;
+    }
+
 	
 }
 ?>

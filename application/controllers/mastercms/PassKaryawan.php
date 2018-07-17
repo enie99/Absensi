@@ -28,7 +28,7 @@ class PassKaryawan extends CI_Controller
 
       }
 
-      $this->load->view('backend/set_password');
+      $this->load->view('backend/set_pass_karyawan');
     }
 
 }

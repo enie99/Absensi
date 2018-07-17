@@ -118,7 +118,9 @@
                               </select>
 
                               <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
-                              <button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
+                              <a href="<?php echo base_url('mastercms/absensi/summary/'); ?>">
+                                <button name="reset" type="button" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
+                              </a>
                             </p>
                           </div>
                           <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi_id.'/'.$bulan.'/'.$tahun); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
