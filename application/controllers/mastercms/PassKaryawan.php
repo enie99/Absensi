@@ -15,9 +15,10 @@ class PassKaryawan extends CI_Controller
     {
       $email = $_GET['email'];
 
-      if ($this->input->post()) {
+      if ($this->input->post()) 
+      {
         $pass = $this->input->post('password');
-        $input['karyawan_password'] = md5(md5($pass));
+        $input['karyawan_password'] = password_hash($pass, PASSWORD_DEFAULT);
 
         $cek_status = $this->Mkaryawan->set_password_karyawan($email, $input);
         	if ($cek_status == "berhasil") {

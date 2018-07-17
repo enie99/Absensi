@@ -34,7 +34,7 @@
 
                     <!--Add content start-->
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal " role="form" action="<?php echo base_url('mastercms/karyawan/add'); ?>" method="post" enctype="multipart/form-data" name="tambah_karyawan">
+                        <form class="form-horizontal " role="form" action="" method="post" enctype="multipart/form-data" name="tambah_karyawan">
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="widget-content">

@@ -146,7 +146,7 @@
                           <?php foreach ($karyawan as $key => $kary) : ?>
                               <tr>
                                 <td><?php echo $key+1; ?></td>
-                                <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
+                                <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id'].'/'.$bulan; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
                                 <td><?php echo $jml_hari_kerja; ?></td>
                                 <td>
                                   <?php
@@ -211,7 +211,7 @@
                                   ?>
                                 </td>
                                 <td align="center">
-                                  <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>">
+                                  <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id'].'/'.$bulan; ?>">
                                     <center><span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
                                   </a>
                                 </td>

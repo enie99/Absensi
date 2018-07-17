@@ -87,6 +87,7 @@ class Karyawan extends MY_Controller
           $this->Mkaryawan->sendEmail($receiver);
           $this->Mkaryawan->tambah($input);
           $this->session->set_flashdata('msg', '<div class="alert alert-info">Karyawan berhasil ditambahkan, Email telah dikirimkan ke karyawan baru.</div>');
+          redirect('mastercms/karyawan/add');
         }
 
        $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
