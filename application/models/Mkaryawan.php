@@ -86,10 +86,8 @@ class Mkaryawan extends CI_Model
         $subject = 'Buat Password Presensi';  //email subject
 
         $message = '<h3>Selamat Datang Karyawan . . .</h3>
-	<p>Silahkan mengatur password anda untuk dapat menggunakan sistem presensi perusahaan</p>
-	<button style="background-color:#5187c0;">Setting Password</button>';
-        
-	    
+		<p>Silahkan mengatur password anda untuk dapat menggunakan sistem presensi perusahaan</p>
+		<a href='.base_url().'mastercms/passkaryawan?email='.$receiver.'><button style="background-color:#5187c0;">Setting Password</button></a>';
         
         //config email settings
         $config['protocol'] = 'smtp';
@@ -112,10 +110,10 @@ class Mkaryawan extends CI_Model
         
         if($this->email->send()){
             //for testing
-            echo "sent to: ".$receiver."<br>";
-            echo "from: ".$from. "<br>";
-            echo "protocol: ". $config['protocol']."<br>";
-            echo "message: ".$message;
+            // echo "sent to: ".$receiver."<br>";
+            // echo "from: ".$from. "<br>";
+            // echo "protocol: ". $config['protocol']."<br>";
+            // echo "message: ".$message;
             return true;
         }else{
             echo "email send failed";
@@ -123,5 +121,64 @@ class Mkaryawan extends CI_Model
             return false;
         } 
 	}
+
+	function set_password_karyawan($email, $input)
+	{
+		$this->db->where('karyawan_email', $email);
+		$cek = $this->db->update('_karyawan', $input);
+
+		if ($cek) {
+			$status = "berhasil";
+		}
+		else{
+			$status = "gagal";
+		}
+
+		return $status;
+	}
+
+	function email_konfirmasi($email)
+	{
+		$from = "hilo73ch@gmail.com";    //senders email address
+        $subject = 'Informasi Login Sistem Presensi';  //email subject
+
+        $message = '<h1 align="center">Selamat Password Anda Berhasil ditambahkan</h1>
+		<p>Silahkan login melalui aplikasi SMOP</p>
+		<p>Berikut detail login akun anda :</p>
+		<p>Email : '.$email.'<br/>
+		Password : *****
+		</p>
+		<p>Belum memasang aplikasi SMOP di smartphone anda?<br>
+		Silahkan download apliksinya melalui link dibawah ini</p>
+		';
+        
+        //config email settings
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = $from;
+        $config['smtp_pass'] = 'sismart16';  //sender's password
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = 'TRUE';
+        $config['newline'] = "\r\n"; 
+        
+        $this->load->library('email', $config);
+		$this->email->initialize($config);
+        //send email
+        $this->email->from($from);
+        $this->email->to($email);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if($this->email->send()){
+            return true;
+        }else{
+            echo "email send failed";
+            echo $this->email->print_debugger();
+            return false;
+        } 
+	}
+
 }
 ?>

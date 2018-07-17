@@ -101,12 +101,14 @@ class Mperusahaan extends CI_Model
 
 		$this->db->insert('_lokasi', $data);
 	}
+
 	function get_by_id($id)
 	{
 		$this->db->where('lokasi_id', $id);
 		$data = $this->db->get('_lokasi');
 		return $data->row_array();
 	}
+	
 	function edit($id, $input, $image_name)
 	{
 		$data = array(

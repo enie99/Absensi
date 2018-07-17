@@ -86,6 +86,7 @@ class Karyawan extends MY_Controller
           $receiver = $input['karyawan_email'];
           $this->Mkaryawan->sendEmail($receiver);
           $this->Mkaryawan->tambah($input);
+          $this->session->set_flashdata('msg', '<div class="alert alert-info">Karyawan berhasil ditambahkan, Email telah dikirimkan ke karyawan baru.</div>');
         }
 
        $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
@@ -98,8 +99,8 @@ class Karyawan extends MY_Controller
       $this->render_page('backend/karyawan/detail', $data);
     }
 
-      function edit($karyawan_id)
-      {
+    function edit($karyawan_id)
+    {
           $data['edit'] = $this->Mkaryawan->get_by_id($karyawan_id);
           $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
 
@@ -107,9 +108,9 @@ class Karyawan extends MY_Controller
              $input = $this->input->post();
              $this->Mkaryawan->edit($input, $karyawan_id);
 
-         }
+          }
          $this->render_page('backend/karyawan/edit',$data);
-     }
+    }
 
      function hapus($karyawan_id)
      {
@@ -118,5 +119,8 @@ class Karyawan extends MY_Controller
       $this->Mkaryawan->hapus($karyawan_id);
       redirect("mastercms/karyawan", "refresh");
     }
+
+    
+
 }
 ?>

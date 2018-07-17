@@ -14,10 +14,12 @@
     </div>
     <!--Breadcrumb End-->
 
+
     <!--Container Fluid start-->
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
+    <?php echo $this->session->userdata('msg');  ?>
                 <div class="widget-box">
                     <!--page header start-->
                     <div class="widget-title" style="margin-bottom: 15px">
