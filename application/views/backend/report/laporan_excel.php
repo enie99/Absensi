@@ -20,7 +20,7 @@ header("Expires: 0");
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($absensi as $key => $value) {?>
+                <!-- <?php foreach ($absensi as $key => $value) {?>
                     <tr>
                         <td><?php echo $key+1; ?></td>
                         <td><?php echo date('d M Y', strtotime($value['tanggal'])); ?></td>
@@ -33,6 +33,6 @@ header("Expires: 0");
                     </tr>
                     <?php
                 }
-                ?>
+                ?> -->
             </tbody>
         </table>

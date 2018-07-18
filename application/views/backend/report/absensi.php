@@ -51,7 +51,7 @@
                 <div class="controls">
                     <select name="tahun" class="form-control" required>
                         <?php
-                        $mulai= date('Y') - 5;
+                        $mulai= date('Y') - 2;
                         for($i = $mulai;$i<$mulai + 20;$i++){
                             $sel = $i == date('Y') ? ' selected="selected"' : '';
                             echo '<option value="'.$i.'"'.$sel.'>'.$i.'</option>';
@@ -86,6 +86,9 @@
                     <i class="icon-th-list"></i>
                 </span>
                 <h5>List Data Absensi</h5>
+                <?php if (!empty($absensi)): ?>
+                    <span class="label label-success"><a style="color: #fff" href="<?php echo base_url('mastercms/absensi/export_excel_karyawan/'.$lokasi.'/'.$bulan.'/'.$tahun.'/'.$karyawan) ?>"><i class="fa fa-print"></i> Export to Excel</a></span>
+                <?php endif ?>
             </div>
             <div class="widget-content nopadding">
                 <section id="no-more-tables">
@@ -96,7 +99,6 @@
                                     <tr>
                                         <th style="background: #dedeec; font-size: 12px" width="2%">No</th>
                                         <th style="background: #dedeec; font-size: 12px" width="15%">Hari, Tanggal</th>
-                                      <!--   <th style="background: #dedeec; font-size: 12px" width="15%">Tanggal</th> -->
                                         <th style="background: #dedeec; font-size: 12px">Nama Karyawan</th>
                                         <th style="background: #dedeec; font-size: 12px" width="15%">Jam Masuk Presensi</th>
                                         <th style="background: #dedeec; font-size: 12px" width="15%">Jam Keluar Presensi</th>
@@ -109,10 +111,7 @@
                                     <?php foreach ($absensi as $key =>$value): ?>
                                         <tr>
                                             <td data-title="No"><?php echo $key+1 ; ?></td>
-                                            <td data-title="hari">
-                                                <?php echo hari_indo($value['tanggal']); ?>
-                                                <?php echo date('l, d M Y', strtotime($value['tanggal'])); ?>
-                                            <!-- <td data-title="tanggal"><?php echo date('d M Y', strtotime($value['Tanggalgal'])); ?></td> -->
+                                            <td data-title="hari"><?php echo hari($value['tanggal']).', '.tanggal($value['tanggal']); ?></td>
                                             <td data-title="karyawan_nama"><strong><?php echo $value['karyawan_nama']; ?></strong></td>
                                             <td data-title="jam masuk"><?php echo $value['jam_masuk_absen']; ?></td>
                                             <td data-title="jam kelauar"><?php echo $value['jam_keluar_absen']; ?></td>

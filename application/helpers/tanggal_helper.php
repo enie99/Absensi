@@ -61,7 +61,7 @@ if ( ! function_exists('bulan'))
 
 if ( ! function_exists('nama_hari'))
 {
-    function hari_indo($tanggal)
+    function hari($tanggal)
     {
         $ubah = gmdate($tanggal, time()+60*60*8);
         $pecah = explode("-",$ubah);
