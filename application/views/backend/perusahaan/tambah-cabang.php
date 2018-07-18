@@ -84,7 +84,7 @@
                                             <label class="span2 span2" ><code>(*) wajib diisi.</code></label>
                                             <div class="span8">
                                                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan</button> &nbsp;
-                                                <a href="" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
+                                                <a href="<?php echo base_url('mastercms/perusahaan/cabang'); ?>" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
                                             </div>
                                         </div>
                                     </div>
