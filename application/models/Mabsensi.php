@@ -43,6 +43,7 @@ class Mabsensi extends CI_Model
 		$this->db->where('_lokasi.lokasi_id',$lokasi);
 		$this->db->where('month(tanggal)',$bulan);
 		$this->db->where('year(tanggal)',$tahun);
+		$this->db->order_by('tanggal', 'ASC');
 		$this->db->like('_karyawan.karyawan_nama',$nama);
 		$ambil = $this->db->get('_absensi');
 		return $ambil->result();

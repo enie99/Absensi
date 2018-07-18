@@ -58,7 +58,7 @@
                         type: 'pie'
                     },
                     title: {
-                        text: 'Absensi Karyawan <?= $p['lokasi_nama'];?>'
+                        text: 'Presensi <?= $p['lokasi_nama'];?>'
                     },
                     subtitle: {
                         text: 'Total Karyawan : <?= $p['jml_karyawan']; ?>'
