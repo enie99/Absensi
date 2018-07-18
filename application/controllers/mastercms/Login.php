@@ -26,12 +26,12 @@ class Login extends CI_Controller
 			$data['hasil'] = "";
 		} else {
 			$cek = $this->Mperusahaan->auth($this->input->post());
-
 			if ($cek=='berhasil') {
-				redirect(base_url('mastercms/home'), 'refresh');
+				$data['hasil'] = "berhasil";
 			}
 			else
 			{
+				$data['hasil'] = "gagal";
 				$this->session->set_flashdata('msg', '<div class="alert alert-block alert-danger fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="fa fa-times"></i></button><i class="fa fa-warning"></i>&nbsp;&nbsp;Upss. Email atau Password salah.</div>');
 			}
 		}

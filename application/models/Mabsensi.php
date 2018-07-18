@@ -2,10 +2,10 @@
 
 class Mabsensi extends CI_Model
 {
-
 	public function tampil()
-	
 	{
+		$perusahaan_id	= $_SESSION['user']['perusahaan_id'];
+		$this->db->where('_lokasi.perusahaan_id', $perusahaan_id);
 		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
 		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
 		$this->db->order_by('tanggal', 'DESC');
@@ -14,8 +14,10 @@ class Mabsensi extends CI_Model
 	}
 
 	public function get_cabang(){
-		$hasil=$this->db->query("SELECT * FROM _lokasi");
-		return $hasil;
+		$perusahaan_id	= $_SESSION['user']['perusahaan_id'];
+		$this->db->where('perusahaan_id',$perusahaan_id);
+		$data = $this->db->get('_lokasi');
+		return $data;
 	}
 
 	public function get_karyawan($id){

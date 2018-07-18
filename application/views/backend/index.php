@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- <link rel="shortcut icon" href="<?/*php echo base_url();*/?>/images/favicon.png" type="image/png">-->
     
-    <title>Absensi</title>
+    <title>SMOP - Sistem Manajemen Otret Presensi</title>
     <!--icheck-->
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/iCheck/skins/minimal/minimal.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/iCheck/skins/square/square.css');?>" />
@@ -24,6 +23,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/nestable/jquery.nestable.css');?>" /><!--nestable css-->
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/dropzone/css/dropzone.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/style.css');?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/mystyle.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/style-responsive.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/css/table-responsive.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/fuelux/css/tree-style.css');?>" />
@@ -68,10 +68,9 @@
 <body class="cz-shortcut-listen='true'">
      <!--Untuk logo fosquare-->
      <div id="header">
-        <h1 ><a href="#">White Label</a></h1>
+        <h1><a href="<?= base_url(); ?>">SMOP</a></h1>
     </div>
-
-<!--Style Button Right-->
+    <!--Style Button Right-->
     <div class="btn-group rightzero">
       <a class="top_message tip-left" title="" data-original-title="Manage Files"><i class="icon-file"></i></a>
       <a class="top_message tip-bottom" title="" data-original-title="Manage Users"><i class="icon-user"></i></a>
@@ -81,7 +80,7 @@
     <div id="user-nav" class="navbar navbar-inverse" style="border-color: #47475c;top:-2px;">
       <ul class="nav">
         <li class=""><a href="<?= base_url('mastercms/perusahaan'); ?>"><i class="icon icon-user"></i> <span class="text" style="color: #fff">Pengguna</span></a></li>
-        <li class=""><a title="" href="#view"><i class="icon icon-share-alt"></i> <span class="text" style="color: #fff">Logout</span></a></li>
+        <li class=""><a title="" href="#view"><i class="icon icon-share-alt"></i> <span class="text" style="color: #fff">Keluar</span></a></li>
     </ul>
     <!-- Modal -->
     </div>
@@ -89,7 +88,7 @@
     <div class="light-modal" id="view" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
       <div class="light-modal-content  animated zoomInUp">
         <div class="light-modal-header">
-          <h3 class="light-modal-heading"><i class="fa fa-warning"></i> Logout</h3>
+          <h3 class="light-modal-heading"><i class="fa fa-warning"></i> Keluar</h3>
       </div>
       <div class="light-modal-body">
           Yakin ingin Keluar?
@@ -101,13 +100,11 @@
     </div>
     </div>
     <!-- end modal -->
-
     <?php echo $sidebar; ?>
     <?php echo $content; ?>
-
     <!-- footer -->
     <div class="row-fluid">
-        <div id="footer" class="span12"> 2018 © Absensi. Brought to you by <a href="http://otret.com/">PT OTRET.COM</a> </div>
+        <div id="footer" class="span12">SMOP - Sistem Manajemen Otret Presensi &copy; 2018 - by <a href="http://otret.com/" target="_blank">PT OTRET.COM</a> </div>
     </div>
     <!--ios7-->
     <script src="<?php echo base_url('assets/backend/js/ios-switch/switchery.js');?>" ></script>

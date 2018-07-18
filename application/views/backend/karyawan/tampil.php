@@ -10,7 +10,6 @@
       </div>
   </div>
 <!-- page heading end-->
-
 <!-- body wrapper start -->
 <div class="container-fluid" style="min-height: 450px;">
     <div class="row-fluid">
@@ -39,6 +38,7 @@
     </div>
 </div>
 </div>
+
 <div class="col-md-9">
   <div class="panel">
     <div class="panel panel-default">
@@ -81,7 +81,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php endif ?>
+        <?php endif ?>
             <?php if (!empty($karyawan_id)): ?>
                 <?php foreach ($karyawan_id as $key => $value): ?>
                     <tr>
@@ -97,15 +97,27 @@
                       </td>
                   </tr>
               <?php endforeach ?>
+              <?php elseif(empty($lokasi_id)): ?>
+                <div class="alert alert-danger">
+                  Silahkan pilih <strong>Perusahaan Anda </strong>
+              </div><br/>
               <?php else: ?>
-                 <br/>
-                 <div class="alert alert-danger">
-                    Data Karyawan <strong>Kosong! </strong>
-                </div><br/>
+               <div class="alert alert-danger">
+                  Data Karyawan untuk perusahaan ini <strong>Tidak Ada! </strong>
+              </div><br/>
             <?php endif ?>
         </tbody>
     </table>
 </div>
+
+<div class="center" style="text-align: center">
+    <div class="pagination alternate" style="text-align: center;">
+        <ul>
+            <?php echo $mpaging; ?>
+        </ul>
+    </div>
+</div>
+
 </div>
 </div>
 </div>

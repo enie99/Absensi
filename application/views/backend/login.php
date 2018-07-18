@@ -56,6 +56,11 @@
             <!-- modal -->
         </form>
     </div>
+    <?php if ($hasil=='berhasil'): ?>
+        <script>
+            location='<?php echo base_url("mastercms/home"); ?>';
+        </script>
+    <?php endif ?>
 
     <!-- Placed js at the end of the document so the pages load faster -->
     <script src="<?php echo base_url('assets/backend/js/jquery-1.10.2.min.js');?>"></script>

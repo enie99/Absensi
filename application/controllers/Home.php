@@ -5,7 +5,7 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Mperusahaan');
-		$this->load->database();
+		// $this->load->database();
 	}
 	function index()
 	{
@@ -17,14 +17,12 @@ class Home extends CI_Controller
 			$input	= $this->input->post();
 			$input['perusahaan_user']	= $this->input->post('perusahaan_email');
 			$input['perusahaan_password'] = md5(md5($this->input->post('perusahaan_password')));
-
 			if ($this->Mperusahaan->register($input)) {
 				// send confirm mail
 				if($this->Mperusahaan->sendEmail($this->input->post('perusahaan_email'))){
                     $this->session->set_flashdata('msg', '<div class="alert alert-success">Pendaftaran berhasil.<br/>Silahkan konfirmasi melalui pesan yang kami kirim ke email Anda. </div>');
                      redirect(base_url());
                 }else{
-
                    $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Gagal!! Silahkan coba kembali.</div>');
                     redirect(base_url());
                 }

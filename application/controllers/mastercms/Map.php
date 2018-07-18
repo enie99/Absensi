@@ -8,17 +8,21 @@ class Map extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		// LOAD Helper Url untuk menggunakan base_url
 		$this->load->helper(array('form','url'));
 		// Load Config Map
 		$this->load->config('map');
 		// Set lokasi latitude dan longitude
 		$this->def_lat=$this->config->item('default_lat');
 		$this->def_lng=$this->config->item('default_lng');
-		
 		//Load library googlemap
 		//Sumber Library http://biostall.com/codeigniter-google-maps-v3-api-library
 		$this->load->library('googlemaps');
+		if (!$this->session->userdata('user'))
+		{
+			$log = base_url("mastercms");
+			$this->session->set_flashdata('msg', '<div class="alert alert-block alert-info fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="fa fa-times"></i></button><i class="fa fa-warning"></i>&nbsp;&nbsp;Anda harus login terlebih dahulu.</div>');
+			echo "<script>location='$log';</script>";
+		}
 	}
 	
 	function index()

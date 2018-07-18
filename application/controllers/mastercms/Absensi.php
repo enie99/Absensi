@@ -1,43 +1,36 @@
 <?php
-/**
- * 
- */
 class Absensi extends MY_Controller
 {
-    
     public function __construct()
     {
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('Mabsensi');
-        // $this->load->library('MyPHPMailer'); // load library
-
         if (!$this->session->userdata('user'))
         {
             $log = base_url("mastercms");
+            $this->session->set_flashdata('msg', '<div class="alert alert-block alert-info fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="fa fa-times"></i></button><i class="fa fa-warning"></i>&nbsp;&nbsp;Anda harus login terlebih dahulu.</div>');
             echo "<script>location='$log';</script>";
         }
     }
-
     public function index(){
-        $x['absensi']=$this->Mabsensi->tampil();
-        $x['data']=$this->Mabsensi->get_cabang();
-        $this->render_page('backend/report/absensi',$x);
-
-
+        $data['absensi']    = "";
+        $data['lokasi']     = "";
+        $data['data']       = $this->Mabsensi->get_cabang();
+        $this->render_page('backend/report/absensi',$data);
     }
 
     public function get_karyawan(){
-        $id=$this->input->post('id');
-        $data=$this->Mabsensi->get_karyawan($id);
+        $id     = $this->input->post('id');
+        $data   = $this->Mabsensi->get_karyawan($id);
         echo json_encode($data);
     }
 
     public function pencarian(){
-        $cabang=$this->input->get('cabang');
-        $bulan=$this->input->get('filterbulan');
-        $tahun=$this->input->get('tahun');
-        $karyawan=$this->input->get('karyawan');
+        $cabang     = $this->input->get('cabang');
+        $bulan      = $this->input->get('filterbulan');
+        $tahun      = $this->input->get('tahun');
+        $karyawan   = $this->input->get('karyawan');
 
         $data['lokasi'] = $cabang;
         $data['bulan'] = $bulan;
@@ -45,10 +38,14 @@ class Absensi extends MY_Controller
         $data['karyawan'] = $karyawan;
         $data['data']=$this->Mabsensi->get_cabang();
         $data['absensi']=$this->Mabsensi->pencarian_d($cabang,$bulan,$tahun,$karyawan);
-        $this->render_page('backend/report/filter_absensi',$data);
+
+        if ($this->input->post('resetFilterCustomer')) {
+            echo "hahahahahaha";
+        }
+
+        $this->render_page('backend/report/absensi',$data);
+        // $this->render_page('backend/report/filter_absensi',$data);
     }
-
-
     public function summary()
     {
         $id = $_SESSION['user']['perusahaan_id'];

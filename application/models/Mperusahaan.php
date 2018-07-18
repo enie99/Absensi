@@ -1,13 +1,6 @@
 <?php
 class Mperusahaan extends CI_Model
 {
-	function __construct(){
-        
-        parent::__construct();
-        $this->load->database();
-        $this->load->library('session');
-    }
-
 	function profil($id)
 	{
 		$this->db->where('perusahaan_id', $id);
@@ -42,9 +35,6 @@ class Mperusahaan extends CI_Model
 	}
 
 	function cari($keyword){
-		// $this->db->like('lokasi_nama', $keyword);
-		// $this->db->or_like('perusahaan_alamat',$keyword);
-
 		$data = $this->db->query("SELECT *,count(k.karyawan_id) AS jml_karyawan FROM _lokasi l
 			LEFT JOIN _karyawan k ON l.lokasi_id = k.lokasi_id
 			WHERE lokasi_nama LIKE '%$keyword%' OR perusahaan_alamat LIKE '%$keyword%'
@@ -56,7 +46,7 @@ class Mperusahaan extends CI_Model
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->select('l.lokasi_id, l.lokasi_nama,l.perusahaan_title,l.perusahaan_alamat,l.qr_code, count(k.karyawan_id) AS jml_karyawan');
-		$this->db->group_by('l.lokasi_id', 'DESC');
+		$this->db->group_by('l.lokasi_id');
 		$this->db->where('l.perusahaan_id', $id);
 		$this->db->join('_karyawan k', 'l.lokasi_id = k.lokasi_id', 'left');
 		$this->db->join('_perusahaan p', 'p.perusahaan_id = l.lokasi_id', 'left');
@@ -181,8 +171,6 @@ class Mperusahaan extends CI_Model
 		$this->db->where('kerja_hari', $hari);
 		$this->db->update('_jam_kerja', $jamkerja);
 	}
-
-
 	// Register
 	public function register($input)
 	{
@@ -203,7 +191,6 @@ class Mperusahaan extends CI_Model
 		if($hasil>0) {
 			$akun = $ambil->row_array();
 			$this->session->set_userdata('user', $akun);
-
 			return 'berhasil';
 		}
 		else
@@ -216,9 +203,7 @@ class Mperusahaan extends CI_Model
     public function sendEmail($receiver){
         $from = "hilo73ch@gmail.com";    //senders email address
         $subject = 'Verifikasi Email Pendaftaran - Absensi Karyawan';  //email subject
-
         $message = 'Terima kasih sudah bergabung dengan Absensi Karyawan.<br><br> Silahkan melakukan konfirmasi pendaftaran dengan menekan link dibawah ini. <br><br>
-
 	        <a href='.base_url().'home/confirmEmail/'.md5(md5($receiver)).'>KONFIRMASI EMAIL</a><br><br>
 
 	        Thanks';
