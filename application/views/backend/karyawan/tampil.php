@@ -113,7 +113,7 @@
 <div class="center" style="text-align: center">
     <div class="pagination alternate" style="text-align: center;">
         <ul>
-            <?php echo $mpaging; ?>
+            <!-- <?php echo $mpaging; ?> -->
         </ul>
     </div>
 </div>

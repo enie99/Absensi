@@ -18,42 +18,42 @@ class Karyawan extends MY_Controller
       $id = $_SESSION['user']['perusahaan_id'];
       $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
       // $dataKaryawan = $this->Mkaryawan->tampil($id);
-      // $data['karyawan'] = $this->Mkaryawan->tampil($id);
+      $data['karyawan'] = $this->Mkaryawan->tampil($id);
       $data['lokasi_id'] = "";
       $lokasi_id = "";
 
       if ($this->input->post()) {
         $lokasi_id  = $this->input->post('lokasi_id');
         $data['lokasi_id'] = $lokasi_id;
+        $data['karyawan_id'] = $this->Mkaryawan->tampil_id($id, $lokasi_id);
         // $data['karyawan_id'] = $this->Mkaryawan->tampil_id($id, $lokasi_id);
-        $karyawanId = $this->Mkaryawan->tampil_id($id, $lokasi_id);
-        $config['base_url'] = base_url("mastercms/karyawan/");
-        $config['total_rows'] = count($karyawanId);
-        $config['full_tag_open'] = '<li>';
-        $config['full_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="active"><a>';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        $config['first_link'] = "First";
-        $config['first_tag_open'] = "<li>";
-        $config['first_tag_close'] = "</li>";
-        $config['prev_link'] = "Prev";
-        $config['prev_tag_open'] = "<li>";
-        $config['prev_tag_close'] = "</li>";
-        // pull right
-        $config['next_link'] = "Next";
-        $config['next_tag_open'] = "<li>";
-        $config['next_tag_close'] = "</li>";
-        $config['last_link'] = "Last";
-        $config['last_tag_open'] = "<li>";
-        $config['last_tag_close'] = "</li>";
+        // $config['base_url'] = base_url("mastercms/karyawan/");
+        // $config['total_rows'] = count($karyawanId);
+        // $config['full_tag_open'] = '<li>';
+        // $config['full_tag_close'] = '</li>';
+        // $config['cur_tag_open'] = '<li class="active"><a>';
+        // $config['cur_tag_close'] = '</a></li>';
+        // $config['num_tag_open'] = '<li>';
+        // $config['num_tag_close'] = '</li>';
+        // $config['first_link'] = "First";
+        // $config['first_tag_open'] = "<li>";
+        // $config['first_tag_close'] = "</li>";
+        // $config['prev_link'] = "Prev";
+        // $config['prev_tag_open'] = "<li>";
+        // $config['prev_tag_close'] = "</li>";
+        // // pull right
+        // $config['next_link'] = "Next";
+        // $config['next_tag_open'] = "<li>";
+        // $config['next_tag_close'] = "</li>";
+        // $config['last_link'] = "Last";
+        // $config['last_tag_open'] = "<li>";
+        // $config['last_tag_close'] = "</li>";
 
-        $this->pagination->initialize($config);
-        $from = $this->uri->segment(3);
+        // $this->pagination->initialize($config);
+        // $from = $this->uri->segment(3);
 
-        $data['karyawan_id'] = $this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
-        $data['mpaging'] = $this->pagination->create_links(); 
+        // $data['karyawan_id'] = $this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
+        // $data['mpaging'] = $this->paginat  ion->create_links(); 
 
       }
       if ($this->input->post('cari')) {
