@@ -20,7 +20,6 @@ class Karyawan extends MY_Controller
       // $dataKaryawan = $this->Mkaryawan->tampil($id);
       $data['karyawan'] = $this->Mkaryawan->tampil($id);
       $data['lokasi_id'] = "";
-      $lokasi_id = "";
 
       if ($this->input->post()) {
         $lokasi_id  = $this->input->post('lokasi_id');
@@ -53,28 +52,37 @@ class Karyawan extends MY_Controller
         // $from = $this->uri->segment(3);
 
         // $data['karyawan_id'] = $this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
-        // $data['mpaging'] = $this->paginat  ion->create_links(); 
+        // $data['mpaging'] = $this->pagination->create_links(); 
+
+
+
+        // $this->load->library('pagination');
+
+    // pagination
+
+        // $config['base_url'] = base_url().'logincms/gallery/index/';
+        // $config['total_rows'] = count($karyawanId);
+        // $config['per_page'] = 3;
+        // $config['num_links'] = 2;
+
+
 
       }
-      if ($this->input->post('cari')) {
+      if ($this->input->post('filter') == "1")
+      {
         $keyword = $this->input->post('cari');
         $data['karyawan_id'] = $this->Mkaryawan->cari($keyword);
       }
+      if($this->input->post('reset') == "1")
+      {
+        $lokasi_id  = $this->input->post('lokasi_id');
+        $data['lokasi_id'] = $lokasi_id;
+        $data['karyawan_id'] = $this->Mkaryawan->tampil_id($id, $lokasi_id);
+      }
 
       $this->render_page('backend/karyawan/tampil', $data);
     }
-
-    function cari(){
-      $id = $_SESSION['user']['perusahaan_id'];
-      $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
-      $data['karyawan'] = $this->Mkaryawan->tampil($id);
-      $keyword = $this->input->post('cari');
-        echo "<pre>";
-        print_r($keyword);
-        echo "</pre>";
-      $data['karyawan'] = $this->Mkaryawan->cari($keyword);
-      $this->render_page('backend/karyawan/tampil', $data);
-    }
+    
     function add()
     {
         if ($this->input->post())
@@ -85,22 +93,24 @@ class Karyawan extends MY_Controller
        $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
        $this->render_page('backend/karyawan/tambah', $data);
     }
+
     function detail($karyawan_id)
     {
       $data['detail_data']= $this->Mkaryawan->detail($karyawan_id);
       $this->render_page('backend/karyawan/detail', $data);
     }
+
     function edit($karyawan_id)
     {
       $data['edit'] = $this->Mkaryawan->get_by_id($karyawan_id);
       $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
 
-      if ($this->input->post()){
+      if ($this->input->post())
+      {
          $input = $this->input->post();
          $this->Mkaryawan->edit($input, $karyawan_id);
-
-     }
-     $this->render_page('backend/karyawan/edit',$data);
+      }
+      $this->render_page('backend/karyawan/edit',$data);
     }
     function hapus($karyawan_id)
     {
@@ -109,5 +119,6 @@ class Karyawan extends MY_Controller
       $this->Mkaryawan->hapus($karyawan_id);
       redirect("mastercms/karyawan", "refresh");
     }
+
 }
 ?>
