@@ -1,3 +1,4 @@
+    }
 <?php
 class Absensi extends MY_Controller
 {
