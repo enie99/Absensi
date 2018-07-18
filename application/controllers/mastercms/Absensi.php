@@ -146,7 +146,7 @@ class Absensi extends MY_Controller
         $this->render_page('backend/report/summary', $data);
     }
 
-   public function export_excel($lokasi_id, $bulan, $tahun){
+    public function export_excel($lokasi_id, $bulan, $tahun){
             $data = array( 'title' => 'Laporan Excel | Absensi',
                 'karyawan' => $this->Mabsensi->semua_karyawan($lokasi_id),
                 'kehadiran' => $this->Mabsensi->kehadiran($bulan, $tahun),
@@ -156,8 +156,7 @@ class Absensi extends MY_Controller
                 'bulan' => $bulan,
                 'tahun' => $tahun);
            $this->load->view('backend/report/excel_semua_karyawan',$data);
-       }
-
+    }
     public function detail($karyawan_id){
         $data['detail_data'] = $this->Mabsensi->detail($karyawan_id);
         $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id);
@@ -193,13 +192,13 @@ class Absensi extends MY_Controller
     //   echo " < / pre > ";
     // }
 
-    public function export_excel_karyawan($lokasi,$bulan,$tahun,$karyawan){
+    function export_excel_karyawan($lokasi,$bulan,$tahun,$karyawan){
         $nama = str_replace("%20", " ", $karyawan); 
-        $data = array( 'title' => 'Report Absensi Karyawan',
-        'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi),
-        'bulan' => $bulan,
-        'tahun' => $tahun,
-        'user' => $this->Mabsensi->absensi_perorangan($lokasi,$bulan,$tahun,$nama));
+        $data = array( 'title' => $karyawan.' - Laporan Presensi Karyawan',
+            'lokasi_by_id' => $this->Mabsensi->lokasi_by_id($lokasi),
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'user' => $this->Mabsensi->absensi_perorangan($lokasi,$bulan,$tahun,$nama));
        $this->load->view('backend/report/excel_karyawan',$data);
     }
 
