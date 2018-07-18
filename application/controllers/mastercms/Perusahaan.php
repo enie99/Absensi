@@ -177,12 +177,15 @@ class Perusahaan extends MY_Controller
 		$this->load->library('ciqrcode');
 		$data['title'] = 'Edit Perusahaan / Cabang';
 		$data['data'] = $this->Mperusahaan->get_by_id($id);
+		// Get lokasi latitude dan longitude
+		$data['latitude_longitude'] = $this->Mperusahaan->get_lat_log($id);
+		$lokasi_lat = $data['latitude_longitude']['latitude'];
+		$lokasi_lng = $data['latitude_longitude']['longitude'];
 
 		if ($this->input->post()) {
 			$input = $this->input->post();
 			$input['lokasi_nama'] = $this->input->post('lokasi_nama');
 			$input['perusahaan_alamat'] = $this->input->post('perusahaan_alamat');
-
 			$time	= date("dmyhis");
 			$url 	= strtolower($input['lokasi_nama']);
 			$url 	= str_replace(" ", "-", $url);
@@ -191,7 +194,6 @@ class Perusahaan extends MY_Controller
 			$url 	= str_replace("(", "-", $url);
 			$url 	= str_replace(")", "-", $url);
 			$alias 	= $url;
-
 			$config['cacheable']    = true; //boolean, the default is true
 	        $config['cachedir']     = './assets/'; //string, the default is application/cache/
 	        $config['errorlog']     = './assets/'; //string, the default is application/logs/
@@ -201,18 +203,39 @@ class Perusahaan extends MY_Controller
 	        $config['black']        = array(224,255,255); // array, default is array(255,255,255)
 	        $config['white']        = array(70,130,180); // array, default is array(0,0,0)
 	        $this->ciqrcode->initialize($config);
-
 	        $image_name	=	$alias.'-'.$time.'.png'; //buat name dari qr code sesuai dengan nama
-
 	        $params['data'] = $input['lokasi_nama']."\n"."\n".$input['perusahaan_alamat']; //data yang akan di jadikan QR CODE
 	        $params['level'] = 'H'; //H=High
 	        $params['size'] = 10;
 	        $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
 	        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
-
 	        $this->Mperusahaan->edit($id, $input, $image_name);
 	        redirect('mastercms/perusahaan/cabang', 'refresh');
 	    }
+	    $center=$lokasi_lat.",".$lokasi_lng;
+	    $cfg=array(
+	    	'class'			=>'map-canvas',
+	    	'map_div_id'	=>'map-canvas',
+	    	'center'		=>$center,
+	    	'zoom'			=>17,
+		'places'		=>TRUE, //Aktifkan pencarian alamat
+		'placesAutocompleteInputID'	=>'pencarian', //set sumber pencarian input
+		'placesAutocompleteBoundsMap'	=>TRUE,
+		'placesAutocompleteOnChange'	=>'showmap();' //Aksi ketika pencarian dipilih
+	);
+	    $this->googlemaps->initialize($cfg);
+	    $marker=array(
+	    	'position'		=>$center,
+	    	'draggable'		=>TRUE,
+	    	'title'			=>'Coba diDrag',
+	    	'ondragend'		=>"document.getElementById('lat').value = event.latLng.lat();
+	    	document.getElementById('lng').value = event.latLng.lng();
+	    	showmap();",
+	    );		
+	    $this->googlemaps->add_marker($marker);
+	    $data['map']=$this->googlemaps->create_map();
+	    $data['lat']=$lokasi_lat;
+	    $data['lng']=$lokasi_lng;
 	    $this->render_page('backend/perusahaan/edit', $data);
 	}
 
