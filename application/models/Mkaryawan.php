@@ -21,7 +21,7 @@ class Mkaryawan extends CI_Model
 		return $ambil->result_array();
 	}
 
-	function show_karyawan_id_pagination($limit, $page)
+	function show_karyawan_id_pagination_ori($limit, $page)
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->order_by('_karyawan.karyawan_id','DESC');
@@ -30,6 +30,20 @@ class Mkaryawan extends CI_Model
 		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
 		$ambil = $this->db->get('_karyawan', $batas, $from);
 		return $ambil->result_array();
+	}
+
+
+
+
+	function show_karyawan_id_pagination($number,$offset)
+	{
+		$this->db->limit($number,$offset);
+		$id = $_SESSION['user']['perusahaan_id'];
+		$this->db->where('_perusahaan.perusahaan_id', $id);
+		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
+		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
+		$this->db->order_by('_karyawan.karyawan_id','DESC');
+		return $query = $this->db->get('_karyawan')->result();	
 	}
 
 	function cari($keyword){

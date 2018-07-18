@@ -16,6 +16,7 @@ class Karyawan extends MY_Controller
 	function index()
 	{ 
       $id = $_SESSION['user']['perusahaan_id'];
+      $data['session']=$id;
       $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
       // $dataKaryawan = $this->Mkaryawan->tampil($id);
       $data['karyawan'] = $this->Mkaryawan->tampil($id);
@@ -52,18 +53,40 @@ class Karyawan extends MY_Controller
         // $from = $this->uri->segment(3);
 
         // $data['karyawan_id'] = $this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
-        // $data['mpaging'] = $this->pagination->create_links(); 
+        // $data['mpaging'] = $this->paginat  ion->create_links(); 
+
+//edited
+
+// library
+          $this->load->library('pagination');
+
+// buat paging
+          $config['base_url'] = base_url("mastercms/karyawan/");
+          $config['total_rows'] =  $this->db->query('SELECT * FROM _karyawan k, _lokasi l where k.lokasi_id=l.lokasi_id and k.lokasi_id="'.$this->input->post('lokasi_id').'"')->num_rows();;
+          $config['per_page'] = 3;
+          $config['num_links'] = 2;
+// buat css
 
 
 
-        // $this->load->library('pagination');
+//buat nyari
+            $config['first_link']='< First ';
+          $config['last_link']='Last > ';
+          $config['next_link']='> ';
+          $config['prev_link']='< ';
 
-    // pagination
+          $from = $this->uri->segment(4);
+          $this->pagination->initialize($config);   
+          $data['karyawan'] =$this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
+          $data['mpaging']= $this->pagination->create_links();
+          // $data['total_rows']=$total_rows;
 
-        // $config['base_url'] = base_url().'logincms/gallery/index/';
-        // $config['total_rows'] = count($karyawanId);
-        // $config['per_page'] = 3;
-        // $config['num_links'] = 2;
+// buat oret2
+
+        $data['session']='aaa';
+        $data['coba']=$this->uri->segment(5);
+        $data['num_rows']=$this->db->query('SELECT * FROM _karyawan k, _lokasi l where k.lokasi_id=l.lokasi_id and k.lokasi_id="'.$this->input->post('lokasi_id').'"')->num_rows();
+
 
 
 
