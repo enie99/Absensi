@@ -117,9 +117,9 @@
                                 ?>
                               </select>
 
-                              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
+                              <button type="submit" class="btn btn-primary" name="cari" value="1"><i class="fa fa-search"></i> Cari Data</button>
                               <a href="<?php echo base_url('mastercms/absensi/summary/'); ?>">
-                                <button name="reset" type="button" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
+                                <button name="reset" type="submit" class="btn btn-warning" value="1"><i class="fa fa-rotate-left"></i> Reset Filter</button>
                               </a>
                             </p>
                           </div>

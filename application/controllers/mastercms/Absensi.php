@@ -72,29 +72,26 @@ class Absensi extends MY_Controller
         { 
             $input = $this->input->get();
             $lokasi_id = $input['lokasi_id'];
-            $bulan = $input['bulan'];
-            $tahun = $input['tahun'];
+            if (!empty($this->input->get('cari'))) 
+            {
+                $bulan = $input['bulan'];
+                $tahun = $input['tahun'];
+            }
+            elseif (!empty($this->input->get('reset'))) 
+            {
+                $bulan = date('m');
+                $tahun = date('Y');
+            }
+            else
+            {
+                echo "Pencarian tidak diketahui";
+            }
             
             $data['bulan'] = $bulan;
             $data['tahun'] = $tahun;
             $data['lokasi_id'] = $lokasi_id;
             $data['lokasi'] = $this->Mabsensi->lokasi_by_id($lokasi_id);
             $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            $data['jml_hari_kerja'] = $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun);
-            $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
-            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
-        }
-        elseif ($this->input->get('reset')) {
-            $input = $this->input->post();
-            $lokasi_id = $input['lokasi_id'];
-            $bulan = date('m');
-            $tahun = date('Y');
-
-            $data['bulan'] = $bulan;
-            $data['tahun'] = $tahun;
-            $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
-            $data['lokasi_id'] = $lokasi_id;
-            $data['lokasi'] = $this->Mabsensi->lokasi_by_id($lokasi_id);
             $data['jml_hari_kerja'] = $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun);
             $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
