@@ -106,8 +106,20 @@ class Absensi extends MY_Controller
         { 
             $input = $this->input->get();
             $lokasi_id = $input['lokasi_id'];
-            $bulan = $input['bulan'];
-            $tahun = $input['tahun'];
+            if (!empty($this->input->get('cari'))) 
+            {
+                $bulan = $input['bulan'];
+                $tahun = $input['tahun'];
+            }
+            elseif (!empty($this->input->get('reset'))) 
+            {
+                $bulan = date('m');
+                $tahun = date('Y');
+            }
+            else
+            {
+                echo "Pencarian tidak diketahui";
+            }
             
             $data['bulan'] = $bulan;
             $data['tahun'] = $tahun;
