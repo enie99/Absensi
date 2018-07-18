@@ -158,40 +158,12 @@ class Absensi extends MY_Controller
            $this->load->view('backend/report/excel_semua_karyawan',$data);
        }
 
-    public function detail($karyawan_id){
+    public function detail($karyawan_id, $bulan){
         $data['detail_data'] = $this->Mabsensi->detail($karyawan_id);
-        $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id);
+        $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id, $bulan);
+        $data['bulan'] = $bulan;
         $this->render_page('backend/report/detail', $data);
     }
-
-    // public function send_email(){
-    //     $this->load->view('backend/send_email_karyawan');
-    // }
-
-    // function sendEmail()
-    // {
-    //     $this->load->library('email');
-    //     $this->email->from('hilo73ch@gmail.com'); //change it
-    //     $this->email->to('enieyuliani.99@gmail.com'); //change it
-    //     // $this->email->subject($subject);
-    //     // $this->email->message($body);
-    //     $this->email->subject("TES EMAIL");
-    //     $this->email->message("Tes send email");
-
-    //     if ($this->email->send())
-    //     {
-    //         $data['success'] = 'Yes'; 
-    //     } 
-    //     else 
-    //     {
-    //         $data['success'] = 'No'; 
-    //         $data['error'] = $this->email->print_debugger(array('headers'));
-    //     }
-
-    //   echo " < pre > ";
-    //   print_r($data);
-    //   echo " < / pre > ";
-    // }
 
     public function export_excel_karyawan($lokasi,$bulan,$tahun,$karyawan){
         $nama = str_replace("%20", " ", $karyawan); 

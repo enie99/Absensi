@@ -89,7 +89,7 @@ class Mabsensi extends CI_Model
 	// 	return $ambil->result_array();
 	// }
 	
-	public function detail_absensi($id){
+	public function detail_absensi($id, $bulan){
 		$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
 		$this->db->join('_absensi', '_karyawan.karyawan_id = _absensi.karyawan_id');
 		$this->db->where('_karyawan.karyawan_id', $id);
@@ -103,6 +103,7 @@ class Mabsensi extends CI_Model
 	public function semua_cabang($id){
 		$this->db->where('_perusahaan.perusahaan_id', $id);
 		$this->db->join('_perusahaan', '_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
+		$this->db->order_by('lokasi_id', 'DESC');
 		$ambil = $this->db->get('_lokasi');
 		return $ambil->result_array();
 	}
