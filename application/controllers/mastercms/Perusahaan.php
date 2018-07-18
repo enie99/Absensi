@@ -23,6 +23,7 @@ class Perusahaan extends MY_Controller
 		if (!$this->session->userdata('user'))
 		{
 			$log = base_url("mastercms");
+			$this->session->set_flashdata('msg', '<div class="alert alert-block alert-info fade in"><button type="button" class="close close-sm" data-dismiss="alert"><i class="fa fa-times"></i></button><i class="fa fa-warning"></i>&nbsp;&nbsp;Anda harus login terlebih dahulu.</div>');
 			echo "<script>location='$log';</script>";
 		}
 	}
@@ -50,7 +51,6 @@ class Perusahaan extends MY_Controller
 		$config['cur_tag_close'] = '</a></li>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
-
 		$config['first_link'] = "First";
 		$config['first_tag_open'] = "<li>";
 		$config['first_tag_close'] = "</li>";
@@ -64,10 +64,13 @@ class Perusahaan extends MY_Controller
 		$config['last_link'] = "Last";
 		$config['last_tag_open'] = "<li>";
 		$config['last_tag_close'] = "</li>";
+
 		$this->pagination->initialize($config);
 		$from = $this->uri->segment(4);
+
 		$data['perusahaan'] = $this->Mperusahaan->get_perusahaan_pagination($config['per_page'], $from);
 		$data['mpaging'] = $this->pagination->create_links();
+		
 		if ($this->input->post('cari')) {
 			$keyword = $this->input->post('cari', TRUE);
 			$data['perusahaan'] = $this->Mperusahaan->cari($keyword);

@@ -22,14 +22,14 @@
                         </li>
                     </ul>
                 </div>
-               <div class="span4">
+               <!-- <div class="span4">
                     <ul class="quick-actions">
                         <li style="width: 100%;margin-left: 5px;background-color: #3498DB;color: #fff;">
                             <h6 style="text-align: left;margin-top: 10px;margin-left: 15px">? </h6>
                             <h4 style="text-align: left;margin-left: 15px;">000</h4>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
 

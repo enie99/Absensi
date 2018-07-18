@@ -21,7 +21,7 @@ class Mkaryawan extends CI_Model
 		return $ambil->result_array();
 	}
 
-	function tampil_blog_pagination($batas, $from)
+	function show_karyawan_id_pagination($limit, $page)
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->order_by('_karyawan.karyawan_id','DESC');

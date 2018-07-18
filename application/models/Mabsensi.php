@@ -2,10 +2,10 @@
 
 class Mabsensi extends CI_Model
 {
-
 	public function tampil()
-	
 	{
+		$perusahaan_id	= $_SESSION['user']['perusahaan_id'];
+		$this->db->where('_lokasi.perusahaan_id', $perusahaan_id);
 		$this->db->join('_karyawan', '_karyawan.karyawan_id = _absensi.karyawan_id');
 		$this->db->join('_lokasi', '_lokasi.lokasi_id = _karyawan.lokasi_id');
 		$this->db->order_by('tanggal', 'DESC');
@@ -14,8 +14,10 @@ class Mabsensi extends CI_Model
 	}
 
 	public function get_cabang(){
-		$hasil=$this->db->query("SELECT * FROM _lokasi");
-		return $hasil;
+		$perusahaan_id	= $_SESSION['user']['perusahaan_id'];
+		$this->db->where('perusahaan_id',$perusahaan_id);
+		$data = $this->db->get('_lokasi');
+		return $data;
 	}
 
 	public function get_karyawan($id){
@@ -29,6 +31,7 @@ class Mabsensi extends CI_Model
 		$this->db->where('_lokasi.lokasi_id',$cabang);
 		$this->db->where('month(tanggal)',$bulan);
 		$this->db->where('year(tanggal)',$tahun);
+		$this->db->order_by('tanggal', 'ASC');
 		$this->db->where('_karyawan.karyawan_nama',$karyawan);
 		$ambil = $this->db->get('_absensi');
 		return $ambil->result_array();
@@ -86,12 +89,15 @@ class Mabsensi extends CI_Model
 	// 	return $ambil->result_array();
 	// }
 	
-	public function detail_absensi($id, $bulan){
+	public function detail_absensi($id){
 		$this->db->join('_lokasi', '_karyawan.lokasi_id = _lokasi.lokasi_id');
 		$this->db->join('_absensi', '_karyawan.karyawan_id = _absensi.karyawan_id');
 		$this->db->where('_karyawan.karyawan_id', $id);
+<<<<<<< HEAD
 		$this->db->where('month(tanggal)', $bulan);
 		$this->db->order_by('id_absensi', 'DESC');
+=======
+>>>>>>> 5796bfaa6d73f9e74b95495861b6fb1df39a5941
 		$ambil = $this->db->get('_karyawan');
 		return $ambil->result_array();
 	}

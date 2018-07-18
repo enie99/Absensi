@@ -27,6 +27,19 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 #header h1 {
+	font-size: 24px;
+    height: 40px;
+    color: #fff;
+    margin: 10px;
+    padding: 10px;
+}
+#header small {
+	font-size: 16px;
+    height: 40px;
+    color: #fff;
+}
+
+/*#header h1 {
     background: url("../img/logo.png") no-repeat scroll 0 0 transparent;
     height: 40px;
     left: 15px;
@@ -36,9 +49,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     top:13px;
     width: 166px;
     color: #fff;
-}
+}*/
 
 #header h1 a {
+	color: #fff;
     display: block;
 }
 .fl{ float:left}
