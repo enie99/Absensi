@@ -32,14 +32,14 @@
                     <!--page header end-->
                     <!--Add content start-->
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal " role="form" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal " role="form" action="" method="post" enctype="multipart/form-data">
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="widget-content">
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> Nama Lokasi / Perusahaan</label>
                                             <div class="controls">
-                                                <input class="span12" type="text" name='lokasi_nama' minlength="5" >
+                                                <input class="span12" type="text" name='lokasi_nama' minlength="5" required="required">
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -47,20 +47,20 @@
                                             <div class="controls icheck">
                                                 <div class="square-blue">
                                                     <div class="radio">
-                                                        <input type="radio" name="perusahaan_title" value="pusat">
+                                                        <input type="radio" name="perusahaan_title" value="pusat" required="required">
                                                         <label class="control-label" style="text-align:left; padding:2px 12px 0 0;">Pusat </label>
                                                     </div>
                                                     <div class="radio ">
-                                                        <input type="radio" name="perusahaan_title" value="cabang">
+                                                        <input type="radio" name="perusahaan_title" value="cabang" required="required">
                                                         <label>Cabang </label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="lokasi">Lokasi</label>
+                                            <label class="control-label"> <span class="asterik">*</span> Lokasi</label>
                                             <div class="controls">
-                                                <input class="span12" id="pencarian" name="perusahaan_alamat" type="text" placeholder="Cari Alamat atau Tempat" >
+                                                <input class="span12" name="perusahaan_alamat" id="pencarian"  type="text" placeholder="Cari Alamat atau Tempat" required="required">
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -71,20 +71,20 @@
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> latitude</label>
                                             <div class="controls">
-                                                <input class="span3" id="lat" name="latitude"  type="text" placeholder="Latitude" readonly="" value="<?=$lat;?>"/ >
+                                                <input class="span3" name="latitude" id="lat"  type="text" placeholder="Latitude" readonly="" required="required" value="<?=$lat;?>"/ >
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> longitude</label>
                                             <div class="controls">
-                                                <input class="span3" id="lng" name="longitude" type="text" placeholder="Longitudelng" readonly="" value="<?=$lng;?>"/>
+                                                <input class="span3" name="longitude" id="lng" type="text" placeholder="Longitudelng" readonly="" required="required" value="<?=$lng;?>"/>
                                             </div>
                                         </div>
                                         <div class="control-group form-action">
                                             <label class="span2 span2" ><code>(*) wajib diisi.</code></label>
                                             <div class="span8">
                                                 <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan</button> &nbsp;
-                                                <a href="<?php echo base_url('mastercms/perusahaan/cabang'); ?>" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
+                                                <a href="" class="btn btn-danger"><i class="fa fa-undo"></i> Batal</a>
                                             </div>
                                         </div>
                                     </div>
@@ -100,8 +100,8 @@
         <!--Span12 End-->
     </div>
     <!-- Container fluid END-->
+</div>
 
-</div><!-- page Content End-->
 
 <script>
 update_address(<?=$lat;?>,<?=$lng;?>); //Set terlebih dahulu alamat lokasi pusat

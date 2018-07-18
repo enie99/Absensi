@@ -19,13 +19,14 @@
             <div class="panel-body">
               <h5 align="center">Daftar Perusahaan</h5>
 
+
               <table class="table">
                 <?php foreach ($perusahaan as $key => $value) : ?>
                   <tr>
                     <form class="form-horizontal " role="form" method="post" enctype="multipart/form-data">
                       <td width="10%"><?php echo $key+1; ?></td>
                       <td>
-                        <input type="hidden" name="lokasi_id" value="<?php echo $value['lokasi_id']; ?>">      
+                        <input type="hidden" id="lokasi_id" name="lokasi_id" value="<?php echo $value['lokasi_id']; ?>">      
                         <div class="btn-group">
                           <button type="submit" class="btn btn-info" ><?php echo $value['lokasi_nama']; ?></button>
                         </div>
@@ -34,6 +35,7 @@
                   </tr>
                 <?php endforeach ?>
               </table>
+
 
             </div>
           </div>
@@ -114,6 +116,7 @@
                 <div class="center" style="text-align: center">
                   <div class="pagination alternate" style="text-align: center;">
                     <ul>
+
                       <!-- <?php echo $mpaging; ?> -->
                     </ul>
                   </div>

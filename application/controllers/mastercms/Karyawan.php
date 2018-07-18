@@ -52,7 +52,20 @@ class Karyawan extends MY_Controller
         // $from = $this->uri->segment(3);
 
         // $data['karyawan_id'] = $this->Mkaryawan->show_karyawan_id_pagination($config['per_page'], $from);
-        // $data['mpaging'] = $this->paginat  ion->create_links(); 
+        // $data['mpaging'] = $this->pagination->create_links(); 
+
+
+
+        // $this->load->library('pagination');
+
+    // pagination
+
+        // $config['base_url'] = base_url().'logincms/gallery/index/';
+        // $config['total_rows'] = count($karyawanId);
+        // $config['per_page'] = 3;
+        // $config['num_links'] = 2;
+
+
 
       }
       if ($this->input->post('filter') == "1")

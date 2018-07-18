@@ -98,6 +98,14 @@ class Mperusahaan extends CI_Model
 		$data = $this->db->get('_lokasi');
 		return $data->row_array();
 	}
+
+	function get_lat_log($id)
+	{
+		$this->db->where('lokasi_id',$id);
+		$this->db->select('latitude, longitude');
+		$data = $this->db->get('_lokasi');
+		return $data->row_array();
+	}
 	
 	function edit($id, $input, $image_name)
 	{
