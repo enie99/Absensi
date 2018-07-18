@@ -110,7 +110,7 @@ class Perusahaan extends MY_Controller
 			$input['perusahaan_id'] = $_SESSION['user']['perusahaan_id'];
 			$input['lokasi_nama'] = $this->input->post('lokasi_nama');
 			$input['perusahaan_alamat'] = $this->input->post('perusahaan_alamat');
-			
+
 			$time	= date("dmyhis");
 			$url 	= strtolower($input['lokasi_nama']);
 			$url 	= str_replace(" ", "-", $url);
@@ -137,7 +137,6 @@ class Perusahaan extends MY_Controller
 	        $params['size'] = 10;
 	        $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
 	        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
-
 
 	        $this->Mperusahaan->add_lokasi($input,$image_name);
 	        redirect('mastercms/perusahaan/cabang', 'refresh');
