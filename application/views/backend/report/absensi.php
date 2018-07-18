@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
-                <form name="filterFrm" class="form" method="get">
+                <form name="filterFrm" class="form" method="get" action="<?= base_url('mastercms/absensi/pencarian'); ?>">
                  <div class="span3">
                     <div class="controls">
                        <select name="cabang" id="cabang" class="form-control" required>
@@ -110,6 +110,7 @@
                                         <tr>
                                             <td data-title="No"><?php echo $key+1 ; ?></td>
                                             <td data-title="hari">
+                                                <?php echo hari_indo($value['tanggal']); ?>
                                                 <?php echo date('l, d M Y', strtotime($value['tanggal'])); ?>
                                             <!-- <td data-title="tanggal"><?php echo date('d M Y', strtotime($value['Tanggalgal'])); ?></td> -->
                                             <td data-title="karyawan_nama"><strong><?php echo $value['karyawan_nama']; ?></strong></td>
