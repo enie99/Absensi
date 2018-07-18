@@ -14,10 +14,12 @@
     </div>
     <!--Breadcrumb End-->
 
+
     <!--Container Fluid start-->
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
+    <?php echo $this->session->userdata('msg');  ?>
                 <div class="widget-box">
                     <!--page header start-->
                     <div class="widget-title" style="margin-bottom: 15px">
@@ -32,19 +34,13 @@
 
                     <!--Add content start-->
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal " role="form" action="<?php echo base_url('mastercms/karyawan/add'); ?>" method="post" enctype="multipart/form-data" name="tambah_karyawan">
+                        <form class="form-horizontal " role="form" action="" method="post" enctype="multipart/form-data" name="tambah_karyawan">
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="widget-content">
                                         <?php if (validation_errors()): ?>
 
                                         <?php endif ?>
-                                        <!-- <div class="alert alert-block alert-danger fade in">
-                                            <button type="button" class="close close-sm" data-dismiss="alert">
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                            <i class="fa fa-warning"></i> <strong>Terjadi kesalahan :</strong>
-                                        </div> -->
 
                                         <div class="control-group">
                                             <label class="control-label"><span class="asterik">*</span> Nama Karyawan </label>

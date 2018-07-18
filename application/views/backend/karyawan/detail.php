@@ -54,7 +54,7 @@
                                             <tr>
                                                 <td>Tanggal Lahir</td>
                                                 <td>:</td>
-                                                <td><?php  ?></td>
+                                                <td><?php echo date("d-F-Y", strtotime($detail_data['karyawan_ttl']));  ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Email</td>

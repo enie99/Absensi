@@ -118,7 +118,9 @@
                               </select>
 
                               <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
-                              <button name="resetFilterCustomer" type="submit" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
+                              <a href="<?php echo base_url('mastercms/absensi/summary/'); ?>">
+                                <button name="reset" type="button" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</button>
+                              </a>
                             </p>
                           </div>
                           <span class="label label-success" style="margin-bottom: 8px;"><a style="color: #fff;" href="<?php echo base_url('mastercms/absensi/export_excel/'.$lokasi_id.'/'.$bulan.'/'.$tahun); ?>"><i class="fa fa-print"></i>  Export to Excel</a></span>
@@ -146,7 +148,7 @@
                           <?php foreach ($karyawan as $key => $kary) : ?>
                               <tr>
                                 <td><?php echo $key+1; ?></td>
-                                <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
+                                <td><a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id'].'/'.$bulan; ?>"><?php echo $kary['karyawan_nama']; ?></a></td>
                                 <td><?php echo $jml_hari_kerja; ?></td>
                                 <td>
                                   <?php
@@ -211,7 +213,7 @@
                                   ?>
                                 </td>
                                 <td align="center">
-                                  <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id']; ?>">
+                                  <a href="<?php echo base_url('mastercms/absensi/detail/').$kary['karyawan_id'].'/'.$bulan; ?>">
                                     <center><span class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</span></center>
                                   </a>
                                 </td>

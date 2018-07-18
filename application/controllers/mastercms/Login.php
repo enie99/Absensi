@@ -49,5 +49,32 @@ class Login extends CI_Controller
 		$this->session->sess_destroy();
 		echo "<script>alert('Anda berhasil logout!');location='".base_url("mastercms")."'</script>";
 	}
+
+	function reset_password()
+	{
+		$receiver = $this->input->post('email');
+		if ($this->input->post()) {
+			$this->Mperusahaan->sendLinkReset($receiver);
+			echo "<script>alert('Link Reset Password Telah dikirim ke Email Anda');location='".base_url("mastercms")."'</script>";
+			redirect('mastercms/login');
+		}
+	}
+
+	function set_password()
+	{
+		$email = $_GET['receiver'];
+		if ($this->input->post())
+		{
+			$pass = $this->input->post('password');
+			$input['perusahaan_password'] = md5(md5($pass));
+			$update = $this->Mperusahaan->change_password($email, $input);
+
+			if ($update == "berhasil") {
+				$this->session->set_flashdata('msg', '<div class="alert alert-info">Password Berhasil Diubah</div>');
+				redirect('mastercms/login');
+			}
+		}
+		$this->load->view('backend/reset_password'); //Form reset password perusahaan
+	}
 }
 ?>

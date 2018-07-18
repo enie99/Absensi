@@ -81,6 +81,21 @@ class Absensi extends MY_Controller
             $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
             $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
         }
+        elseif ($this->input->get('reset')) {
+            $input = $this->input->post();
+            $lokasi_id = $input['lokasi_id'];
+            $bulan = date('m');
+            $tahun = date('Y');
+
+            $data['bulan'] = $bulan;
+            $data['tahun'] = $tahun;
+            $data['karyawan'] = $this->Mabsensi->semua_karyawan($lokasi_id);
+            $data['lokasi_id'] = $lokasi_id;
+            $data['lokasi'] = $this->Mabsensi->lokasi_by_id($lokasi_id);
+            $data['jml_hari_kerja'] = $this->Mabsensi->jml_hari_kerja($lokasi_id, $bulan, $tahun);
+            $data['presensi'] = $this->Mabsensi->presensi_per_karyawan($bulan, $tahun);
+            $data['kehadiran'] = $this->Mabsensi->kehadiran($bulan, $tahun);
+        }
         else //Perintah yg dijalankan pada saat user belum mengklik lokasi perusahaan
         { 
             $lokasi_id = "";
@@ -109,9 +124,10 @@ class Absensi extends MY_Controller
            $this->load->view('backend/report/excel_semua_karyawan',$data);
        }
 
-    public function detail($karyawan_id){
+    public function detail($karyawan_id, $bulan){
         $data['detail_data'] = $this->Mabsensi->detail($karyawan_id);
-        $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id);
+        $data['detail_data_absensi'] = $this->Mabsensi->detail_absensi($karyawan_id, $bulan);
+        $data['bulan'] = $bulan;
         $this->render_page('backend/report/detail', $data);
     }
 
