@@ -56,25 +56,21 @@ class Karyawan extends MY_Controller
         // $data['mpaging'] = $this->paginat  ion->create_links(); 
 
       }
-      if ($this->input->post('cari')) {
+      if ($this->input->post('filter') == "1")
+      {
         $keyword = $this->input->post('cari');
         $data['karyawan_id'] = $this->Mkaryawan->cari($keyword);
+      }
+      if($this->input->post('reset') == "1")
+      {
+        $lokasi_id  = $this->input->post('lokasi_id');
+        $data['lokasi_id'] = $lokasi_id;
+        $data['karyawan_id'] = $this->Mkaryawan->tampil_id($id, $lokasi_id);
       }
 
       $this->render_page('backend/karyawan/tampil', $data);
     }
-
-    function cari(){
-      $id = $_SESSION['user']['perusahaan_id'];
-      $data['perusahaan'] = $this->Mperusahaan->get_cabang($id);
-      $data['karyawan'] = $this->Mkaryawan->tampil($id);
-      $keyword = $this->input->post('cari');
-        echo "<pre>";
-        print_r($keyword);
-        echo "</pre>";
-      $data['karyawan'] = $this->Mkaryawan->cari($keyword);
-      $this->render_page('backend/karyawan/tampil', $data);
-    }
+    
     function add()
     {
         if ($this->input->post())
@@ -109,5 +105,6 @@ class Karyawan extends MY_Controller
       $this->Mkaryawan->hapus($karyawan_id);
       redirect("mastercms/karyawan", "refresh");
     }
+
 }
 ?>
