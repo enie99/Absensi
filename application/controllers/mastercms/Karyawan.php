@@ -20,7 +20,6 @@ class Karyawan extends MY_Controller
       // $dataKaryawan = $this->Mkaryawan->tampil($id);
       $data['karyawan'] = $this->Mkaryawan->tampil($id);
       $data['lokasi_id'] = "";
-      $lokasi_id = "";
 
       if ($this->input->post()) {
         $lokasi_id  = $this->input->post('lokasi_id');
@@ -81,22 +80,24 @@ class Karyawan extends MY_Controller
        $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
        $this->render_page('backend/karyawan/tambah', $data);
     }
+
     function detail($karyawan_id)
     {
       $data['detail_data']= $this->Mkaryawan->detail($karyawan_id);
       $this->render_page('backend/karyawan/detail', $data);
     }
+
     function edit($karyawan_id)
     {
       $data['edit'] = $this->Mkaryawan->get_by_id($karyawan_id);
       $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
 
-      if ($this->input->post()){
+      if ($this->input->post())
+      {
          $input = $this->input->post();
          $this->Mkaryawan->edit($input, $karyawan_id);
-
-     }
-     $this->render_page('backend/karyawan/edit',$data);
+      }
+      $this->render_page('backend/karyawan/edit',$data);
     }
     function hapus($karyawan_id)
     {
