@@ -24,7 +24,7 @@
                                 <div class="controls">
                                     <p>
                                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari Data</button>
-                                        <a href="<?php echo base_url('mastercms/perusahaan'); ?>" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</a>
+                                        <a href="<?php echo base_url('mastercms/perusahaan/cabang'); ?>" class="btn btn-warning"><i class="fa fa-rotate-left"></i> Reset Filter</a>
                                     </p>
                                 </div>
                             </div>

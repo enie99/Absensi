@@ -5,10 +5,10 @@
             <a href="#" title="" class="tip-bottom" data-original-title="Go to Home">
                 <i class="icon-home"></i> Home
             </a>
-            <a href="<?php echo base_url('mastercms/absensi'); ?>">
-                Absensi
+            <a href="<?php echo base_url('mastercms/absensi/summary'); ?>">
+                Presensi
             </a>
-            <a href="#" class="current">Detail Absensi
+            <a href="#" class="current">Detail Presensi
             </a>
         </div>
     </div>
@@ -18,10 +18,22 @@
         <div class="row-fluid">
             <div class="col-md-5">
                 <div class="panel">
-                    <div class="panel-body">
+                    <div class="panel-body" style="min-height: 500px;">
                         <div class="profile-desk">
                             <div class="col-md-12" style="padding-top:10px;">
-                                <h3>Detail Absensi<a href="<?php echo base_url('mastercms/Karyawan/edit/').$detail_data['karyawan_id']; ?>" class="pull-right" title="Edit"><i class="fa fa-pencil"></i></a></h3>
+                                <div class="col-md-6 col-sm-6"><h3>Detail Karyawan</h3></div>
+                                <div class="col-md-6 col-sm-6" style="padding-top: 20px;">
+                                    <a href="<?php echo base_url('mastercms/absensi/summary'); ?>" class="pull-right" title="Kembali"><button class="btn btn-primary"><i class="fa fa-undo"></i> Kembali</button></a>
+                                </div>
+
+                                <?php if (empty($detail_data)) : ?>
+                                    <br><br><br>
+                                    <div class="alert alert-error alert-block" style="margin-right: 10px;margin-left: 10px;margin-top: 15px">
+                                      <a class="close" data-dismiss="alert" href="#">×</a>
+                                      <strong>Detail presensi karyawan ini tidak dapat dilihat.</strong> Karyawan ini belum melakukan presensi
+                                    </div>
+                                <?php else: ?>
+
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
@@ -48,7 +60,7 @@
                                             <tr>
                                                 <td>Tanggal Lahir</td>
                                                 <td>:</td>
-                                                <td><?php  ?></td>
+                                                <td><?php $detail_data['karyawan_ttl']; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Email</td>
@@ -68,6 +80,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                            <?php endif; ?>
+
                             </div>
                         </div>
                     </div>
