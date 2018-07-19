@@ -22,7 +22,7 @@
               <table class="table">
                 <?php foreach ($perusahaan as $key => $value) : ?>
                   <tr>
-                    <form class="form-horizontal " role="form" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal " role="form" method="get" enctype="multipart/form-data">
                       <td width="10%"><?php echo $key+1; ?></td>
                       <td>
                         <input type="hidden" name="lokasi_id" value="<?php echo $value['lokasi_id']; ?>">      
@@ -52,7 +52,7 @@
                     <form name="filterFrm" method="post">
                       <div class="span2">
                         <div class="controls">
-                          <input type="hidden" id="lokasi_id" name="lokasi_id" value="<?php echo $lokasi_id; ?>">
+                          <input type="hidden" name="lokasi_id" value="<?php echo $lokasi_id; ?>">
                           <input type="text" name="cari" class="span12" placeholder="Cari Karyawan" />
                         </div>  
                       </div>
@@ -69,18 +69,52 @@
                 </div>
               <?php endif ?>
               <div class="panel-body" style="padding-left: 8px; padding-right: 8px">
-                <div id="load_data">
-                  
-
-
-                </div>
-              
+                <?php if (!empty($karyawan_id)): ?>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th><font size="2px">No</font></th>
+                        <th><font size="2px">Nama</font></th>
+                        <th><font size="2px">Jabatan</font></th>
+                        <th><font size="2px">Email</font></th>
+                        <th><font size="2px">No.Handphone</font></th>
+                        <th><font size="2px">Aksi</font></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php endif ?>
+                    <?php if (!empty($karyawan_id)): ?>
+                      <?php foreach ($karyawan_id as $key => $value): ?>
+                        <tr>
+                          <td><?= $key+1; ?></td>
+                          <td><?= $value['karyawan_nama']; ?></td>
+                          <td><?= $value['karyawan_jabatan']; ?></td>
+                          <td><?= $value['karyawan_email']; ?></td>
+                          <td><?php if(!empty($value['no_hp']))echo $value['no_hp']; else echo "-"; ?></td>
+                          <td>
+                            <span><a href="<?php echo base_url("mastercms/karyawan/detail/$value[karyawan_id]"); ?>" title="Detail"><i class="fa fa-eye"></i></a> &nbsp;</span>
+                            <span><a href="<?php echo base_url("mastercms/karyawan/edit/$value[karyawan_id]"); ?>" title="Edit"><i class="fa fa-pencil"></i></a> &nbsp;</span>
+                            <span><a href="<?php echo base_url("mastercms/karyawan/hapus/$value[karyawan_id]"); ?>" title="Hapus" onClick="return confirm('Anda yakin ingin menghapus data ini?')"><i class="fa fa-times"></i></a> &nbsp;</span>
+                          </td>
+                        </tr>
+                      <?php endforeach ?>
+                      <?php elseif(empty($lokasi_id)): ?>
+                        <div class="alert alert-danger">
+                          Silahkan pilih <strong>Perusahaan Anda </strong>
+                        </div><br/>
+                        <?php else: ?>
+                         <div class="alert alert-danger">
+                          Data Karyawan untuk perusahaan ini <strong>Tidak Ada! </strong>
+                        </div><br/>
+                      <?php endif ?>
+                    </tbody>
+                  </table>
                 </div>
 
                 <div class="center" style="text-align: center">
                   <div class="pagination alternate" style="text-align: center;">
                     <ul>
-                      <!-- <?php echo $mpaging ?> -->
+                      <?php echo $mpaging ?>
                     </ul>
                   </div>
                 </div>
@@ -97,27 +131,4 @@
 <!-- Body wrapper End -->
 
 </div> <!-- penutup id="content" -->
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    load_data();
-    function load_data(page){
-      var lokasi_id = $('#lokasi_id').val();
-      $.ajax({
-        url: '<?php echo base_url('mastercms/karyawan/pagination') ?>',
-        method: 'GET',
-        data: 'page='+page+'&lokasi_id='+lokasi_id,
-        success: function(res){
-          $('#load_data').html(res);
-        }
-      });
-    }
-
-    $(document).on('click', '.pagination', function(){
-      $page = $(this).attr('id');
-      load_data($page);   
-    });
-  });
-</script>
 

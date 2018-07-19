@@ -35,30 +35,16 @@ class Mkaryawan extends CI_Model
 
 
 
-	function show_karyawan_id_pagination_ori_part_1($number,$offset,$lokasi_id)
-	{
-		$this->db->limit($number,$offset);
-		$id = $_SESSION['user']['perusahaan_id'];
-		$this->db->order_by('_karyawan.karyawan_id','DESC');
-		$this->db->where('_perusahaan.perusahaan_id', $id);
-		$this->db->where('_lokasi.lokasi_id',$lokasi_id);
-		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
-		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
-		return $query = $this->db->get('_karyawan')->result();	
-	}
-
-
 	function show_karyawan_id_pagination($number,$offset,$lokasi_id)
 	{
 		$this->db->limit($number,$offset);
 		$id = $_SESSION['user']['perusahaan_id'];
 		$this->db->order_by('_karyawan.karyawan_id','DESC');
-		// $this->db->where('_perusahaan.perusahaan_id', $id);
 		$this->db->where('_perusahaan.perusahaan_id', $id);
 		$this->db->where('_lokasi.lokasi_id',$lokasi_id);
 		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
 		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
-		return $query = $this->db->get('_karyawan');	
+		return $query = $this->db->get('_karyawan')->result_array();	
 	}
 
 	function cari($keyword){
