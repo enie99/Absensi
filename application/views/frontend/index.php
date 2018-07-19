@@ -2,9 +2,8 @@
 <html>
 
 <head>
-	<title>Absensi</title>
+	<title>Sistem Manajemen Otret Presensi</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
 	<!-- CSS Files -->
 	<link href="<?php echo base_url("assets/frontend/css/bootstrap.min.css"); ?>" rel="stylesheet" media="screen">
 	<link href="<?php echo base_url("assets/frontend/css/font-awesome.min.css"); ?>" rel="stylesheet">
@@ -27,20 +26,21 @@
 	<!-- /.preloader -->
 	<div id="preloader"></div>
 	<div id="top"></div>
-
 	<!-- /.parallax full screen background image -->
 	<div class="fullscreen landing parallax" style="background-image:url('<?= base_url('assets/frontend/images/empy.jpg'); ?>');" data-img-width="2000" data-img-height="1333" data-diff="100">
 
+			<!-- <div class="pull-right" style="border: 1px solid #fff; margin-top: 15px; padding: 5px 10px 5px 10px; color: #fff;">Login</div> -->
 		<div class="overlay">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
 
 						<!-- /.logo -->
-						<!-- <div class="logo wow fadeInDown"> <a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a></div> -->
+						<div class="logo wow fadeInDown"> <!-- <a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a> --></div>
 						<div class="logo wow fadeInDown"> &nbsp;</div>
+						<a href=""><img src="<?= base_url('assets/frontend/images/logo.png'); ?>" alt="logo"></a>
 						<h1 class="fadeInLeft">
-							Absensi Karyawan
+							Sistem Manajemen Otret Presensi
 						</h1>
 
 						<!-- /.header paragraph -->
@@ -49,8 +49,7 @@
 								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+								cillum dolore eu fugiat nulla pariatur. </p>
 						</div>
 
 						<!-- /.header button -->
@@ -366,7 +365,7 @@
 							<li><a class="wow fadeInUp" href="https://instagram.com/" data-wow-delay="0.6s"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div> -->
-					<div class="text-center wow fadeInUp" style="font-size: 14px;">© PT OTRET DOT COM - 2018
+					<div class="text-center wow fadeInUp" style="font-size: 14px;">© 2018 <u><a href="http://www.otret.com" target="_blank">PT OTRET DOT COM</a></u>
 						<a href="#" class="scrollToTop"><i class="pe-7s-up-arrow pe-va"></i></a>
 					</div>
 				</div>
