@@ -175,30 +175,30 @@ class Absensi extends MY_Controller
        $this->load->view('backend/report/excel_karyawan',$data);
     }
 
-    function emailSend(){
-        $fromEmail = "hilo73ch@gmail.com";
-        $isiEmail = "Isi email tulis disini";
-        $mail = new PHPMailer();
-        $mail->IsHTML(true);    // set email format to HTML
-        $mail->IsSMTP();   // we are going to use SMTP
-        $mail->SMTPAuth   = true; // enabled SMTP authentication
-        $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
-        $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
-        $mail->Port       = 465;                   // SMTP port to connect to GMail
-        $mail->Username   = $fromEmail;  // alamat email kamu
-        $mail->Password   = "sismart16";            // password GMail
-        $mail->SetFrom('info@yourdomain.com', 'noreply');  //Siapa yg mengirim email
-        $mail->Subject    = "Subjek email";
-        $mail->Body       = $isiEmail;
-        $toEmail = "enieyuliani.99@gmail.com"; // siapa yg menerima email ini
-        $mail->AddAddress($toEmail);
+    // function emailSend(){
+    //     $fromEmail = "hilo73ch@gmail.com";
+    //     $isiEmail = "Isi email tulis disini";
+    //     $mail = new PHPMailer();
+    //     $mail->IsHTML(true);    // set email format to HTML
+    //     $mail->IsSMTP();   // we are going to use SMTP
+    //     $mail->SMTPAuth   = true; // enabled SMTP authentication
+    //     $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+    //     $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
+    //     $mail->Port       = 465;                   // SMTP port to connect to GMail
+    //     $mail->Username   = $fromEmail;  // alamat email kamu
+    //     $mail->Password   = "sismart16";            // password GMail
+    //     $mail->SetFrom('info@yourdomain.com', 'noreply');  //Siapa yg mengirim email
+    //     $mail->Subject    = "Subjek email";
+    //     $mail->Body       = $isiEmail;
+    //     $toEmail = "enieyuliani.99@gmail.com"; // siapa yg menerima email ini
+    //     $mail->AddAddress($toEmail);
        
-        if(!$mail->Send()) {
-            echo "Eror: ".$mail->ErrorInfo;
-        } else {
-            echo "Email berhasil dikirim";
-        }
-    }
+    //     if(!$mail->Send()) {
+    //         echo "Eror: ".$mail->ErrorInfo;
+    //     } else {
+    //         echo "Email berhasil dikirim";
+    //     }
+    // }
 
 }
 ?>

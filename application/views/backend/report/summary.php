@@ -139,7 +139,7 @@
                             <th><font size="2px">Sakit</font></th>
                             <th><font size="2px">Ijin</font></th>
                             <th><font size="2px">Cuti</font></th>
-                            <th style="background-color: #ffefea;"><font size="2px">Absen</font></th>
+                            <th style="color:#ff0000;"><font size="2px">Absen</font></th>
                             <th><font size="2px">Aksi</font></th>
                           </tr>
                         <?php endif ?>
@@ -200,7 +200,7 @@
                                   endforeach;
                                   ?>
                                 </td>
-                                <td style="background-color: #ffefea;">
+                                <td style="color:#ff0000;">
                                   <?php
                                     foreach ($presensi as $key => $pres) :
                                       if ($pres['karyawan_id'] == $kary['karyawan_id'])
