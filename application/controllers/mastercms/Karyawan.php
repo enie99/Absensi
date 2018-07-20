@@ -311,10 +311,15 @@ function add()
   if ($this->input->post())
   {
    $input = $this->input->post();
-   $this->Mkaryawan->tambah($input);
- }
- $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
- $this->render_page('backend/karyawan/tambah', $data);
+   $receiver = $input['karyawan_email'];
+    $this->Mkaryawan->sendEmail($receiver);
+    $this->Mkaryawan->tambah($input);
+    
+    $this->session->set_flashdata('msg', '<div class="alert alert-info">Karyawan berhasil ditambahkan, Email telah dikirimkan ke karyawan baru.</div>');
+  }
+
+  $data['karyawan'] = $this->Mkaryawan->daftar_perusahaan();
+  $this->render_page('backend/karyawan/tambah', $data);
 }
 
 function detail($karyawan_id)
