@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session', 'pagination','form_validation','Recaptcha');
+$autoload['libraries'] = array('database','session', 'pagination','form_validation','Recaptcha','ssp.class.php');
 
 /*
 | -------------------------------------------------------------------
