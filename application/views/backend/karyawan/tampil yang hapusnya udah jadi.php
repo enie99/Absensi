@@ -39,14 +39,6 @@
           </div>
         </div>
 
-<!-- datatables -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/backend/datatables2/jquery.dataTables.css') ?>" >
-<script type="text/javascript" language="javascript" src="<?php echo base_url('assets/backend/datatables2/jquery.js') ?>"></script>
-  <script type="text/javascript" language="javascript" src="<?php echo base_url('assets/backend/datatables2/jquery.dataTables.js') ?>"></script>
-
-
-
-
         <div class="col-md-9">
           <div class="panel">
             <div class="panel panel-default">
@@ -77,23 +69,12 @@
                 </div>
               <?php endif ?>
               <div class="panel-body" style="padding-left: 8px; padding-right: 8px">
-                <!-- <div id="load_data"> -->
-
-                  <table id="example" class="display" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Karyawan ID</th>
-                        <th>Lokasi</th>
-                        <th>Nama</th>
-                      </tr>
-                    </thead>
+                <div id="load_data">
+                  
 
 
-                  </table>
-
-
-                  <!-- </div> -->
-
+                </div>
+              
                 </div>
 
                 <div class="center" style="text-align: center">
@@ -119,7 +100,7 @@
 
 
 <script type="text/javascript">
-
+  
   // ini paging punya
   $(document).ready(function(){
     load_data();
@@ -142,35 +123,25 @@
   });
 
 // ini hapus punya
-function hapus_karyawan(id){
+  function hapus_karyawan(id){
 
- if(confirm('Anda yakin akan menghapus data ini ?')){
-  $.ajax({
-    url:"<?php echo base_url('mastercms/karyawan/hapus') ?>",
-    data:"id="+id,
-    success:function() {
+           if(confirm('Anda yakin akan menghapus data ini ?')){
 
-     window.location.reload();   
-   }
- });
+            // alert(id);
+                        $.ajax({
+                            url:"<?php echo base_url('mastercms/karyawan/hapus_karyawan') ?>",
+                            data:"id="+id,
+                            success:function() {
 
-}
+                             window.location.reload();   
+                         }
+                     });
 
-}
+                    }
+   
+  }
 
 
-
-</script>
-
-<script type="text/javascript" language="javascript" class="init">
-  $(document).ready(function() {
-    $('#example').DataTable( {
-      "processing": true,
-      "serverSide": true,
-      "ajax": "<?php echo base_url('mastercms/karyawan/data') ?>"
-    } );
-  } );
 
 </script>
-
 

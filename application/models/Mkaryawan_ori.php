@@ -7,8 +7,8 @@ class Mkaryawan extends CI_Model
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$ambil = $this->db->query("SELECT * FROM _karyawan k 
-				LEFT JOIN _lokasi l ON k.lokasi_id = l.lokasi_id
-				WHERE l.perusahaan_id = '$id' ");
+			LEFT JOIN _lokasi l ON k.lokasi_id = l.lokasi_id
+			WHERE l.perusahaan_id = '$id' ");
 		return $ambil->result_array();
 	}
 
@@ -16,8 +16,8 @@ class Mkaryawan extends CI_Model
 	{
 		$id = $_SESSION['user']['perusahaan_id'];
 		$ambil = $this->db->query("SELECT * FROM _karyawann k 
-				RIGHT JOIN _lokasi l ON k.lokasi_id = l.lokasi_id
-				WHERE l.perusahaan_id = '$id' AND k.lokasi_id = '$lokasi_id' ");
+			RIGHT JOIN _lokasi l ON k.lokasi_id = l.lokasi_id
+			WHERE l.perusahaan_id = '$id' AND k.lokasi_id = '$lokasi_id' ");
 		return $ambil->result_array();
 	}
 
@@ -101,8 +101,8 @@ class Mkaryawan extends CI_Model
         $subject = 'Buat Password Presensi';  //email subject
 
         $message = '<h3>Selamat Datang Karyawan . . .</h3>
-		<p>Silahkan mengatur password anda untuk dapat menggunakan sistem presensi perusahaan</p>
-		<a href='.base_url().'mastercms/passkaryawan?email='.$receiver.'><button style="background-color:#5187c0;">Setting Password</button></a>';
+        <p>Silahkan mengatur password anda untuk dapat menggunakan sistem presensi perusahaan</p>
+        <a href='.base_url().'mastercms/passkaryawan?email='.$receiver.'><button style="background-color:#5187c0;">Setting Password</button></a>';
         
         //config email settings
         $config['protocol'] = 'smtp';
@@ -116,7 +116,7 @@ class Mkaryawan extends CI_Model
         $config['newline'] = "\r\n"; 
         
         $this->load->library('email', $config);
-		$this->email->initialize($config);
+        $this->email->initialize($config);
         //send email
         $this->email->from($from);
         $this->email->to($receiver);
@@ -129,43 +129,43 @@ class Mkaryawan extends CI_Model
             // echo "from: ".$from. "<br>";
             // echo "protocol: ". $config['protocol']."<br>";
             // echo "message: ".$message;
-            return true;
+        	return true;
         }else{
-            echo "email send failed";
-            echo $this->email->print_debugger();
-            return false;
+        	echo "email send failed";
+        	echo $this->email->print_debugger();
+        	return false;
         } 
-	}
+    }
 
-	function set_password_karyawan($email, $input)
-	{
-		$this->db->where('karyawan_email', $email);
-		$cek = $this->db->update('_karyawan', $input);
+    function set_password_karyawan($email, $input)
+    {
+    	$this->db->where('karyawan_email', $email);
+    	$cek = $this->db->update('_karyawan', $input);
 
-		if ($cek) {
-			$status = "berhasil";
-		}
-		else{
-			$status = "gagal";
-		}
+    	if ($cek) {
+    		$status = "berhasil";
+    	}
+    	else{
+    		$status = "gagal";
+    	}
 
-		return $status;
-	}
+    	return $status;
+    }
 
-	function email_konfirmasi($email)
-	{
+    function email_konfirmasi($email)
+    {
 		$from = "hilo73ch@gmail.com";    //senders email address
         $subject = 'Informasi Login Sistem Presensi';  //email subject
 
         $message = '<h1 align="center">Selamat Password Anda Berhasil ditambahkan</h1>
-		<p>Silahkan login melalui aplikasi SMOP</p>
-		<p>Berikut detail login akun anda :</p>
-		<p>Email : '.$email.'<br/>
-		Password : *****
-		</p>
-		<p>Belum memasang aplikasi SMOP di smartphone anda?<br>
-		Silahkan download apliksinya melalui link dibawah ini</p>
-		';
+        <p>Silahkan login melalui aplikasi SMOP</p>
+        <p>Berikut detail login akun anda :</p>
+        <p>Email : '.$email.'<br/>
+        Password : *****
+        </p>
+        <p>Belum memasang aplikasi SMOP di smartphone anda?<br>
+        Silahkan download apliksinya melalui link dibawah ini</p>
+        ';
         
         //config email settings
         $config['protocol'] = 'smtp';
@@ -179,7 +179,7 @@ class Mkaryawan extends CI_Model
         $config['newline'] = "\r\n"; 
         
         $this->load->library('email', $config);
-		$this->email->initialize($config);
+        $this->email->initialize($config);
         //send email
         $this->email->from($from);
         $this->email->to($email);
@@ -187,13 +187,13 @@ class Mkaryawan extends CI_Model
         $this->email->message($message);
         
         if($this->email->send()){
-            return true;
+        	return true;
         }else{
-            echo "email send failed";
-            echo $this->email->print_debugger();
-            return false;
+        	echo "email send failed";
+        	echo $this->email->print_debugger();
+        	return false;
         } 
-	}
+    }
 
 }
 ?>
