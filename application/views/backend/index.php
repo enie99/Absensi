@@ -5,9 +5,6 @@
     <!-- <link rel="shortcut icon" href="<?/*php echo base_url();*/?>/images/favicon.png" type="image/png">-->
     
     <title>SMOP - Sistem Manajemen Otret Presensi</title>
-    <!-- datatabel -->
-    <link href="<?php echo base_url('assets/backend/datatables/jquery.dataTables.min.css');?>" rel="stylesheet">
-
     <!--icheck-->
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/iCheck/skins/minimal/minimal.css');?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/backend/js/iCheck/skins/square/square.css');?>" />
