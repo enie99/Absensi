@@ -13,6 +13,9 @@ class Karyawan extends MY_Controller
      echo "<script>location='$log';</script>";			
    }
  }
+
+
+ 
  function index()
  { 
   $id = $_SESSION['user']['perusahaan_id'];
@@ -125,13 +128,13 @@ public function pagination()
 
 
 
-if(isset($_GET['page'])){
-    $page = $_GET['page'];
+if(!isset($_GET['page'])){
+    $page = 1;
   }else{
-    $page =  1;
+    $page =  $_GET['page'];
   }
 
-  $record_per_page=3;
+  $record_per_page=10;
   
   $start = ($page - 1) * $record_per_page;
 
@@ -177,9 +180,9 @@ $no=1;
                   echo'" title="Edit"><i class="fa fa-pencil"></i></a> &nbsp;</span>';
 
                   echo '
-                    <span><a href="';
-                     echo base_url("mastercms/karyawan/hapus/$k->karyawan_id");
-                    echo '" title="Hapus" onClick="return confirm(Anda yakin ingin menghapus data ini?)"><i class="fa fa-times"></i></a> &nbsp;</span>';
+                    <span><a ';
+                     // echo base_url("mastercms/karyawan/hapus/$k->karyawan_id");
+                    echo " title='Hapus' onClick='hapus_karyawan($k->karyawan_id)'><i class='fa fa-times'></i></a> &nbsp;</span>";
 
 
 
@@ -218,6 +221,89 @@ $no=1;
 }
 
 
+function cari_karyawan(){
+
+
+
+    if($_GET['page']=='undefined'){
+        $page = 1;
+      }else{
+        $page =  $_GET['page'];
+      }
+
+      $record_per_page=10;
+      
+      $start = ($page - 1) * $record_per_page;
+
+
+  
+  $keyword=$_GET['cari_karyawan'];
+  $karyawan_id = $this->Mkaryawan->cari($keyword);
+  $lokasi_id=$_GET['lokasi_id'];
+
+
+  echo '<table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th><font size="2px">No</font></th>
+                        <th><font size="2px">Nama</font></th>
+                        <th><font size="2px">Jabatan</font></th>
+                        <th><font size="2px">Email</font></th>
+                        <th><font size="2px">No.Handphone</font></th>
+                        <th><font size="2px">Aksi</font></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    ';
+$no=1;
+                   foreach ($karyawan_id as $k) {
+                   echo '<tr>
+                        <td>'.$no++.'</td>';
+                   echo '<td>'.$k->karyawan_nama.'</td>';
+                   echo '<td>'.$k->karyawan_jabatan.'</td>';
+                   echo '<td>'.$k->karyawan_email.'</td>';
+                   echo '<td>'.$k->no_hp.'</td>';
+                   echo '<td>';
+
+                   echo '<span><a href="';
+                   echo base_url("mastercms/karyawan/detail/$k->karyawan_id"); 
+                   echo '" title="Detail"><i class="fa fa-eye"></i></a> &nbsp;</span>';
+
+
+                  echo '<span><a href="';
+                  echo base_url("mastercms/karyawan/edit/$k->karyawan_id");
+                  echo'" title="Edit"><i class="fa fa-pencil"></i></a> &nbsp;</span>';
+
+                  echo '
+                    <span><a ';
+                     // echo base_url("mastercms/karyawan/hapus/$k->karyawan_id");
+                    echo " title='Hapus' onClick='hapus_karyawan($k->karyawan_id)'><i class='fa fa-times'></i></a> &nbsp;</span>";
+
+
+
+
+                   echo '</td>
+                   </tr>';
+
+                    }
+
+
+                    echo '</tbody>
+                    </table>'; 
+
+  
+
+      $num_rows=$this->db->query('SELECT * FROM _karyawan k, _lokasi l where k.lokasi_id=l.lokasi_id and k.lokasi_id="'.$lokasi_id.'"')->num_rows();
+                    $total_pages = ceil($num_rows/$record_per_page);
+
+                    for ($i=1; $i <= $total_pages ; $i++) { 
+                        echo "<span class = 'pagination' style = 'cursor:pointer; margin:1px; padding:8px; border:1px solid #ccc;' id = '".$i."'>".$i."</span>";
+
+                    }
+
+                    echo "<span class = 'pull-right'>Page of ".$page." out of ".$total_pages."</span>";
+
+}
 
 
 function add()
@@ -249,11 +335,22 @@ function edit($karyawan_id)
  }
  $this->render_page('backend/karyawan/edit',$data);
 }
+
 function hapus($karyawan_id)
 {
   $data = $this->Mkaryawan->get_by_id($karyawan_id);
 
   $this->Mkaryawan->hapus($karyawan_id);
+  redirect("mastercms/karyawan", "refresh");
+}
+
+
+function hapus_karyawan()
+{
+  $id=$this->input->get('id');
+  $data = $this->Mkaryawan->get_by_id($id);
+
+  $this->Mkaryawan->hapus($id);
   redirect("mastercms/karyawan", "refresh");
 }
 
