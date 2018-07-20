@@ -68,7 +68,7 @@ class Mkaryawan extends CI_Model
 		$this->db->join('_lokasi','_lokasi.lokasi_id = _karyawan.lokasi_id');
 		$this->db->join('_perusahaan','_perusahaan.perusahaan_id = _lokasi.perusahaan_id');
 		$ambil = $this->db->get('_karyawan');
-		return $ambil->result_array();
+		return $ambil->result();
 	}
 
 	function get_by_id($id)
